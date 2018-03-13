@@ -8,10 +8,17 @@ public class Vehicle {
 
     private String plate;
 
-    public Vehicle(String brand, String model, String plate) {
+    private boolean available;
+
+    private VehicleSize vehicleSize;
+
+    public Vehicle(String brand, String model, String plate, VehicleSize vehicleSize) {
         this.brand = brand;
         this.model = model;
         this.plate = plate;
+        this.available = true;
+        this.vehicleSize = vehicleSize;
+
     }
 
     public String getBrand() {

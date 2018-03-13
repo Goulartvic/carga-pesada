@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Worker extends User {
 
     private String cpf;
@@ -8,11 +10,9 @@ public class Worker extends User {
 
     private boolean intercity;
 
-    private boolean available;
-
     private Address address;
 
-    private Vehicle vehicle;
+    private List<Vehicle> vehicle;
 
     public Worker(String username, String password, String name, String cpf, String phoneNumber, boolean intercity, Address address) {
         super(username, password, name);
@@ -20,12 +20,9 @@ public class Worker extends User {
         this.phoneNumber = phoneNumber;
         this.intercity = intercity;
         this.address = address;
-        this.available = true;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
+    public String getCpf() { return cpf; }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
@@ -47,14 +44,6 @@ public class Worker extends User {
         this.intercity = intercity;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -63,11 +52,11 @@ public class Worker extends User {
         this.address = address;
     }
 
-    public Vehicle getVehicle() {
+    public List<Vehicle> getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(List<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
 }
