@@ -14,8 +14,8 @@ public class Worker extends User {
 
     private List<Vehicle> vehicle;
 
-    public Worker(String username, String password, String name, String cpf, String phoneNumber, boolean intercity, Address address) {
-        super(username, password, name);
+    public Worker(int userId, String username, String password, String name, String cpf, String phoneNumber, boolean intercity, Address address) {
+        super(userId, username, password, name, UserType.WORKER);
         this.cpf = cpf;
         this.phoneNumber = phoneNumber;
         this.intercity = intercity;

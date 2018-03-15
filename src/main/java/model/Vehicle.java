@@ -12,13 +12,15 @@ public class Vehicle {
 
     private VehicleSize vehicleSize;
 
-    public Vehicle(String brand, String model, String plate, VehicleSize vehicleSize) {
+    private int userId;
+
+    public Vehicle(String brand, String model, String plate, VehicleSize vehicleSize, int userId) {
         this.brand = brand;
         this.model = model;
         this.plate = plate;
         this.available = true;
         this.vehicleSize = vehicleSize;
-
+        this.userId = userId;
     }
 
     public String getBrand() {
