@@ -6,6 +6,7 @@ import model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements UserDaoInterface{
@@ -42,23 +43,18 @@ public class UserDao implements UserDaoInterface{
                 preparedStatement.setString(6, ((Worker) user).getCpf());
                 preparedStatement.setString(7, ((Worker) user).getPhoneNumber());
                 preparedStatement.setBoolean(8, ((Worker) user).isIntercity());
-
                 preparedStatement.execute();
 
                 connection.close();
-            }
-            else if (user instanceof Customer) {
+            } else if (user instanceof Customer) {
                 preparedStatement.setInt(5, UserType.CUSTOMER.getUserType());
                 preparedStatement.setString(6, ((Customer) user).getCpf());
                 preparedStatement.setString(7, ((Customer) user).getPhoneNumber());
-
                 preparedStatement.execute();
 
                 connection.close();
-            }
-            else {
+            } else {
                 preparedStatement.setInt(5, UserType.ADMIN.getUserType());
-
                 preparedStatement.execute();
 
                 connection.close();
@@ -71,12 +67,39 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public void update(User user) {
+        Connection connection = connectionFactory.connection();
 
+        String querySql = "UPDATE USER" +
+                "PASSWORD = ? WHERE USER_ID = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+            preparedStatement.setString(1,user.getPassword());
+            preparedStatement.setInt(2,user.getUserId());
+            preparedStatement.execute();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(User user) {
+        Connection connection = connectionFactory.connection();
 
+        String querySql = "DELETE FROM USER WHERE USER_ID = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+            preparedStatement.setInt(1, user.getUserId());
+            preparedStatement.execute();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private PreparedStatement setStatementPattern(User user, PreparedStatement preparedStatement) {
