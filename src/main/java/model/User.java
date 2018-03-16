@@ -1,6 +1,6 @@
 package model;
 
-public abstract class User {
+public class User {
 
     private int userId;
 
@@ -19,6 +19,8 @@ public abstract class User {
         this.name = name;
         this.userType = userType;
     }
+
+    public User() {}
 
     public String getUsername() {
         return username;
@@ -50,5 +52,13 @@ public abstract class User {
 
     public int getUserId() {
         return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }
