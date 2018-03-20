@@ -10,14 +10,11 @@ public class Address {
 
     private int number;
 
-    private int userId;
-
-    public Address(String city, String state, String street, int number, int userId) {
+    public Address(String city, String state, String street, int number) {
         this.city = city;
         this.state = state;
         this.street = street;
         this.number = number;
-        this.userId = userId;
     }
 
     public String getCity() {
@@ -50,9 +47,5 @@ public class Address {
 
     public void setNumber(int number) {
         this.number = number;
-    }
-
-    public int getUserId() {
-        return userId;
     }
 }

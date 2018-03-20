@@ -8,17 +8,14 @@ public class Worker extends User {
 
     private String phoneNumber;
 
-    private boolean intercity;
-
     private Address address;
 
     private List<Vehicle> vehicle;
 
-    public Worker(int userId, String username, String password, String name, String cpf, String phoneNumber, boolean intercity, Address address) {
+    public Worker(int userId, String username, String password, String name, String cpf, String phoneNumber, Address address) {
         super(userId, username, password, name, UserType.WORKER);
         this.cpf = cpf;
         this.phoneNumber = phoneNumber;
-        this.intercity = intercity;
         this.address = address;
     }
 
@@ -34,14 +31,6 @@ public class Worker extends User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public boolean isIntercity() {
-        return intercity;
-    }
-
-    public void setIntercity(boolean intercity) {
-        this.intercity = intercity;
     }
 
     public Address getAddress() {
