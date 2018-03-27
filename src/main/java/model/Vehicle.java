@@ -1,5 +1,9 @@
 package model;
 
+import com.sun.org.apache.regexp.internal.RE;
+
+import java.util.List;
+
 public class Vehicle {
 
     private String brand;
@@ -14,13 +18,18 @@ public class Vehicle {
 
     private boolean intercity;
 
-    public Vehicle(String brand, String model, String plate, VehicleSize vehicleSize, boolean intercity) {
+    private double kmPrice;
+
+    private List<Request> requests;
+
+    public Vehicle(String brand, String model, String plate, VehicleSize vehicleSize, boolean intercity, double kmPrice) {
         this.brand = brand;
         this.model = model;
         this.plate = plate;
         this.available = true;
         this.vehicleSize = vehicleSize;
         this.intercity = intercity;
+        this.kmPrice = kmPrice;
     }
 
     public String getBrand() {
@@ -45,5 +54,37 @@ public class Vehicle {
 
     public void setPlate(String plate) {
         this.plate = plate;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public VehicleSize getVehicleSize() {
+        return vehicleSize;
+    }
+
+    public void setVehicleSize(VehicleSize vehicleSize) {
+        this.vehicleSize = vehicleSize;
+    }
+
+    public boolean isIntercity() {
+        return intercity;
+    }
+
+    public void setIntercity(boolean intercity) {
+        this.intercity = intercity;
+    }
+
+    public double getKmPrice() {
+        return kmPrice;
+    }
+
+    public void setKmPrice(double kmPrice) {
+        this.kmPrice = kmPrice;
     }
 }

@@ -8,6 +8,8 @@ public class Customer extends User {
 
     private Address address;
 
+    private int rating;
+
     public Customer(int userId, String username, String password, String cpf, String name, String phoneNumber, Address address) {
         super(userId, username, password, name, UserType.CUSTOMER);
         this.cpf = cpf;
@@ -37,5 +39,13 @@ public class Customer extends User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
