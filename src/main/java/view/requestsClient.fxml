@@ -32,8 +32,9 @@
               <columns>
                 <TableColumn prefWidth="83.0" text="Valor" />
                 <TableColumn prefWidth="115.0" text="Prestador" />
-                  <TableColumn prefWidth="174.0" text="Partida" />
-                  <TableColumn minWidth="0.0" prefWidth="178.0" text="Destino" />
+                  <TableColumn prefWidth="120.0" text="Partida" />
+                  <TableColumn minWidth="0.0" prefWidth="124.0" text="Destino" />
+                  <TableColumn prefWidth="108.0" text="Veiculo" />
               </columns>
             </TableView>
             <Text layoutX="214.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />

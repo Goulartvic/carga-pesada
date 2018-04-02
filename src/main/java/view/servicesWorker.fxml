@@ -31,15 +31,15 @@
             <TableView layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="551.0">
               <columns>
                 <TableColumn prefWidth="83.0" text="Valor" />
-                <TableColumn prefWidth="95.0" text="Prestador" />
-                  <TableColumn prefWidth="82.0" text="Partida" />
-                  <TableColumn minWidth="0.0" prefWidth="109.0" text="Destino" />
-                  <TableColumn prefWidth="73.0" text="Status" />
-                  <TableColumn prefWidth="108.0" text="Veiculo" />
+                <TableColumn prefWidth="95.0" text="Cliente" />
+                  <TableColumn prefWidth="121.0" text="Partida" />
+                  <TableColumn minWidth="0.0" prefWidth="105.0" text="Destino" />
+                  <TableColumn prefWidth="68.0" text="Status" />
+                  <TableColumn prefWidth="78.0" text="Veiculo" />
               </columns>
             </TableView>
-            <Text layoutX="268.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serviços" wrappingWidth="64.05859375" />
-            <Button layoutX="235.0" layoutY="300.0" mnemonicParsing="false" text="Avaliar Prestador" />
+            <Text layoutX="268.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serviços" wrappingWidth="64.05859375" />
+            <Button layoutX="244.0" layoutY="302.0" mnemonicParsing="false" text="Avaliar Cliente" />
          </children>
       </Pane>
    </children>

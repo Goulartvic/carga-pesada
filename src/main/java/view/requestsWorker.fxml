@@ -28,18 +28,18 @@
       </MenuBar>
       <Pane prefHeight="370.0" prefWidth="600.0">
          <children>
-            <TableView layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="551.0">
+            <TableView layoutX="25.0" layoutY="66.0" prefHeight="219.0" prefWidth="551.0">
               <columns>
                 <TableColumn prefWidth="83.0" text="Valor" />
-                <TableColumn prefWidth="95.0" text="Prestador" />
-                  <TableColumn prefWidth="82.0" text="Partida" />
-                  <TableColumn minWidth="0.0" prefWidth="109.0" text="Destino" />
-                  <TableColumn prefWidth="73.0" text="Status" />
-                  <TableColumn prefWidth="108.0" text="Veiculo" />
+                <TableColumn prefWidth="115.0" text="Cliente" />
+                  <TableColumn prefWidth="121.0" text="Partida" />
+                  <TableColumn minWidth="0.0" prefWidth="143.0" text="Destino" />
+                  <TableColumn prefWidth="88.0" text="Veiculo" />
               </columns>
             </TableView>
-            <Text layoutX="268.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serviços" wrappingWidth="64.05859375" />
-            <Button layoutX="235.0" layoutY="300.0" mnemonicParsing="false" text="Avaliar Prestador" />
+            <Text layoutX="214.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
+            <Button layoutX="25.0" layoutY="311.0" mnemonicParsing="false" text="Recusar" />
+            <Button layoutX="511.0" layoutY="311.0" mnemonicParsing="false" text="Aceitar" />
          </children>
       </Pane>
    </children>

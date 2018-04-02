@@ -32,13 +32,15 @@
               <columns>
                 <TableColumn prefWidth="83.0" text="Valor" />
                 <TableColumn prefWidth="115.0" text="Cliente" />
-                  <TableColumn prefWidth="136.0" text="Partida" />
-                  <TableColumn minWidth="0.0" prefWidth="140.0" text="Destino" />
-                  <TableColumn prefWidth="75.0" text="Status" />
+                  <TableColumn prefWidth="108.0" text="Partida" />
+                  <TableColumn minWidth="0.0" prefWidth="134.0" text="Destino" />
+                  <TableColumn prefWidth="110.0" text="Veiculo" />
               </columns>
             </TableView>
-            <Text layoutX="268.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serviços" wrappingWidth="64.05859375" />
-            <Button layoutX="244.0" layoutY="302.0" mnemonicParsing="false" text="Avaliar Cliente" />
+            <Text layoutX="190.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento prestador" />
+            <Button layoutX="141.0" layoutY="310.0" mnemonicParsing="false" text="Cancelar" />
+            <Button layoutX="391.0" layoutY="310.0" mnemonicParsing="false" text="Adicionar" />
+            <Button layoutX="270.0" layoutY="310.0" mnemonicParsing="false" text="Alterar" />
          </children>
       </Pane>
    </children>
