@@ -37,7 +37,7 @@
          <children>
             <Text layoutX="111.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O objeto foi entregue?" />
             <ComboBox layoutX="300.0" layoutY="58.0" prefWidth="150.0" />
-            <Label layoutX="129.0" layoutY="102.0" text="Nota para o serviço" />
+            <Label layoutX="129.0" layoutY="110.0" text="Nota para o serviço" />
             <TextField layoutX="300.0" layoutY="105.0" prefHeight="25.0" prefWidth="150.0" />
             <Button layoutX="450.0" layoutY="303.0" mnemonicParsing="false" text="Confirmar" />
             <Button layoutX="111.0" layoutY="303.0" mnemonicParsing="false" text="Cancelar" />
