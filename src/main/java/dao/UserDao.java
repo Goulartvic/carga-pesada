@@ -76,29 +76,30 @@ public class UserDao implements UserDaoInterface{
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "INSERT INTO USER (USER_ID, USERNAME, PASSWORD, FIRST_NAME, USER_TYPE_ID, CPF, PHONE_NUMBER)"
+        String querySql = "INSERT INTO USER (CPF, NAME, PASSWORD, PHONE_NUMBER, USER_ID, USERNAME, USER_TYPE)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
-            setStatementPattern(user, preparedStatement);
+            preparedStatement.setString(1, user.getCpf());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getPhoneNumber());
+            preparedStatement.setInt(5, user.getUserId());
+            preparedStatement.setString(6, user.getUsername());
+
             if (user instanceof Worker) {
-                preparedStatement.setInt(5, UserType.WORKER.getUserType());
-                preparedStatement.setString(6, ((Worker) user).getCpf());
-                preparedStatement.setString(7, ((Worker) user).getPhoneNumber());
+                preparedStatement.setInt(7, UserType.WORKER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
             } else if (user instanceof Customer) {
                 preparedStatement.setInt(5, UserType.CUSTOMER.getUserType());
-                preparedStatement.setString(6, ((Customer) user).getCpf());
-                preparedStatement.setString(7, ((Customer) user).getPhoneNumber());
                 preparedStatement.execute();
 
                 connection.close();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,19 +140,6 @@ public class UserDao implements UserDaoInterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private PreparedStatement setStatementPattern(User user, PreparedStatement preparedStatement) {
-
-        try {
-            preparedStatement.setInt(1, user.getUserId());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getName());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return preparedStatement;
     }
 
     private User searchAllPattern (User user, ResultSet resultSet) {
