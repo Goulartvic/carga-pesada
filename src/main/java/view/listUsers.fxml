@@ -26,20 +26,21 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane prefHeight="370.0" prefWidth="600.0">
+      <Pane prefHeight="384.0" prefWidth="645.0">
          <children>
-            <TableView layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="645.0">
+            <TableView layoutX="10.0" layoutY="38.0" prefHeight="260.0" prefWidth="663.0">
               <columns>
-                <TableColumn prefWidth="83.0" text="Valor" />
-                <TableColumn prefWidth="115.0" text="Prestador" />
-                  <TableColumn prefWidth="120.0" text="Partida" />
-                  <TableColumn minWidth="0.0" prefWidth="124.0" text="Destino" />
-                  <TableColumn prefWidth="108.0" text="Veiculo" />
-                  <TableColumn prefWidth="94.0" text="Status" />
+                <TableColumn prefWidth="127.0" text="Nome" />
+                <TableColumn prefWidth="86.0" text="CPF" />
+                  <TableColumn prefWidth="143.0" text="Telefone" />
+                  <TableColumn prefWidth="165.0" text="Tipo de usuario" />
+                  <TableColumn prefWidth="141.0" text="Nota" />
               </columns>
             </TableView>
-            <Text layoutX="264.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
-            <Button layoutX="277.0" layoutY="307.0" mnemonicParsing="false" text="Cancelar requisiçao" />
+            <Text layoutX="322.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios" />
+            <Button layoutX="494.0" layoutY="317.0" mnemonicParsing="false" text="Adicionar" />
+            <Button layoutX="406.0" layoutY="317.0" mnemonicParsing="false" text="Alterar" />
+            <Button layoutX="313.0" layoutY="317.0" mnemonicParsing="false" text="Excluir" />
          </children>
       </Pane>
    </children>
