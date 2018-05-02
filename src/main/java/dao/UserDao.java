@@ -117,6 +117,10 @@ public class UserDao implements UserDaoInterface{
             e.printStackTrace();
         }
     }
+    public void updateAddress(User user) {
+        Connection connection = connectionFactory.connection();
+
+    }
 
     @Override
     public void update(User user) {
