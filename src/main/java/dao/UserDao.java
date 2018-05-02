@@ -24,8 +24,8 @@ public class UserDao implements UserDaoInterface{
 
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT U.USER_ID, U.USERNAME, U.PASSWORD, U.FIRST_NAME, U.USER_TYPE_ID, U.CPF, U.PHONE_NUMBER, " +
-                "A.STATE, A.CITY, A.STREET, A.HOUSE_NUMBER FROM USER U JOIN ADDRESS A ON U.USER_ID = A.USER_ID";
+        String querySql = "SELECT CPF, NAME, PASSWORD, PHONE_NUMBER, USERNAME, RATING, USER_TYPE" +
+                "FROM USER";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
@@ -34,32 +34,22 @@ public class UserDao implements UserDaoInterface{
 
             while (resultSet.next()) {
                 User user = new User();
-                searchAllPattern(user, resultSet);
-                if (user instanceof Worker) {
-                    user.setUserType(UserType.WORKER);
-                    ((Worker) user).setCpf(resultSet.getString("CPF"));
-                    ((Worker) user).setPhoneNumber(resultSet.getString("PHONE_NUMBER"));
-                    ((Worker) user).getAddress().setState(resultSet.getString("STATE"));
-                    ((Worker) user).getAddress().setCity(resultSet.getString("CITY"));
-                    ((Worker) user).getAddress().setStreet(resultSet.getString("STREET"));
-                    ((Worker) user).getAddress().setNumber(resultSet.getInt("HOUSE_NUMBER"));
+                user.setCpf(resultSet.getString("cpf"));
+                user.setName(resultSet.getString("name"));
+                user.setPassword(resultSet.getString("password"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                user.setPhoneNumber(resultSet.getString("user_id"));
+                user.setUsername(resultSet.getString("username"));
 
-                    userList.add(user);
-                } else if (user instanceof Customer) {
+                if (resultSet.getInt("user_type") == 1) {
                     user.setUserType(UserType.CUSTOMER);
-                    ((Customer) user).setCpf(resultSet.getString("CPF"));
-                    ((Customer) user).setPhoneNumber(resultSet.getString("PHONE_NUMBER"));
-                    ((Customer) user).getAddress().setState(resultSet.getString("STATE"));
-                    ((Customer) user).getAddress().setCity(resultSet.getString("CITY"));
-                    ((Customer) user).getAddress().setStreet(resultSet.getString("STREET"));
-                    ((Customer) user).getAddress().setNumber(resultSet.getInt("HOUSE_NUMBER"));
-
                     userList.add(user);
                 } else {
+                    ((Worker) user).setRating(resultSet.getInt("rating"));
+                    user.setUserType(UserType.WORKER);
                     userList.add(user);
                 }
             }
-
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +66,8 @@ public class UserDao implements UserDaoInterface{
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "INSERT INTO USER (CPF, NAME, PASSWORD, PHONE_NUMBER, USER_ID, USERNAME, USER_TYPE)"
+        String querySql = "INSERT INTO USER (U.NAME, U.CPF, U.USERNAME, U.PASSWORD, U.USER_TYPE," +
+                "A.CIDADE, A.ESTADO, A.RUA, A.NUMERO"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -95,7 +86,7 @@ public class UserDao implements UserDaoInterface{
 
                 connection.close();
             } else if (user instanceof Customer) {
-                preparedStatement.setInt(5, UserType.CUSTOMER.getUserType());
+                preparedStatement.setInt(7, UserType.CUSTOMER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
@@ -110,12 +101,13 @@ public class UserDao implements UserDaoInterface{
         Connection connection = connectionFactory.connection();
 
         String querySql = "UPDATE USER" +
-                "PASSWORD = ? WHERE USER_ID = ?";
+                "NAME=?, PASSWORD = ? WHERE USER_ID = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
-            preparedStatement.setString(1,user.getPassword());
-            preparedStatement.setInt(2,user.getUserId());
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setInt(3,user.getUserId());
             preparedStatement.execute();
 
             connection.close();
@@ -140,18 +132,5 @@ public class UserDao implements UserDaoInterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private User searchAllPattern (User user, ResultSet resultSet) {
-
-        try {
-            user.setUserId(resultSet.getInt("USER_ID"));
-            user.setUsername(resultSet.getString("USERNAME"));
-            user.setName(resultSet.getString("PASSWORD"));
-            user.setName(resultSet.getString("FIRST_NAME"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
     }
 }
