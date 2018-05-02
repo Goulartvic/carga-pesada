@@ -1,7 +1,7 @@
 package model;
 
 public enum UserType {
-    CUSTOMER(1), WORKER(2), ADMIN(3);
+    CUSTOMER(1), WORKER(2);
 
     private final int userType;
 

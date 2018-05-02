@@ -97,11 +97,6 @@ public class UserDao implements UserDaoInterface{
                 preparedStatement.execute();
 
                 connection.close();
-            } else {
-                preparedStatement.setInt(5, UserType.ADMIN.getUserType());
-                preparedStatement.execute();
-
-                connection.close();
             }
 
         } catch (SQLException e) {

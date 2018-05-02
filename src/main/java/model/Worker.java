@@ -1,54 +1,17 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Worker extends User {
 
-    private String cpf;
-
-    private String phoneNumber;
-
-    private Address address;
-
-    private List<Vehicle> vehicle;
-
     private int rating;
 
-    public Worker(int userId, String username, String password, String name, String cpf, String phoneNumber, Address address) {
-        super(userId, username, password, name, UserType.WORKER);
-        this.cpf = cpf;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
+    private List<Vehicle> vehicles;
 
-    public String getCpf() { return cpf; }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Vehicle> getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(List<Vehicle> vehicle) {
-        this.vehicle = vehicle;
+    public Worker(Address address, String cpf, String name, String password, String phoneNumber, List<Request> requests, int userId, String username) {
+        super(address, cpf, name, password, phoneNumber, requests, userId, username, UserType.WORKER);
+        this.vehicles = new ArrayList<>();
     }
 
     public int getRating() {
@@ -57,5 +20,13 @@ public class Worker extends User {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }

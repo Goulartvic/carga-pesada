@@ -1,7 +1,5 @@
 package model;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.List;
 
 public class Vehicle {
