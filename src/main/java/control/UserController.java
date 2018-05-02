@@ -23,6 +23,15 @@ public class UserController {
         return false;
     }
 
+    public static User getSessionUser() {
+        return sessionUser;
+    }
+
+    public static void setSessionUser(User sessionUser) {
+        // Usar para setar o usuário da sessão após autenticação pelo login
+        userController.sessionUser = sessionUser;
+    }
+
     public static UserController getUserController() {
         if (userController == null) {
             userController = new UserController();
@@ -32,14 +41,6 @@ public class UserController {
 
     public static void setUserController(UserController userController) {
         UserController.userController = userController;
-    }
-
-    public static User getSessionUser() {
-        return sessionUser;
-    }
-
-    public static void setSessionUser(User sessionUser) {
-        userController.sessionUser = sessionUser;
     }
 
 }
