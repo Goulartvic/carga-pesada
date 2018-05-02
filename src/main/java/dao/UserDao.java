@@ -120,6 +120,21 @@ public class UserDao implements UserDaoInterface{
     public void updateAddress(User user) {
         Connection connection = connectionFactory.connection();
 
+        String querySql = "UPDATE ADDRESS" + "STATE = ?, CITY = ?, STREET = ?, NUMBER = ? WHERE USER_ID = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+            preparedStatement.setString(1, user.getAddress().getState());
+            preparedStatement.setString(2, user.getAddress().getCity());
+            preparedStatement.setString(3, user.getAddress().getStreet());
+            preparedStatement.setInt(4, user.getAddress().getNumber());
+            preparedStatement.setInt(5, user.getUserId());
+
+            preparedStatement.execute();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -130,6 +145,7 @@ public class UserDao implements UserDaoInterface{
                 "NAME=?, PASSWORD = ? WHERE USER_ID = ?";
 
         try {
+            updateAddress(user);
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2,user.getPassword());
