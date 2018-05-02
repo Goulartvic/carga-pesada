@@ -62,17 +62,39 @@ public class UserDao implements UserDaoInterface{
         return null;
     }
 
-    @Override
-    public void save(User user) {
+    public void saveAddress(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "INSERT INTO USER (U.NAME, U.CPF, U.USERNAME, U.PASSWORD, U.USER_TYPE," +
-                "A.CIDADE, A.ESTADO, A.RUA, A.NUMERO"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql =  "INSERT INTO ADDRESS (CIDADE, ESTADO, RUA, NUMERO, USER_ID)" + "VALUES (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
+            preparedStatement.setString(1, user.getAddress().getCity());
+            preparedStatement.setString(2, user.getAddress().getState());
+            preparedStatement.setString(3, user.getAddress().getStreet());
+            preparedStatement.setInt(4, user.getAddress().getNumber());
+            preparedStatement.setInt(5, user.getUserId());
+
+            preparedStatement.execute();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void save(User user) {
+        Connection connection = connectionFactory.connection();
+
+        String querySql1 = "INSERT INTO USER (NAME, CPF, USERNAME, PASSWORD, USER_TYPE" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql1);
+
+            saveAddress(user);
             preparedStatement.setString(1, user.getCpf());
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getPassword());
