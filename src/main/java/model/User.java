@@ -10,17 +10,27 @@ public class User {
 
     private String name;
 
+    private String cpf;
+
+    private String phoneNumber;
+
+    private Address address;
+
     private UserType userType;
 
-    public User(int userId, String username, String password, String name, UserType userType) {
+    public User(int userId, String username, String password, String name, UserType userType, String cpf, String phoneNumber, Address address) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.name = name;
         this.userType = userType;
+        this.cpf = cpf;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
-    public User() {}
+    public User() {
+    }
 
     public String getUsername() {
         return username;
@@ -61,4 +71,29 @@ public class User {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 }
