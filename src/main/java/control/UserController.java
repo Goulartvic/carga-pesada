@@ -11,6 +11,18 @@ public class UserController {
         super();
     }
 
+    public void createAccount(){
+
+    }
+
+    public void deleteUser(){
+
+    }
+
+    public boolean userExist() {
+        return false;
+    }
+
     public static UserController getUserController() {
         if (userController == null) {
             userController = new UserController();
