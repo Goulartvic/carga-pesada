@@ -162,12 +162,12 @@ public class UserDao implements UserDaoInterface{
     public void delete(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "DELETE FROM USER WHERE USER_ID = ?";
+        String querySql = "DELETE FROM USER WHERE USERNAME = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
-            preparedStatement.setInt(1, user.getUserId());
+            preparedStatement.setString(1, user.getUsername());
             preparedStatement.execute();
 
             connection.close();
