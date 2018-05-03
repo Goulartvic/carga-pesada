@@ -10,6 +10,10 @@ public class Address {
 
     private int number;
 
+    public Address() {
+
+    }
+
     public Address(String city, String state, String street, int number) {
         this.city = city;
         this.state = state;
