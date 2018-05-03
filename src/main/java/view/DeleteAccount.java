@@ -6,14 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class RegisterUser extends Application {
+public class DeleteAccount extends Application {
     private static Stage stage;
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent registerUser;
-        registerUser = FXMLLoader.load(getClass().getResource("registerUser.fxml"));
-        Scene scene = new Scene(registerUser);
+    public void start(Stage primaryStage) throws Exception {
+        Parent deleteAccount;
+        deleteAccount = FXMLLoader.load(getClass().getResource("deleteAccount.fxml"));
+        Scene scene = new Scene(deleteAccount);
         stage.setScene(scene);
         stage.show();
         setStage(stage);
@@ -24,10 +24,6 @@ public class RegisterUser extends Application {
     }
 
     public static void setStage(Stage stage) {
-        RegisterUser.stage = stage;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        DeleteAccount.stage = stage;
     }
 }
