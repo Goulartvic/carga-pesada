@@ -18,6 +18,7 @@ public class deleteAccountFXMLController {
     public void deleteAction() {
         UserDao userDao = new UserDao();
         User user = new User();
-
+        user.setUsername(txtNome.getText());
+        userDao.delete(user);
     }
 }
