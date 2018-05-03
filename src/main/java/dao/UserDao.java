@@ -65,7 +65,7 @@ public class UserDao implements UserDaoInterface{
     public void saveAddress(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql =  "INSERT INTO ADDRESS (CIDADE, ESTADO, RUA, NUMERO, USER_ID)" + "VALUES (?, ?, ?, ?, ?)";
+        String querySql =  "INSERT INTO address (city, state, street, number, USER_ID)" + "VALUES (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
@@ -87,32 +87,30 @@ public class UserDao implements UserDaoInterface{
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql1 = "INSERT INTO USER (NAME, CPF, USERNAME, PASSWORD, USER_TYPE" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql1 = "INSERT INTO user (name, cpf, username, password, user_type)" +
+                " VALUES (?, ?, ?, ?, ?)";
 
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql1);
 
-            saveAddress(user);
-            preparedStatement.setString(1, user.getCpf());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getPhoneNumber());
-            preparedStatement.setInt(5, user.getUserId());
-            preparedStatement.setString(6, user.getUsername());
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getCpf());
+            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(4, user.getPassword());
 
-            if (user instanceof Worker) {
-                preparedStatement.setInt(7, UserType.WORKER.getUserType());
+            if (user.getUserType() == UserType.WORKER) {
+                preparedStatement.setInt(5, UserType.WORKER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
-            } else if (user instanceof Customer) {
-                preparedStatement.setInt(7, UserType.CUSTOMER.getUserType());
+            } else if (user.getUserType() == UserType.CUSTOMER) {
+                preparedStatement.setInt(5, UserType.CUSTOMER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,7 +160,7 @@ public class UserDao implements UserDaoInterface{
     public void delete(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "DELETE FROM USER WHERE USERNAME = ?";
+        String querySql = "DELETE FROM user WHERE username = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);

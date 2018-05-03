@@ -10,7 +10,7 @@ public class DeleteAccount extends Application {
     private static Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent deleteAccount;
         deleteAccount = FXMLLoader.load(getClass().getResource("deleteAccount.fxml"));
         Scene scene = new Scene(deleteAccount);

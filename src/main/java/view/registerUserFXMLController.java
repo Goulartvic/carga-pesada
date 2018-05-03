@@ -67,11 +67,11 @@ public class registerUserFXMLController {
         } else {
             user.setUserType(UserType.WORKER);
         }
-        address.setCity(txtCity.getText());
-        address.setNumber(Integer.parseInt(txtNumber.getText()));
-        address.setState(txtState.getText());
-        address.setStreet(txtStreet.getText());
-        user.setAddress(address);
+//        address.setCity(txtCity.getText());
+//        address.setNumber(Integer.parseInt(txtNumber.getText()));
+//        address.setState(txtState.getText());
+//        address.setStreet(txtStreet.getText());
+//        user.setAddress(address);
         userDao.save(user);
     }
 
