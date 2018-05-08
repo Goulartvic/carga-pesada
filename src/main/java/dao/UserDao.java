@@ -159,5 +159,19 @@ public class UserDao implements UserDaoInterface{
 
     @Override
     public void delete(User user) {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "DELETE FROM user WHERE username = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
