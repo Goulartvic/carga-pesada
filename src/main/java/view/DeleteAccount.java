@@ -26,4 +26,8 @@ public class DeleteAccount extends Application {
     public static void setStage(Stage stage) {
         DeleteAccount.stage = stage;
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

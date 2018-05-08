@@ -14,6 +14,8 @@ public class UserDao implements UserDaoInterface{
 
     private ConnectionFactory connectionFactory;
 
+    private AddressDao addressDao = new AddressDao();
+
     public UserDao() {
         this.connectionFactory = new ConnectionFactory();
     }
@@ -80,8 +82,37 @@ public class UserDao implements UserDaoInterface{
     }
 
     @Override
-    public User authenticateUser(String email, String password) {
-        return null;
+    public User authenticateUser(String username, String password) {
+        User user = new User();
+
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT user_id, name, cpf, username, user_type, username, password FROM user WHERE username = ? AND password = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setName(resultSet.getString("name"));
+                user.setCpf(resultSet.getString("cpf"));
+                if (resultSet.getInt("user_type") == 1) {
+                    user.setUserType(UserType.CUSTOMER);
+                } else {user.setUserType(UserType.WORKER);}
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setAddress(addressDao.setAddress(user));
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override

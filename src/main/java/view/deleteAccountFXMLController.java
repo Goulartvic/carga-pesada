@@ -15,6 +15,8 @@ public class deleteAccountFXMLController {
     @FXML
     private PasswordField txtNome;
 
+    private User sessionUser;
+
     @FXML
     public void deleteAction() {
         UserDao userDao = new UserDao();
@@ -23,5 +25,13 @@ public class deleteAccountFXMLController {
         user.setUsername(txtNome.getText());
         addressDao.delete(user);
         userDao.delete(user);
+    }
+
+    public User getSessionUser() {
+        return sessionUser;
+    }
+
+    public void setSessionUser(User sessionUser) {
+        this.sessionUser = sessionUser;
     }
 }

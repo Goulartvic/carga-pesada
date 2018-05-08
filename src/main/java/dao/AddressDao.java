@@ -1,10 +1,12 @@
 package dao;
 
 import connection.ConnectionFactory;
+import model.Address;
 import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AddressDao implements DAO<User>{
@@ -35,6 +37,34 @@ public class AddressDao implements DAO<User>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Address setAddress(User user) {
+        Address address = new Address();
+
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT state, city, street, number FROM address WHERE user_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+            preparedStatement.setInt(1, user.getUserId());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                address.setState(resultSet.getString("state"));
+                address.setCity(resultSet.getString("city"));
+                address.setStreet(resultSet.getString("street"));
+                address.setNumber(resultSet.getInt("number"));
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return address;
     }
 
     @Override

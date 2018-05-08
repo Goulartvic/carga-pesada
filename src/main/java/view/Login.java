@@ -9,8 +9,10 @@ import javafx.stage.Stage;
 public class Login extends Application {
     private static Stage stage;
 
+    @Override
     public void start(Stage stage) throws Exception {
-        Parent login = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent login;
+        login = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(login);
         stage.setScene(scene);
         stage.show();
