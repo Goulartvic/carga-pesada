@@ -1,5 +1,6 @@
 package view;
 
+import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +18,10 @@ public class deleteAccountFXMLController {
     @FXML
     public void deleteAction() {
         UserDao userDao = new UserDao();
+        AddressDao addressDao = new AddressDao();
         User user = new User();
         user.setUsername(txtNome.getText());
+        addressDao.delete(user);
         userDao.delete(user);
     }
 }

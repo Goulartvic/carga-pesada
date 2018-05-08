@@ -23,7 +23,7 @@ public class User {
 
     private UserType userType;
 
-    public User() {}
+    public User() { this.address = new Address(); }
 
     public User(Address address, String cpf, String name, String password, String phoneNumber, List<Request> requests, int userId, String username, UserType userType) {
         this.address = address;

@@ -1,5 +1,6 @@
 package view;
 
+import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,8 +56,8 @@ public class registerUserFXMLController {
     @FXML
     public void saveUserAction() {
         UserDao userDao = new UserDao();
+        AddressDao addressDao = new AddressDao();
         User user = new User();
-        Address address = new Address();
         user.setName(txtName.getText());
         user.setCpf(txtCPF.getText());
         user.setUsername(txtLogin.getText());
@@ -67,12 +68,13 @@ public class registerUserFXMLController {
         } else {
             user.setUserType(UserType.WORKER);
         }
-//        address.setCity(txtCity.getText());
-//        address.setNumber(Integer.parseInt(txtNumber.getText()));
-//        address.setState(txtState.getText());
-//        address.setStreet(txtStreet.getText());
-//        user.setAddress(address);
+        user.getAddress().setCity(txtCity.getText());
+        user.getAddress().setNumber(Integer.parseInt(txtNumber.getText()));
+        user.getAddress().setState(txtState.getText());
+        user.getAddress().setStreet(txtStreet.getText());
         userDao.save(user);
+        user.setUserId(userDao.lastUserId());
+        addressDao.save(user);
     }
 
 }

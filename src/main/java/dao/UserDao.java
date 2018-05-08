@@ -18,6 +18,28 @@ public class UserDao implements UserDaoInterface{
         this.connectionFactory = new ConnectionFactory();
     }
 
+    public int lastUserId() {
+        int userId = 0;
+
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "select count(user_id) from user";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                userId = resultSet.getInt("count(user_id)");
+            }
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode());
+        }
+        return userId;
+    }
+
     @Override
     public List<User> searchAll() {
         List<User> userList = new ArrayList<>();
@@ -60,27 +82,6 @@ public class UserDao implements UserDaoInterface{
     @Override
     public User authenticateUser(String email, String password) {
         return null;
-    }
-
-    public void saveAddress(User user) {
-        Connection connection = connectionFactory.connection();
-
-        String querySql =  "INSERT INTO address (city, state, street, number, USER_ID)" + "VALUES (?, ?, ?, ?, ?)";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
-
-            preparedStatement.setString(1, user.getAddress().getCity());
-            preparedStatement.setString(2, user.getAddress().getState());
-            preparedStatement.setString(3, user.getAddress().getStreet());
-            preparedStatement.setInt(4, user.getAddress().getNumber());
-            preparedStatement.setInt(5, user.getUserId());
-
-            preparedStatement.execute();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
