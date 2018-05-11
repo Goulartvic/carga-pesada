@@ -25,16 +25,14 @@ public class UserDao implements UserDaoInterface{
 
         Connection connection = connectionFactory.connection();
 
-        String querySql = "select count(user_id) from user";
+        String querySql = "SELECT user_id FROM cargapesada.user;";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                userId = resultSet.getInt("count(user_id)");
-            }
+            while (resultSet.next()) {userId = resultSet.getInt("user_id");}
             connection.close();
         } catch (SQLException e) {
             System.out.println(e.getErrorCode());
@@ -48,8 +46,8 @@ public class UserDao implements UserDaoInterface{
 
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT CPF, NAME, PASSWORD, PHONE_NUMBER, USERNAME, RATING, USER_TYPE" +
-                "FROM USER";
+        String querySql = "SELECT cpf, name, password, phone_number, user_id, username, rating, user_type " +
+                "FROM user";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
@@ -79,6 +77,12 @@ public class UserDao implements UserDaoInterface{
             e.printStackTrace();
         }
         return userList;
+    }
+
+    public boolean returnAuthentication(String username, String password) {
+        if (authenticateUser(username, password).getUserId()!=0) {
+            return true;
+        } else {return false;}
     }
 
     @Override
@@ -119,8 +123,8 @@ public class UserDao implements UserDaoInterface{
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql1 = "INSERT INTO user (name, cpf, username, password, user_type)" +
-                " VALUES (?, ?, ?, ?, ?)";
+        String querySql1 = "INSERT INTO user (name, cpf, username, password, phone_number, user_type)" +
+                " VALUES (?, ?, ?, ?, ?, ?)";
 
 
         try {
@@ -130,14 +134,14 @@ public class UserDao implements UserDaoInterface{
             preparedStatement.setString(2, user.getCpf());
             preparedStatement.setString(3, user.getUsername());
             preparedStatement.setString(4, user.getPassword());
-
+            preparedStatement.setString(5, user.getPhoneNumber());
             if (user.getUserType() == UserType.WORKER) {
-                preparedStatement.setInt(5, UserType.WORKER.getUserType());
+                preparedStatement.setInt(6, UserType.WORKER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
             } else if (user.getUserType() == UserType.CUSTOMER) {
-                preparedStatement.setInt(5, UserType.CUSTOMER.getUserType());
+                preparedStatement.setInt(6, UserType.CUSTOMER.getUserType());
                 preparedStatement.execute();
 
                 connection.close();
@@ -147,39 +151,20 @@ public class UserDao implements UserDaoInterface{
             e.printStackTrace();
         }
     }
-    public void updateAddress(User user) {
-        Connection connection = connectionFactory.connection();
-
-        String querySql = "UPDATE ADDRESS" + "STATE = ?, CITY = ?, STREET = ?, NUMBER = ? WHERE USER_ID = ?";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
-            preparedStatement.setString(1, user.getAddress().getState());
-            preparedStatement.setString(2, user.getAddress().getCity());
-            preparedStatement.setString(3, user.getAddress().getStreet());
-            preparedStatement.setInt(4, user.getAddress().getNumber());
-            preparedStatement.setInt(5, user.getUserId());
-
-            preparedStatement.execute();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void update(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "UPDATE USER" +
-                "NAME=?, PASSWORD = ? WHERE USER_ID = ?";
+        String querySql = "UPDATE user SET " +
+                "name=?, password=?, phone_number=? WHERE user_id=?";
 
         try {
-            updateAddress(user);
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setInt(3,user.getUserId());
+            preparedStatement.setString(3, user.getPhoneNumber());
+            preparedStatement.setInt(4,user.getUserId());
             preparedStatement.execute();
 
             connection.close();
@@ -192,12 +177,13 @@ public class UserDao implements UserDaoInterface{
     public void delete(User user) {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "DELETE FROM user WHERE username = ?";
+        String querySql = "DELETE FROM user WHERE username = ? AND user_id=?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
             preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setInt(2,user.getUserId());
             preparedStatement.execute();
 
             connection.close();

@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import model.User;
 
-public class deleteAccountFXMLController {
+public class DeleteAccountFXMLController {
 
     @FXML
     private Button btnDelete;
@@ -21,10 +21,9 @@ public class deleteAccountFXMLController {
     public void deleteAction() {
         UserDao userDao = new UserDao();
         AddressDao addressDao = new AddressDao();
-        User user = new User();
-        user.setUsername(txtNome.getText());
-        addressDao.delete(user);
-        userDao.delete(user);
+        sessionUser.setUsername(txtNome.getText());
+        addressDao.delete(sessionUser);
+        userDao.delete(sessionUser);
     }
 
     public User getSessionUser() {

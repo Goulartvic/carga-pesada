@@ -14,7 +14,7 @@ import model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class loginFXMLController {
+public class LoginFXMLController {
 
     private static Stage stage;
     @FXML
@@ -26,6 +26,7 @@ public class loginFXMLController {
     @FXML
     private PasswordField txtPassword;
 
+    @FXML
     private User sessionUser;
 
     @FXML
@@ -39,13 +40,15 @@ public class loginFXMLController {
         UserDao userDao = new UserDao();
         AddressDao addressDao = new AddressDao();
 
-        sessionUser = userDao.authenticateUser(txtLogin.getText(), txtPassword.getText());
-        addressDao.setAddress(sessionUser);
-        if (sessionUser.getUsername().equals(txtLogin.getText()) && sessionUser.getPassword().equals(txtPassword.getText())) {
-            DeleteAccount deleteAccount = new DeleteAccount();
+        if (userDao.returnAuthentication(txtLogin.getText(), txtPassword.getText())) {
+            sessionUser = userDao.authenticateUser(txtLogin.getText(), txtPassword.getText());
+            addressDao.setAddress(sessionUser);
+
+            ListUser listUser = new ListUser();
+            listUser.setSessionUser(sessionUser);
             goQuitAction();
             try {
-                deleteAccount.start(new Stage());
+                listUser.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -55,6 +58,17 @@ public class loginFXMLController {
             alert.setHeaderText("Login Inválido");
             alert.setContentText("Verifique os dados digitados");
             alert.show();
+        }
+    }
+
+    @FXML
+    public void createAction() {
+        RegisterUser registerUser = new RegisterUser();
+        goQuitAction();
+        try {
+            registerUser.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

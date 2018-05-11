@@ -7,12 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.Address;
+import javafx.stage.Stage;
 import model.User;
 import model.UserType;
-
-import javax.xml.soap.Text;
-
 
 public class registerUserFXMLController {
 
@@ -49,6 +46,8 @@ public class registerUserFXMLController {
     @FXML
     private TextField txtUserType;
 
+    @FXML
+    private TextField txtPhone;
 
     public registerUserFXMLController() {
     }
@@ -62,7 +61,7 @@ public class registerUserFXMLController {
         user.setCpf(txtCPF.getText());
         user.setUsername(txtLogin.getText());
         user.setPassword(txtPassword.getText());
-        user.setPhoneNumber(txtNumber.getText());
+        user.setPhoneNumber(txtPhone.getText());
         if (Integer.parseInt(txtUserType.getText()) == 1) {
             user.setUserType(UserType.CUSTOMER);
         } else {
@@ -75,6 +74,28 @@ public class registerUserFXMLController {
         userDao.save(user);
         user.setUserId(userDao.lastUserId());
         addressDao.save(user);
+        Login login = new Login();
+        goQuitAction();
+        try {
+            login.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    @FXML
+    public void loginAction() {
+        Login login = new Login();
+        goQuitAction();
+        try {
+            login.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goQuitAction() {
+        RegisterUser.getStage().close();
+    }
 }

@@ -69,10 +69,41 @@ public class AddressDao implements DAO<User>{
 
     @Override
     public void update(User user) {
+        Connection connection = connectionFactory.connection();
 
+        String querySql = "UPDATE address SET " +
+                "state=?, city=?, street=?, number=? WHERE USER_ID = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+            preparedStatement.setString(1, user.getAddress().getState());
+            preparedStatement.setString(2,user.getAddress().getCity());
+            preparedStatement.setString(3,user.getAddress().getStreet());
+            preparedStatement.setInt(4,user.getAddress().getNumber());
+            preparedStatement.setInt(5,user.getUserId());
+            preparedStatement.execute();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(User user) {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "DELETE FROM address WHERE user_id=?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+            preparedStatement.setInt( 1, user.getUserId());
+            preparedStatement.execute();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
