@@ -1,7 +1,7 @@
 package model;
 
 public enum Status {
-    ACCEPT(1), ONHOLD(2), DENIED(3);
+    ACCEPTED(1), ONHOLD(2), DENIED(3);
 
     private final int status;
 

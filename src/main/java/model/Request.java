@@ -22,4 +22,52 @@ public class Request {
         this.arrivalDestination = arrivalDestination;
         this.departure = departure;
     }
+
+    public Address getArrivalDestination() {
+        return arrivalDestination;
+    }
+
+    public void setArrivalDestination(Address arrivalDestination) {
+        this.arrivalDestination = arrivalDestination;
+    }
+
+    public Address getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(Address departure) {
+        this.departure = departure;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
