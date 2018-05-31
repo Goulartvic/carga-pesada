@@ -75,6 +75,10 @@ public class Request {
                 this.status = Status.ONHOLD;
             case 3:
                 this.status = Status.DENIED;
+            case 4:
+                this.status = Status.COMPLETE;
+            case 5:
+                this.status = Status.CANCELLED;
         }
     }
 }
