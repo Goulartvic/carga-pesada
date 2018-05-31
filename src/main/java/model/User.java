@@ -23,7 +23,9 @@ public class User {
 
     private UserType userType;
 
-    public User() { this.address = new Address(); }
+    public User() {
+        this.address = new Address();
+    }
 
     public User(User user, Address address) {
         this.name = user.getName();
@@ -115,7 +117,12 @@ public class User {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setUserType(int userType) {
+        switch (userType) {
+            case 1:
+                this.userType = UserType.CUSTOMER;
+            case 2:
+                this.userType = UserType.WORKER;
+        }
     }
 }

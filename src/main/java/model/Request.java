@@ -67,7 +67,14 @@ public class Request {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(int status) {
+        switch (status) {
+            case 1:
+                this.status = Status.ACCEPTED;
+            case 2:
+                this.status = Status.ONHOLD;
+            case 3:
+                this.status = Status.DENIED;
+        }
     }
 }
