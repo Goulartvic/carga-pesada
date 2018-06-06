@@ -12,15 +12,11 @@ public class DeleteAccount extends Application {
 
     private static DeleteAccountFXMLController deleteController;
 
-    private User sessionUser;
-
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAccount.fxml"));
         Parent deleteAccount = loader.load();
         Scene scene = new Scene(deleteAccount);
-        deleteController = loader.getController();
-        deleteController.setSessionUser(sessionUser);
         stage.setScene(scene);
         stage.show();
         setStage(stage);
@@ -36,13 +32,5 @@ public class DeleteAccount extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
     }
 }

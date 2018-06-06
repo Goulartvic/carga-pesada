@@ -1,10 +1,12 @@
 package view;
 
+import control.UserController;
 import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.User;
 
 public class DeleteAccountFXMLController {
@@ -13,24 +15,11 @@ public class DeleteAccountFXMLController {
     private Button btnDelete;
 
     @FXML
-    private PasswordField txtNome;
-
-    private User sessionUser;
+    private TextField txtNome;
 
     @FXML
     public void deleteAction() {
-        UserDao userDao = new UserDao();
-        AddressDao addressDao = new AddressDao();
-        sessionUser.setUsername(txtNome.getText());
-        addressDao.delete(sessionUser);
-        userDao.delete(sessionUser);
-    }
-
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
+        UserController.getSessionUser().setUsername(txtNome.getText());
+        UserController.getInstance().deleteUser();
     }
 }

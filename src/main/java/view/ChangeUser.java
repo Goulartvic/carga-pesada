@@ -11,17 +11,11 @@ public class ChangeUser extends Application {
 
     private static Stage stage;
 
-    private static ChangeUserFXMLController changeUserController;
-
-    private User sessionUser;
-
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("changeUser.fxml"));
         Parent changeUser = loader.load();
         Scene scene = new Scene(changeUser);
-        changeUserController = loader.getController();
-        changeUserController.setSessionUser(sessionUser);
         stage.setScene(scene);
         stage.show();
         setStage(stage);
@@ -37,13 +31,5 @@ public class ChangeUser extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
     }
 }

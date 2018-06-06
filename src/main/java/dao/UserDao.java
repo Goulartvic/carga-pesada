@@ -64,11 +64,11 @@ public class UserDao implements UserDaoInterface{
                 user.setUsername(resultSet.getString("username"));
 
                 if (resultSet.getInt("user_type") == 1) {
-                    user.setUserType(UserType.CUSTOMER);
+                    user.setUserType(UserType.CUSTOMER.getUserType());
                     userList.add(user);
                 } else {
                     ((Worker) user).setRating(resultSet.getInt("rating"));
-                    user.setUserType(UserType.WORKER);
+                    user.setUserType(UserType.WORKER.getUserType());
                     userList.add(user);
                 }
             }
@@ -105,8 +105,8 @@ public class UserDao implements UserDaoInterface{
                 user.setName(resultSet.getString("name"));
                 user.setCpf(resultSet.getString("cpf"));
                 if (resultSet.getInt("user_type") == 1) {
-                    user.setUserType(UserType.CUSTOMER);
-                } else {user.setUserType(UserType.WORKER);}
+                    user.setUserType(UserType.CUSTOMER.getUserType());
+                } else {user.setUserType(UserType.WORKER.getUserType());}
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setAddress(addressDao.setAddress(user));

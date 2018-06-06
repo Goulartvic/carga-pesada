@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DetailsRequestFXMLController">
    <children>
       <MenuBar>
         <menus>
@@ -31,13 +31,13 @@
          <children>
             <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do prestador" />
             <Label layoutX="158.0" layoutY="21.0" />
-            <TableView layoutX="62.0" layoutY="109.0" prefHeight="200.0" prefWidth="477.0">
+            <TableView fx:id="tableView" layoutX="62.0" layoutY="109.0" prefHeight="200.0" prefWidth="477.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Marca" />
-                <TableColumn prefWidth="75.0" text="Placa" />
-                  <TableColumn prefWidth="91.0" text="Modelo" />
-                  <TableColumn prefWidth="122.0" text="Intermunicipal" />
-                  <TableColumn prefWidth="112.0" text="Preço por KM" />
+                <TableColumn fx:id="brandCollumn" prefWidth="75.0" text="Marca" />
+                <TableColumn fx:id="plateCollumn" prefWidth="75.0" text="Placa" />
+                  <TableColumn fx:id="modelCollumn" prefWidth="91.0" text="Modelo" />
+                  <TableColumn fx:id="intercityCollumn" prefWidth="122.0" text="Intermunicipal" />
+                  <TableColumn fx:id="kmPriceCollumn" prefWidth="112.0" text="Preço por KM" />
               </columns>
             </TableView>
             <Text layoutX="273.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veiculos" />

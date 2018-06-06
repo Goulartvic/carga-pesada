@@ -1,5 +1,6 @@
 package view;
 
+import control.UserController;
 import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
@@ -27,28 +28,19 @@ public class LoginFXMLController {
     private PasswordField txtPassword;
 
     @FXML
-    private User sessionUser;
-
-    @FXML
     public void goQuitAction() {
         Login.getStage().close();
     }
 
     @FXML
     public void loginAction() {
-        sessionUser = new User();
-        UserDao userDao = new UserDao();
-        AddressDao addressDao = new AddressDao();
+        if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
+            UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
 
-        if (userDao.returnAuthentication(txtLogin.getText(), txtPassword.getText())) {
-            sessionUser = userDao.authenticateUser(txtLogin.getText(), txtPassword.getText());
-            addressDao.setAddress(sessionUser);
-
-            ListUser listUser = new ListUser();
-            listUser.setSessionUser(sessionUser);
+            DeleteAccount deleteAccount = new DeleteAccount();
             goQuitAction();
             try {
-                listUser.start(new Stage());
+                deleteAccount.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -70,15 +62,5 @@ public class LoginFXMLController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    @FXML
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
     }
 }

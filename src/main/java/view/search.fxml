@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchFXMLController">
    <children>
       <MenuBar>
         <menus>
@@ -40,11 +40,11 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="450.0">
                <children>
-                  <TableView layoutX="12.0" layoutY="31.0" prefHeight="272.0" prefWidth="441.0">
+                  <TableView fx:id="tableView" layoutX="12.0" layoutY="31.0" prefHeight="272.0" prefWidth="441.0">
                     <columns>
-                      <TableColumn prefWidth="164.0" text="Prestador" />
-                      <TableColumn prefWidth="102.0" text="Nota" />
-                        <TableColumn prefWidth="174.0" text="Preço por KM" />
+                      <TableColumn fx:id="customerCollumn" prefWidth="164.0" text="Prestador" />
+                      <TableColumn fx:id="ratingCollumn" prefWidth="102.0" text="Nota" />
+                        <TableColumn fx:id="kmPriceCollumn" prefWidth="174.0" text="Preço por KM" />
                     </columns>
                   </TableView>
                   <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" text="Ver detalhes" />

@@ -1,5 +1,6 @@
 package view;
 
+import control.UserController;
 import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
@@ -31,29 +32,25 @@ public class ChangeUserFXMLController {
     @FXML
     private TextField phoneTxt;
 
-    private User sessionUser;
-
     @FXML
     public void changeUserAction() {
-        UserDao userDao = new UserDao();
-        AddressDao addressDao = new AddressDao();
-        User paramUser = new User(sessionUser, sessionUser.getAddress());
+        User paramUser = new User(UserController.getSessionUser(), UserController.getSessionUser().getAddress());
 
-        if (nameTxt.getText().equals("")==false){sessionUser.setName(nameTxt.getText());}
+        if (nameTxt.getText().equals("")==false){UserController.getSessionUser().setName(nameTxt.getText());}
 
-        if (passwordTxt.getText().equals("")==false) {sessionUser.setPassword(passwordTxt.getText());}
+        if (passwordTxt.getText().equals("")==false) {UserController.getSessionUser().setPassword(passwordTxt.getText());}
 
-        if (stateTxt.getText().equals("")==false) {sessionUser.getAddress().setState(stateTxt.getText());}
+        if (stateTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setState(stateTxt.getText());}
 
-        if (cityTxt.getText().equals("")==false) {sessionUser.getAddress().setCity(cityTxt.getText());}
+        if (cityTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setCity(cityTxt.getText());}
 
-        if (streetTxt.getText().equals("")==false) {sessionUser.getAddress().setStreet(streetTxt.getText());}
+        if (streetTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setStreet(streetTxt.getText());}
 
-        if (numberTxt.getText().equals("")==false) {sessionUser.getAddress().setNumber(Integer.parseInt(numberTxt.getText()));}
+        if (numberTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setNumber(Integer.parseInt(numberTxt.getText()));}
 
-        if (phoneTxt.getText().equals("")==false) {sessionUser.setPhoneNumber(phoneTxt.getText());}
+        if (phoneTxt.getText().equals("")==false) {UserController.getSessionUser().setPhoneNumber(phoneTxt.getText());}
 
-        if (sessionUser==paramUser) {
+        if (UserController.getSessionUser()==paramUser) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Hey Look!");
             alert.setHeaderText("Erro ao atualizar");
@@ -61,16 +58,7 @@ public class ChangeUserFXMLController {
 
             alert.showAndWait();
         } else {
-            userDao.update(sessionUser);
-            addressDao.update(sessionUser);
+            UserController.getInstance().changeUser(UserController.getSessionUser());
         }
-    }
-
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
     }
 }

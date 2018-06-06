@@ -1,5 +1,6 @@
 package view;
 
+import control.UserController;
 import dao.AddressDao;
 import dao.UserDao;
 import javafx.fxml.FXML;
@@ -49,31 +50,16 @@ public class registerUserFXMLController {
     @FXML
     private TextField txtPhone;
 
+    private UserController userController;
+
     public registerUserFXMLController() {
     }
 
     @FXML
     public void saveUserAction() {
-        UserDao userDao = new UserDao();
-        AddressDao addressDao = new AddressDao();
-        User user = new User();
-        user.setName(txtName.getText());
-        user.setCpf(txtCPF.getText());
-        user.setUsername(txtLogin.getText());
-        user.setPassword(txtPassword.getText());
-        user.setPhoneNumber(txtPhone.getText());
-        if (Integer.parseInt(txtUserType.getText()) == 1) {
-            user.setUserType(UserType.CUSTOMER);
-        } else {
-            user.setUserType(UserType.WORKER);
-        }
-        user.getAddress().setCity(txtCity.getText());
-        user.getAddress().setNumber(Integer.parseInt(txtNumber.getText()));
-        user.getAddress().setState(txtState.getText());
-        user.getAddress().setStreet(txtStreet.getText());
-        userDao.save(user);
-        user.setUserId(userDao.lastUserId());
-        addressDao.save(user);
+        UserController.getInstance().createAccount(txtName.getText(), txtCPF.getText(),txtLogin.getText(),
+                txtPassword.getText(), txtPhone.getText(), txtUserType.getText(), txtCity.getText(), txtNumber.getText(),
+                txtState.getText(), txtStreet.getText());
         Login login = new Login();
         goQuitAction();
         try {

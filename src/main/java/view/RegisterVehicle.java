@@ -5,18 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.User;
 
-public class Login extends Application {
-
+public class RegisterVehicle extends Application{
     private static Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Parent login;
-        login = loader.load();
-        Scene scene = new Scene(login);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("registerVehicle.fxml"));
+        Parent registerVehicle;
+        registerVehicle = loader.load();
+        Scene scene = new Scene(registerVehicle);
         stage.setScene(scene);
         stage.show();
         setStage(stage);
@@ -27,7 +25,7 @@ public class Login extends Application {
     }
 
     public static void setStage(Stage stage) {
-        Login.stage = stage;
+        RegisterVehicle.stage = stage;
     }
 
     public static void main(String[] args) {

@@ -33,8 +33,6 @@ public class ListUserFXMLController implements Initializable{
     @FXML
     private TableColumn<User, Integer> ratingCollumn;
 
-    private User sessionUser;
-
     public ObservableList<User> loadTable() {
         UserDao userDao = new UserDao();
         ObservableList<User> users = FXCollections.observableArrayList(userDao.searchAll());
@@ -53,14 +51,6 @@ public class ListUserFXMLController implements Initializable{
         ratingCollumn.setCellValueFactory(
                 new PropertyValueFactory<>("rating"));
         tableView.setItems(loadTable());
-    }
-
-    public User getSessionUser() {
-        return sessionUser;
-    }
-
-    public void setSessionUser(User sessionUser) {
-        this.sessionUser = sessionUser;
     }
 
     @Override
