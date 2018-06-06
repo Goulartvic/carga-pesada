@@ -1,6 +1,5 @@
 package control;
 
-import dao.AddressDao;
 import dao.UserDao;
 import model.User;
 import model.UserType;
@@ -10,7 +9,6 @@ public class UserController {
     private static UserController instance = new UserController();
     private static User sessionUser;
     private UserDao userDao;
-    private AddressDao addressDao;
 
     public UserController() {
         super();
@@ -19,7 +17,6 @@ public class UserController {
     public void createAccount(String name, String cpf, String username, String password, String phone, String userType,
                               String city, String number, String state, String street){
         userDao = new UserDao();
-        addressDao = new AddressDao();
         User user = new User();
         user.setName(name);
         user.setCpf(cpf);
@@ -37,15 +34,14 @@ public class UserController {
         user.getAddress().setStreet(street);
         userDao.save(user);
         user.setUserId(userDao.lastUserId());
-        addressDao.save(user);
+        AddressController.getAddressInstance().saveAddress(user);
     }
 
     public void loginUser(String login, String password) {
         userDao = new UserDao();
-        addressDao = new AddressDao();
 
         sessionUser = userDao.authenticateUser(login, password);
-        addressDao.setAddress(sessionUser);
+        AddressController.getAddressInstance().setAddress(sessionUser);
     }
 
     public boolean userIsValid(String login, String password) {
@@ -57,16 +53,14 @@ public class UserController {
 
     public void changeUser(User user) {
         userDao = new UserDao();
-        addressDao = new AddressDao();
 
         userDao.update(user);
-        addressDao.update(user);
+        AddressController.getAddressInstance().updateAddress(user);
     }
 
     public void deleteUser(){
         userDao = new UserDao();
-        addressDao = new AddressDao();
-        addressDao.delete(UserController.getSessionUser());
+        AddressController.getAddressInstance().deleteAddress(UserController.getSessionUser());
         userDao.delete(UserController.getSessionUser());
     }
 

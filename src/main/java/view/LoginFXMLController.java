@@ -37,10 +37,10 @@ public class LoginFXMLController {
         if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
             UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
 
-            DeleteAccount deleteAccount = new DeleteAccount();
+            ChangeUser changeUser = new ChangeUser();
             goQuitAction();
             try {
-                deleteAccount.start(new Stage());
+                changeUser.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }

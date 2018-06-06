@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AddressDao implements DAO<User>{
+public class AddressDao {
 
     private ConnectionFactory connectionFactory;
 
@@ -17,7 +17,6 @@ public class AddressDao implements DAO<User>{
         this.connectionFactory = new ConnectionFactory();
     }
 
-    @Override
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
@@ -67,7 +66,6 @@ public class AddressDao implements DAO<User>{
         return address;
     }
 
-    @Override
     public void update(User user) {
         Connection connection = connectionFactory.connection();
 
@@ -89,7 +87,6 @@ public class AddressDao implements DAO<User>{
         }
     }
 
-    @Override
     public void delete(User user) {
         Connection connection = connectionFactory.connection();
 

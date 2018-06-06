@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Worker extends User {
+public class  Worker extends User {
 
     private int rating;
 

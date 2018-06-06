@@ -50,8 +50,6 @@ public class registerUserFXMLController {
     @FXML
     private TextField txtPhone;
 
-    private UserController userController;
-
     public registerUserFXMLController() {
     }
 

@@ -10,11 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements UserDaoInterface{
+public class UserDao{
 
     private ConnectionFactory connectionFactory;
-
-    private AddressDao addressDao = new AddressDao();
 
     public UserDao() {
         this.connectionFactory = new ConnectionFactory();
@@ -40,7 +38,6 @@ public class UserDao implements UserDaoInterface{
         return userId;
     }
 
-    @Override
     public List<User> searchAll() {
         List<User> userList = new ArrayList<>();
 
@@ -85,7 +82,6 @@ public class UserDao implements UserDaoInterface{
         } else {return false;}
     }
 
-    @Override
     public User authenticateUser(String username, String password) {
         User user = new User();
 
@@ -109,7 +105,6 @@ public class UserDao implements UserDaoInterface{
                 } else {user.setUserType(UserType.WORKER.getUserType());}
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
-                user.setAddress(addressDao.setAddress(user));
             }
 
             connection.close();
@@ -119,7 +114,6 @@ public class UserDao implements UserDaoInterface{
         return user;
     }
 
-    @Override
     public void save(User user) {
         Connection connection = connectionFactory.connection();
 
@@ -152,7 +146,6 @@ public class UserDao implements UserDaoInterface{
         }
     }
 
-    @Override
     public void update(User user) {
         Connection connection = connectionFactory.connection();
 
@@ -173,7 +166,6 @@ public class UserDao implements UserDaoInterface{
         }
     }
 
-    @Override
     public void delete(User user) {
         Connection connection = connectionFactory.connection();
 
