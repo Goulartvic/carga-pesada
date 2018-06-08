@@ -17,12 +17,12 @@ public class AddressDao {
         this.connectionFactory = new ConnectionFactory();
     }
 
-    public void save(User user) {
+    public void save(User user) throws SQLException {
         Connection connection = connectionFactory.connection();
 
         String querySql =  "INSERT INTO address (city, state, street, number, USER_ID) " + "VALUES (?, ?, ?, ?, ?)";
 
-        try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
             preparedStatement.setString(1, user.getAddress().getCity());
@@ -33,19 +33,15 @@ public class AddressDao {
 
             preparedStatement.execute();
             connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public Address setAddress(User user) {
+    public Address setAddress(User user) throws SQLException {
         Address address = new Address();
 
         Connection connection = connectionFactory.connection();
 
         String querySql = "SELECT state, city, street, number FROM address WHERE user_id = ?";
 
-        try {
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
             preparedStatement.setInt(1, user.getUserId());
 
@@ -59,20 +55,17 @@ public class AddressDao {
             }
 
             connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         return address;
     }
 
-    public void update(User user) {
+    public void update(User user) throws SQLException {
         Connection connection = connectionFactory.connection();
 
         String querySql = "UPDATE address SET " +
                 "state=?, city=?, street=?, number=? WHERE USER_ID = ?";
 
-        try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
             preparedStatement.setString(1, user.getAddress().getState());
             preparedStatement.setString(2,user.getAddress().getCity());
@@ -82,25 +75,19 @@ public class AddressDao {
             preparedStatement.execute();
 
             connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void delete(User user) {
+    public void delete(User user) throws SQLException {
         Connection connection = connectionFactory.connection();
 
         String querySql = "DELETE FROM address WHERE user_id=?";
 
-        try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
             preparedStatement.setInt( 1, user.getUserId());
             preparedStatement.execute();
 
             connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

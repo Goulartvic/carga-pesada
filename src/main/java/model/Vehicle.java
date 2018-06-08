@@ -1,8 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vehicle {
+
+    private int vehicleId;
 
     private String brand;
 
@@ -28,6 +31,7 @@ public class Vehicle {
         this.vehicleSize = vehicleSize;
         this.intercity = intercity;
         this.kmPrice = kmPrice;
+        requests = new ArrayList<>();
     }
 
     public String getBrand() {
@@ -85,4 +89,8 @@ public class Vehicle {
     public void setKmPrice(double kmPrice) {
         this.kmPrice = kmPrice;
     }
+
+    public int getVehicleId() { return vehicleId; }
+
+    public void setVehicleId(int vehicleId) { this.vehicleId = vehicleId; }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import control.UserController;
 import dao.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,7 @@ public class ListUserFXMLController implements Initializable{
 
     public ObservableList<User> loadTable() {
         UserDao userDao = new UserDao();
-        ObservableList<User> users = FXCollections.observableArrayList(userDao.searchAll());
+        ObservableList<User> users = FXCollections.observableArrayList(UserController.getInstance().searchAll());
         return users;
     }
 

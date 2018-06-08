@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
+import model.UserType;
+import model.Worker;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,6 +38,11 @@ public class LoginFXMLController {
     public void loginAction() {
         if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
             UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
+
+//            User sessionUser = UserController.getSessionUser();
+//            if (UserController.getSessionUser().getUserType() == UserType.WORKER) {
+//                UserController.getSessionUser() = new Worker();
+//            }
 
             ChangeUser changeUser = new ChangeUser();
             goQuitAction();

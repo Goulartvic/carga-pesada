@@ -4,6 +4,10 @@ import dao.UserDao;
 import model.User;
 import model.UserType;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserController {
 
     private static UserController instance = new UserController();
@@ -32,36 +36,68 @@ public class UserController {
         user.getAddress().setNumber(Integer.parseInt(number));
         user.getAddress().setState(state);
         user.getAddress().setStreet(street);
-        userDao.save(user);
-        user.setUserId(userDao.lastUserId());
+        try {
+            userDao.save(user);
+            user.setUserId(userDao.lastUserId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         AddressController.getAddressInstance().saveAddress(user);
     }
 
     public void loginUser(String login, String password) {
         userDao = new UserDao();
 
-        sessionUser = userDao.authenticateUser(login, password);
+        try {
+            sessionUser = userDao.authenticateUser(login, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         AddressController.getAddressInstance().setAddress(sessionUser);
     }
 
     public boolean userIsValid(String login, String password) {
         userDao = new UserDao();
-        if (userDao.returnAuthentication(login, password)) {
-            return true;
-        } else {return false;}
+        try {
+            if (userDao.returnAuthentication(login, password)) {
+                return true;
+            } else {return false;}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void changeUser(User user) {
         userDao = new UserDao();
 
-        userDao.update(user);
+        try {
+            userDao.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         AddressController.getAddressInstance().updateAddress(user);
     }
 
     public void deleteUser(){
         userDao = new UserDao();
-        AddressController.getAddressInstance().deleteAddress(UserController.getSessionUser());
-        userDao.delete(UserController.getSessionUser());
+        AddressController.getAddressInstance().deleteAddress(sessionUser);
+        try {
+            userDao.delete(UserController.getSessionUser());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<User> searchAll() {
+        userDao = new UserDao();
+        List<User> userList = new ArrayList<>();
+        try {
+            userList = userDao.searchAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 
     public boolean userExist() {
