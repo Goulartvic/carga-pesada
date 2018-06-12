@@ -100,7 +100,13 @@ public class UserController {
         return userList;
     }
 
-    public boolean userExist() {
+    public boolean userExist(String login) {
+        userDao = new UserDao();
+        try {
+            return userDao.userExist(login);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

@@ -9,8 +9,8 @@ public class  Worker extends User {
 
     private List<Vehicle> vehicles;
 
-    public Worker(Address address, String cpf, String name, String password, String phoneNumber, List<Request> requests, int userId, String username) {
-        super(address, cpf, name, password, phoneNumber, requests, userId, username, UserType.WORKER);
+    public Worker(Address address, String cpf, String name, String password, String phoneNumber, int userId, String username) {
+        super(address, cpf, name, password, phoneNumber, userId, username, UserType.WORKER);
         this.vehicles = new ArrayList<>();
     }
 

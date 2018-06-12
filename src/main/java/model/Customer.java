@@ -1,10 +1,22 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends User {
 
-    public Customer(Address address, String cpf, String name, String password, String phoneNumber, List<Request> requests, int userId, String username) {
-        super(address, cpf, name, password, phoneNumber, requests, userId, username, UserType.CUSTOMER);
+    private List<Request> requests;
+
+    public Customer(Address address, String cpf, String name, String password, String phoneNumber, int userId, String username) {
+        super(address, cpf, name, password, phoneNumber, userId, username, UserType.CUSTOMER);
+        requests = new ArrayList<>();
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 }

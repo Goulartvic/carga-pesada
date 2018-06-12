@@ -15,8 +15,6 @@ public class User {
 
     private String phoneNumber;
 
-    private List<Request> requests;
-
     private int userId;
 
     private String username;
@@ -31,19 +29,17 @@ public class User {
         this.name = user.getName();
         this.cpf = user.getCpf();
         this.address = user.getAddress();
-        this.requests = user.getRequests();
         this.userId = user.getUserId();
         this.username = user.getUsername();
         this.userType = user.getUserType();
     }
 
-    public User(Address address, String cpf, String name, String password, String phoneNumber, List<Request> requests, int userId, String username, UserType userType) {
+    public User(Address address, String cpf, String name, String password, String phoneNumber, int userId, String username, UserType userType) {
         this.address = address;
         this.cpf = cpf;
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.requests = new ArrayList<>();
         this.userId = userId;
         this.username = username;
         this.userType = userType;
@@ -87,14 +83,6 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
     }
 
     public int getUserId() {

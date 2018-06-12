@@ -154,4 +154,22 @@ public class UserDao{
 
         connection.close();
     }
+
+    public boolean userExist(String login) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT FROM user WHERE username=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setString(1, login);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            connection.close();
+            return true;
+        }
+        connection.close();
+        return false;
+    }
 }

@@ -1,21 +1,12 @@
 package view;
 
 import control.UserController;
-import dao.AddressDao;
-import dao.UserDao;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.User;
-import model.UserType;
-import model.Worker;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginFXMLController {
 
@@ -44,10 +35,10 @@ public class LoginFXMLController {
 //                UserController.getSessionUser() = new Worker();
 //            }
 
-            ChangeUser changeUser = new ChangeUser();
+            DeleteAccount deleteAccount = new DeleteAccount();
             goQuitAction();
             try {
-                changeUser.start(new Stage());
+                deleteAccount.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }

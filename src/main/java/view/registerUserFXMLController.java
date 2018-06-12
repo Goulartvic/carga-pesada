@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
 import model.UserType;
+import model.Worker;
+
+import java.util.ArrayList;
 
 public class registerUserFXMLController {
 
@@ -58,6 +61,19 @@ public class registerUserFXMLController {
         UserController.getInstance().createAccount(txtName.getText(), txtCPF.getText(),txtLogin.getText(),
                 txtPassword.getText(), txtPhone.getText(), txtUserType.getText(), txtCity.getText(), txtNumber.getText(),
                 txtState.getText(), txtStreet.getText());
+
+        if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
+            UserController.getInstance().loginUser(txtLogin.getText(), txtPassword.getText());
+
+            User sessionUser = UserController.getSessionUser();
+
+            if (sessionUser.getUserType() == UserType.WORKER) {
+                UserController.setSessionUser(new Worker(sessionUser.getAddress(), sessionUser.getCpf(), sessionUser.getName(),
+                        sessionUser.getPassword(), sessionUser.getPhoneNumber(), sessionUser.getUserId(), sessionUser.getUsername()));
+
+
+            }
+        }
         Login login = new Login();
         goQuitAction();
         try {

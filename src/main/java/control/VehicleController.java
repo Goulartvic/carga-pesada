@@ -3,6 +3,7 @@ package control;
 import dao.VehicleDao;
 import model.Vehicle;
 import model.Worker;
+import view.RegisterVehicle;
 
 import java.sql.SQLException;
 
@@ -21,5 +22,10 @@ public class VehicleController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void save() {
+        RegisterVehicle registerVehicle = new RegisterVehicle();
+        
     }
 }
