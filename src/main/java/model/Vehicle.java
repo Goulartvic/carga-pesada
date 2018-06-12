@@ -34,6 +34,11 @@ public class Vehicle {
         requests = new ArrayList<>();
     }
 
+    public Vehicle() {
+        available = true;
+        requests = new ArrayList<>();
+    }
+
     public String getBrand() {
         return brand;
     }
@@ -70,8 +75,18 @@ public class Vehicle {
         return vehicleSize;
     }
 
-    public void setVehicleSize(VehicleSize vehicleSize) {
-        this.vehicleSize = vehicleSize;
+    public void setVehicleSize(int vehicleSize) {
+        switch (vehicleSize) {
+            case 1:
+                this.vehicleSize = VehicleSize.SMALL;
+                break;
+            case 2:
+                this.vehicleSize = VehicleSize.MEDIUM;
+                break;
+            case 3:
+                this.vehicleSize = VehicleSize.BIG;
+                break;
+        }
     }
 
     public boolean isIntercity() {

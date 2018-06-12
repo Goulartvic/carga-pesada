@@ -14,6 +14,8 @@ public class UserDao{
 
     private ConnectionFactory connectionFactory;
 
+    private static UserDao instance = new UserDao();
+
     public UserDao() {
         this.connectionFactory = new ConnectionFactory();
     }
@@ -158,7 +160,7 @@ public class UserDao{
     public boolean userExist(String login) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT FROM user WHERE username=?";
+        String querySql = "SELECT * FROM user WHERE username=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
@@ -167,9 +169,13 @@ public class UserDao{
 
         if (resultSet.next()) {
             connection.close();
-            return true;
+            return false;
         }
         connection.close();
-        return false;
+        return true;
+    }
+
+    public static UserDao getInstance() {
+        return instance;
     }
 }

@@ -1,8 +1,10 @@
 package control;
 
 import dao.UserDao;
+import model.Customer;
 import model.User;
 import model.UserType;
+import model.Worker;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ public class UserController {
 
     private static UserController instance = new UserController();
     private static User sessionUser;
-    private UserDao userDao;
 
     public UserController() {
         super();
@@ -20,7 +21,6 @@ public class UserController {
 
     public void createAccount(String name, String cpf, String username, String password, String phone, String userType,
                               String city, String number, String state, String street){
-        userDao = new UserDao();
         User user = new User();
         user.setName(name);
         user.setCpf(cpf);
@@ -37,8 +37,8 @@ public class UserController {
         user.getAddress().setState(state);
         user.getAddress().setStreet(street);
         try {
-            userDao.save(user);
-            user.setUserId(userDao.lastUserId());
+            UserDao.getInstance().save(user);
+            user.setUserId(UserDao.getInstance().lastUserId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,20 +46,26 @@ public class UserController {
     }
 
     public void loginUser(String login, String password) {
-        userDao = new UserDao();
 
         try {
-            sessionUser = userDao.authenticateUser(login, password);
+            sessionUser = UserDao.getInstance().authenticateUser(login, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        AddressController.getAddressInstance().setAddress(sessionUser);
+        sessionUser.setAddress(AddressController.getAddressInstance().setAddress(sessionUser));
+
+        if (sessionUser.getUserType() == UserType.WORKER) {
+            sessionUser = new Worker(sessionUser.getAddress(), sessionUser.getCpf(), sessionUser.getName(), sessionUser.getPassword(),
+                    sessionUser.getPhoneNumber(), sessionUser.getUserId(), sessionUser.getUsername());
+        } else {
+            sessionUser = new Customer(sessionUser.getAddress(), sessionUser.getCpf(), sessionUser.getName(), sessionUser.getPassword(),
+                    sessionUser.getPhoneNumber(), sessionUser.getUserId(), sessionUser.getUsername());
+        }
     }
 
     public boolean userIsValid(String login, String password) {
-        userDao = new UserDao();
         try {
-            if (userDao.returnAuthentication(login, password)) {
+            if (UserDao.getInstance().returnAuthentication(login, password)) {
                 return true;
             } else {return false;}
         } catch (SQLException e) {
@@ -69,10 +75,9 @@ public class UserController {
     }
 
     public void changeUser(User user) {
-        userDao = new UserDao();
 
         try {
-            userDao.update(user);
+            UserDao.getInstance().update(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,20 +85,18 @@ public class UserController {
     }
 
     public void deleteUser(){
-        userDao = new UserDao();
         AddressController.getAddressInstance().deleteAddress(sessionUser);
         try {
-            userDao.delete(UserController.getSessionUser());
+            UserDao.getInstance().delete(UserController.getSessionUser());
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public List<User> searchAll() {
-        userDao = new UserDao();
         List<User> userList = new ArrayList<>();
         try {
-            userList = userDao.searchAll();
+            userList = UserDao.getInstance().searchAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,9 +104,8 @@ public class UserController {
     }
 
     public boolean userExist(String login) {
-        userDao = new UserDao();
         try {
-            return userDao.userExist(login);
+            return UserDao.getInstance().userExist(login);
         } catch (SQLException e) {
             e.printStackTrace();
         }

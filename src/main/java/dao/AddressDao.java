@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class AddressDao {
 
     private ConnectionFactory connectionFactory;
+    private static AddressDao instance = new AddressDao();
 
     public AddressDao() {
         this.connectionFactory = new ConnectionFactory();
@@ -89,5 +90,9 @@ public class AddressDao {
             preparedStatement.execute();
 
             connection.close();
+    }
+
+    public static AddressDao getInstance() {
+        return instance;
     }
 }

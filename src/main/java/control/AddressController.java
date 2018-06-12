@@ -1,6 +1,7 @@
 package control;
 
 import dao.AddressDao;
+import model.Address;
 import model.User;
 
 import java.sql.SQLException;
@@ -9,12 +10,9 @@ public class AddressController {
 
     private static AddressController addressInstance = new AddressController();
 
-    AddressDao addressDao;
-
     public void saveAddress(User user) {
-        addressDao = new AddressDao();
         try {
-            addressDao.save(user);
+            AddressDao.getInstance().save(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -22,28 +20,28 @@ public class AddressController {
 
     public void deleteAddress(User user) {
         try {
-            addressDao.delete(user);
+            AddressDao.getInstance().delete(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void updateAddress(User user) {
-        addressDao = new AddressDao();
         try {
-            addressDao.update(user);
+            AddressDao.getInstance().update(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void setAddress(User user) {
-        addressDao = new AddressDao();
+    public Address setAddress(User user) {
+        Address address = new Address();
         try {
-            addressDao.setAddress(user);
+            address = AddressDao.getInstance().setAddress(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return address;
     }
 
     public static AddressController getAddressInstance() {

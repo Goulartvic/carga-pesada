@@ -1,6 +1,7 @@
 package dao;
 
 import connection.ConnectionFactory;
+import control.UserController;
 import model.Vehicle;
 
 import java.sql.Connection;
@@ -11,13 +12,15 @@ public class VehicleDao {
 
     private ConnectionFactory connectionFactory;
 
+    private static VehicleDao instance = new VehicleDao();
+
     public VehicleDao() {this.connectionFactory = new ConnectionFactory();}
 
     public void save(Vehicle vehicle) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "INSERT INTO vehicle (brand, model, plate, available, vehicle_size, intercity, km_price)" +
-                "values (?,?,?,?,?,?,?)";
+        String querySql = "INSERT INTO vehicle (brand, model, plate, available, vehicle_size, intercity, km_price, owner_id)" +
+                "values (?,?,?,?,?,?,?,?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
@@ -28,6 +31,7 @@ public class VehicleDao {
         preparedStatement.setInt(5, vehicle.getVehicleSize().getVehicleSize());
         preparedStatement.setBoolean(6, vehicle.isIntercity());
         preparedStatement.setDouble(7, vehicle.getKmPrice());
+        preparedStatement.setInt(8, UserController.getSessionUser().getUserId());
         preparedStatement.execute();
 
         connection.close();
@@ -61,5 +65,9 @@ public class VehicleDao {
         preparedStatement.setDouble(6, vehicle.getKmPrice());
         preparedStatement.execute();
         connection.close();
+    }
+
+    public static VehicleDao getInstance() {
+        return instance;
     }
 }

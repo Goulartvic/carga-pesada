@@ -109,8 +109,10 @@ public class User {
         switch (userType) {
             case 1:
                 this.userType = UserType.CUSTOMER;
+                break;
             case 2:
                 this.userType = UserType.WORKER;
+                break;
         }
     }
 }

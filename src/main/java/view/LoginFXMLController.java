@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.UserType;
+import model.Worker;
 
 public class LoginFXMLController {
 
@@ -30,17 +32,24 @@ public class LoginFXMLController {
         if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
             UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
 
-//            User sessionUser = UserController.getSessionUser();
-//            if (UserController.getSessionUser().getUserType() == UserType.WORKER) {
-//                UserController.getSessionUser() = new Worker();
-//            }
+            if (UserController.getSessionUser() instanceof Worker) {
+                RegisterVehicle registerVehicle = new RegisterVehicle();
+                goQuitAction();
 
-            DeleteAccount deleteAccount = new DeleteAccount();
-            goQuitAction();
-            try {
-                deleteAccount.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    registerVehicle.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                DeleteAccount deleteAccount = new DeleteAccount();
+                goQuitAction();
+                try {
+                    deleteAccount.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
