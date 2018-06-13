@@ -14,7 +14,10 @@ public class Request {
 
     private Status status;
 
-    public Request(Customer customer, Vehicle vehicle, Worker worker, Status status, Address arrivalDestination, Address departure) {
+    public Request() {
+    }
+
+    public Request(Customer customer, Vehicle vehicle, Worker worker, Address arrivalDestination, Address departure) {
         this.customer = customer;
         this.vehicle = vehicle;
         this.worker = worker;
