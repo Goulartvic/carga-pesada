@@ -71,14 +71,19 @@ public class Request {
         switch (status) {
             case 1:
                 this.status = Status.ACCEPTED;
+                break;
             case 2:
                 this.status = Status.ONHOLD;
+                break;
             case 3:
                 this.status = Status.DENIED;
+                break;
             case 4:
                 this.status = Status.COMPLETE;
+                break;
             case 5:
                 this.status = Status.CANCELLED;
+                break;
         }
     }
 }
