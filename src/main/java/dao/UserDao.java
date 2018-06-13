@@ -50,22 +50,23 @@ public class UserDao{
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            User user = new User();
+            User user;
+            if (resultSet.getInt("user_type") == 1) {
+                user = new Customer();
+            }
+            else {
+                user = new Worker();
+                ((Worker) user).setRating(resultSet.getInt("rating"));
+            }
             user.setCpf(resultSet.getString("cpf"));
             user.setName(resultSet.getString("name"));
             user.setPassword(resultSet.getString("password"));
             user.setPhoneNumber(resultSet.getString("phone_number"));
             user.setPhoneNumber(resultSet.getString("user_id"));
             user.setUsername(resultSet.getString("username"));
+            user.setUserType(resultSet.getInt("user_type"));
 
-            if (resultSet.getInt("user_type") == 1) {
-                user.setUserType(UserType.CUSTOMER.getUserType());
-                userList.add(user);
-            } else {
-                ((Worker) user).setRating(resultSet.getInt("rating"));
-                user.setUserType(UserType.WORKER.getUserType());
-                userList.add(user);
-            }
+            userList.add(user);
         }
             connection.close();
 
@@ -79,7 +80,7 @@ public class UserDao{
     }
 
     public User authenticateUser(String username, String password) throws SQLException {
-        User user = new User();
+        User user = null;
 
         Connection connection = connectionFactory.connection();
 
@@ -92,14 +93,18 @@ public class UserDao{
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if(resultSet.next()) {
+            if (resultSet.getInt("user_type") == 1) {
+                user = new Customer();
+            }
+            else {
+                user = new Worker();
+            }
             user.setUserId(resultSet.getInt("user_id"));
             user.setName(resultSet.getString("name"));
             user.setCpf(resultSet.getString("cpf"));
-            if (resultSet.getInt("user_type") == 1) {
-                user.setUserType(UserType.CUSTOMER.getUserType());
-            } else {user.setUserType(UserType.WORKER.getUserType());}
-                user.setUsername(resultSet.getString("username"));
-                user.setPassword(resultSet.getString("password"));
+            user.setUserType(resultSet.getInt("user_type"));
+            user.setUsername(resultSet.getString("username"));
+            user.setPassword(resultSet.getString("password"));
         }
         connection.close();
 

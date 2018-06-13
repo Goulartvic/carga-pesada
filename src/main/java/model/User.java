@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class User {
+public abstract class User {
 
     private Address address;
 
@@ -23,15 +20,6 @@ public class User {
 
     public User() {
         this.address = new Address();
-    }
-
-    public User(User user, Address address) {
-        this.name = user.getName();
-        this.cpf = user.getCpf();
-        this.address = user.getAddress();
-        this.userId = user.getUserId();
-        this.username = user.getUsername();
-        this.userType = user.getUserType();
     }
 
     public User(Address address, String cpf, String name, String password, String phoneNumber, int userId, String username, UserType userType) {

@@ -12,6 +12,13 @@ public class Customer extends User {
         requests = new ArrayList<>();
     }
 
+    public Customer(Customer customer) {
+        super(customer.getAddress(), customer.getCpf(), customer.getName(), customer.getPassword(), customer.getPhoneNumber(), customer.getUserId(), customer.getUsername(), customer.getUserType());
+        requests = customer.getRequests();
+    }
+
+    public Customer() {}
+
     public List<Request> getRequests() {
         return requests;
     }

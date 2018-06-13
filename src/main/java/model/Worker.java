@@ -14,6 +14,14 @@ public class  Worker extends User {
         this.vehicles = new ArrayList<>();
     }
 
+    public Worker(Worker worker) {
+        super(worker.getAddress(), worker.getCpf(), worker.getName(), worker.getPassword(), worker.getPhoneNumber(), worker.getUserId(), worker.getUsername(), worker.getUserType());
+        this.vehicles = worker.getVehicles();
+        this.rating = worker.getRating();
+    }
+
+    public Worker() {}
+
     public int getRating() {
         return rating;
     }

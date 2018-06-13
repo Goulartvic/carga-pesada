@@ -6,8 +6,10 @@ import dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import model.Customer;
 import model.User;
 import javafx.scene.control.TextField;
+import model.Worker;
 
 public class ChangeUserFXMLController {
 
@@ -34,8 +36,13 @@ public class ChangeUserFXMLController {
 
     @FXML
     public void changeUserAction() {
-        User paramUser = new User(UserController.getSessionUser(), UserController.getSessionUser().getAddress());
+        User paramUser;
 
+        if (UserController.getSessionUser() instanceof Customer) {
+            paramUser = new Customer((Customer) UserController.getSessionUser());
+        } else {
+            paramUser = new Worker((Worker) UserController.getSessionUser());
+        }
         if (nameTxt.getText().equals("")==false){UserController.getSessionUser().setName(nameTxt.getText());}
 
         if (passwordTxt.getText().equals("")==false) {UserController.getSessionUser().setPassword(passwordTxt.getText());}

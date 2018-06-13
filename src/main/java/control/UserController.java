@@ -21,13 +21,20 @@ public class UserController {
 
     public void createAccount(String name, String cpf, String username, String password, String phone, String userType,
                               String city, String number, String state, String street){
-        User user = new User();
+        User user;
+        if (userType == "1") {
+            user = new Customer();
+        }
+        else {
+            user = new Worker();
+        }
+
         user.setName(name);
         user.setCpf(cpf);
         user.setUsername(username);
         user.setPassword(password);
         user.setPhoneNumber(phone);
-        if (Integer.parseInt(userType) == 1) {
+        if (user instanceof Customer) {
             user.setUserType(UserType.CUSTOMER.getUserType());
         } else {
             user.setUserType(UserType.WORKER.getUserType());
@@ -53,14 +60,6 @@ public class UserController {
             e.printStackTrace();
         }
         sessionUser.setAddress(AddressController.getAddressInstance().setAddress(sessionUser));
-
-        if (sessionUser.getUserType() == UserType.WORKER) {
-            sessionUser = new Worker(sessionUser.getAddress(), sessionUser.getCpf(), sessionUser.getName(), sessionUser.getPassword(),
-                    sessionUser.getPhoneNumber(), sessionUser.getUserId(), sessionUser.getUsername());
-        } else {
-            sessionUser = new Customer(sessionUser.getAddress(), sessionUser.getCpf(), sessionUser.getName(), sessionUser.getPassword(),
-                    sessionUser.getPhoneNumber(), sessionUser.getUserId(), sessionUser.getUsername());
-        }
     }
 
     public boolean userIsValid(String login, String password) {
