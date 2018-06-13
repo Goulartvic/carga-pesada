@@ -5,7 +5,7 @@ import java.util.List;
 
 public class  Worker extends User {
 
-    private int rating;
+    private double rating;
 
     private List<Vehicle> vehicles;
 
@@ -22,11 +22,11 @@ public class  Worker extends User {
 
     public Worker() {}
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

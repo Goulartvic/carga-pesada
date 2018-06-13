@@ -84,7 +84,7 @@ public class UserDao{
 
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT user_id, name, cpf, username, user_type, username, password FROM user WHERE username = ? AND password = ?";
+        String querySql = "SELECT user_id, name, cpf, username, user_type, username, password, phone_number, rating FROM user WHERE username = ? AND password = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
@@ -98,6 +98,7 @@ public class UserDao{
             }
             else {
                 user = new Worker();
+                ((Worker) user).setRating(resultSet.getDouble("rating"));
             }
             user.setUserId(resultSet.getInt("user_id"));
             user.setName(resultSet.getString("name"));
@@ -105,6 +106,7 @@ public class UserDao{
             user.setUserType(resultSet.getInt("user_type"));
             user.setUsername(resultSet.getString("username"));
             user.setPassword(resultSet.getString("password"));
+            user.setPhoneNumber(resultSet.getString("phone_number"));
         }
         connection.close();
 
@@ -178,6 +180,33 @@ public class UserDao{
         }
         connection.close();
         return true;
+    }
+
+    public Worker findWorkerById(int id) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT user_id, name, cpf, user_type, username, password, rating, phone_number " +
+                "FROM user WHERE user_id=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        Worker worker = new Worker();
+
+        if (resultSet.next()) {
+            worker.setUserId(resultSet.getInt("user_id"));
+            worker.setName(resultSet.getString("name"));
+            worker.setCpf(resultSet.getString("cpf"));
+            worker.setUsername(resultSet.getString("username"));
+            worker.setUserType(resultSet.getInt("user_type"));
+            worker.setPassword(resultSet.getString("password"));
+            worker.setRating(resultSet.getDouble("rating"));
+            worker.setPhoneNumber("phone_number");
+        }
+
+        return worker;
     }
 
     public static UserDao getInstance() {

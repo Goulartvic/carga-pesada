@@ -111,6 +111,16 @@ public class UserController {
         return false;
     }
 
+    public Worker findWorkerById(int id) {
+        Worker worker = new Worker();
+        try {
+            worker = UserDao.getInstance().findWorkerById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return worker;
+    }
+
     public static User getSessionUser() {
         return sessionUser;
     }

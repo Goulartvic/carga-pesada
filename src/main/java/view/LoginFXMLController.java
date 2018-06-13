@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.UserType;
 import model.Worker;
 
 public class LoginFXMLController {
@@ -43,10 +42,10 @@ public class LoginFXMLController {
                 }
             }
             else {
-                DeleteAccount deleteAccount = new DeleteAccount();
+                ChangeUser changeUser = new ChangeUser();
                 goQuitAction();
                 try {
-                    deleteAccount.start(new Stage());
+                    changeUser.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
