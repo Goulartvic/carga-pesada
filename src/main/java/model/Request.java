@@ -14,7 +14,10 @@ public class Request {
 
     private Status status;
 
-    public Request(Customer customer, Vehicle vehicle, Worker worker, Status status, Address arrivalDestination, Address departure) {
+    public Request() {
+    }
+
+    public Request(Customer customer, Vehicle vehicle, Worker worker, Address arrivalDestination, Address departure) {
         this.customer = customer;
         this.vehicle = vehicle;
         this.worker = worker;
@@ -71,14 +74,19 @@ public class Request {
         switch (status) {
             case 1:
                 this.status = Status.ACCEPTED;
+                break;
             case 2:
                 this.status = Status.ONHOLD;
+                break;
             case 3:
                 this.status = Status.DENIED;
+                break;
             case 4:
                 this.status = Status.COMPLETE;
+                break;
             case 5:
                 this.status = Status.CANCELLED;
+                break;
         }
     }
 }
