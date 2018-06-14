@@ -203,8 +203,35 @@ public class UserDao{
             worker.setRating(resultSet.getDouble("rating"));
             worker.setPhoneNumber("phone_number");
         }
+        connection.close();
 
         return worker;
+    }
+
+    public Customer findCustomerrById(int id) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT * FROM user WHERE user_id=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        Customer customer = new Customer();
+
+        if (resultSet.next()) {
+            customer.setUserId(resultSet.getInt("user_id"));
+            customer.setName(resultSet.getString("name"));
+            customer.setCpf(resultSet.getString("cpf"));
+            customer.setUsername(resultSet.getString("username"));
+            customer.setUserType(resultSet.getInt("user_type"));
+            customer.setPassword(resultSet.getString("password"));
+            customer.setPhoneNumber("phone_number");
+        }
+        connection.close();
+
+        return customer;
     }
 
     public static UserDao getInstance() {

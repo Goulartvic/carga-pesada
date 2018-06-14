@@ -2,6 +2,7 @@ package dao;
 
 import connection.ConnectionFactory;
 import control.UserController;
+import model.Request;
 import model.Vehicle;
 
 import java.sql.Connection;
@@ -43,12 +44,47 @@ public class VehicleDao {
     public void delete(Vehicle vehicle) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "DELETE FROM vehicle where vehicle_id = ?";
+        String querySql = "DELETE FROM vehicle WHERE vehicle_id = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
         preparedStatement.setInt(1, vehicle.getVehicleId());
         connection.close();
+    }
+
+    //TODO DEFINIR COMO SERÁ IMPLEMENTADO
+    @Deprecated
+    public Vehicle findVehicleByPlate(String plate) throws SQLException {
+        //TODO FAZER REQUESTDAO PARA CONSEGUIR LISTA DE REQUEST DO VEÍCULO
+        Connection connection = connectionFactory.connection();
+
+        Vehicle vehicle = new Vehicle();
+        List<Request> requestList = new ArrayList<>();
+
+        String querySql = "SELECT * FROM vehicle v JOIN request r ON v.plate=r.vehicle WHERE v.plate=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setString(1,plate);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            Request firstRequest = new Request();
+            vehicle.setVehicleId(resultSet.getInt("vehicle_id"));
+            vehicle.setAvailable(resultSet.getBoolean("available"));
+            vehicle.setVehicleSize(resultSet.getInt("vehicle_size"));
+            vehicle.setBrand(resultSet.getString("brand"));
+            vehicle.setModel(resultSet.getString("model"));
+            vehicle.setPlate(resultSet.getString("plate"));
+            vehicle.setIntercity(resultSet.getBoolean("intercity"));
+            vehicle.setKmPrice(resultSet.getDouble("km_price"));
+            firstRequest.setDeparture(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("departure")));
+            firstRequest.setArrivalDestination(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("arrival")));
+            firstRequest.setVehicle(vehicle);
+        }
+        connection.close();
+
+        return vehicle;
     }
 
     public void update(Vehicle vehicle) throws SQLException {

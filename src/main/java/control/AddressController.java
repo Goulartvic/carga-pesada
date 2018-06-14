@@ -37,7 +37,7 @@ public class AddressController {
     public Address setAddress(User user) {
         Address address = new Address();
         try {
-            address = AddressDao.getInstance().setAddress(user);
+            address = AddressDao.getInstance().findAddressByUserId(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }

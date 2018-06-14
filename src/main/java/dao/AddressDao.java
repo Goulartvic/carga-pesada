@@ -36,7 +36,32 @@ public class AddressDao {
             connection.close();
     }
 
-    public Address setAddress(User user) throws SQLException {
+    public Address findAddressByAddressId(int id) throws SQLException {
+        Address address = new Address();
+
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT * FROM address WHERE address_id=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setInt(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            address.setState(resultSet.getString("state"));
+            address.setCity(resultSet.getString("city"));
+            address.setStreet(resultSet.getString("street"));
+            address.setNumber(resultSet.getInt("number"));
+        }
+
+        connection.close();
+
+        return address;
+    }
+
+
+    public Address findAddressByUserId(User user) throws SQLException {
         Address address = new Address();
 
         Connection connection = connectionFactory.connection();
