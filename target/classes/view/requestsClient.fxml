@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RequestsClientFXMLController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Navegaçao">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Editar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ajuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane prefHeight="370.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="requestsTable" layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="645.0">
+              <columns>
+                <TableColumn fx:id="requestsTableValue" prefWidth="83.0" text="Valor" />
+                <TableColumn fx:id="requestsTableWorker" prefWidth="115.0" text="Prestador" />
+                  <TableColumn fx:id="requestsTableDeparture" prefWidth="120.0" text="Partida" />
+                  <TableColumn fx:id="requestsTableDestination" minWidth="0.0" prefWidth="124.0" text="Destino" />
+                  <TableColumn fx:id="requestsTableVehicle" prefWidth="108.0" text="Veiculo" />
+                  <TableColumn fx:id="requestsTableStatus" prefWidth="94.0" text="Status" />
+              </columns>
+            </TableView>
+            <Text layoutX="264.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
+            <Button fx:id="btnCancel" layoutX="34.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnCancelAction" text="Cancelar requisiçao" />
+            <Button fx:id="btnConfirm" layoutX="532.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnConfirmAction" text="Confirmar e avaliar" />
+         </children>
+      </Pane>
+   </children>
+</VBox>

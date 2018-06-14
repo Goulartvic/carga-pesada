@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class DetailsRequest extends Application{
+public class DetailsRequest extends Application {
     private static Stage stage;
 
     @Override

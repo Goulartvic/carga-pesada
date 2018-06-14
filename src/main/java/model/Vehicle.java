@@ -108,4 +108,31 @@ public class Vehicle {
     public int getVehicleId() { return vehicleId; }
 
     public void setVehicleId(int vehicleId) { this.vehicleId = vehicleId; }
+
+    public void setVehicleSize(VehicleSize vehicleSize) {
+        this.vehicleSize = vehicleSize;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleId=" + vehicleId +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", plate='" + plate + '\'' +
+                ", available=" + available +
+                ", vehicleSize=" + vehicleSize +
+                ", intercity=" + intercity +
+                ", kmPrice=" + kmPrice +
+                ", requests=" + requests +
+                '}';
+    }
 }
