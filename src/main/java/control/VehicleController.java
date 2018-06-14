@@ -1,6 +1,7 @@
 package control;
 
 import dao.VehicleDao;
+import model.Request;
 import model.Vehicle;
 import model.Worker;
 
@@ -22,7 +23,7 @@ public class VehicleController {
         }
     }
 
-    public void save(String brand, String model, String plate, boolean intercity, int size, String  kmPrice) {
+    public void save(String brand, String model, String plate, boolean intercity, int size, String kmPrice) {
         Vehicle vehicle = new Vehicle();
         vehicle.setBrand(brand);
         vehicle.setModel(model);
@@ -37,6 +38,13 @@ public class VehicleController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addRequestInVehicle(Request request, Vehicle vehicle, Worker worker) {
+//        TODO - fazer tratamento de exceções
+//        TODO - persistir vehicle
+        vehicle.getRequests().add(request);
+        update(worker, vehicle);
     }
 
     public static VehicleController getInstance() {

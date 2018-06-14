@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.registerUserFXMLController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Inicio">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ajuda">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane prefHeight="411.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="84.0" layoutY="39.0" text="Nome" />
+                <Label alignment="CENTER_RIGHT" layoutX="79.0" layoutY="76.0" prefHeight="15.0" prefWidth="38.0" text="CPF" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="8.0" layoutY="113.0" text="Usuario de Login" wrapText="true" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="14.0" layoutY="226.0" text="Tipo de usuario" wrapText="true" />
+                <TextField fx:id="txtName" layoutX="129.0" layoutY="33.0" />
+                <TextField fx:id="txtCPF" layoutX="129.0" layoutY="70.0" />
+                <TextField fx:id="txtCity" layoutX="397.0" layoutY="34.0" />
+                <PasswordField fx:id="txtPassword" layoutX="131.0" layoutY="148.0" />
+                <Button layoutX="119.0" layoutY="310.0" mnemonicParsing="false" onAction="#loginAction" text="Cancelar" />
+                <Button fx:id="btnSaveUser" layoutX="403.0" layoutY="310.0" mnemonicParsing="false" onAction="#saveUserAction" text="Criar conta" />
+                <TextField fx:id="txtLogin" layoutX="129.0" layoutY="108.0" />
+                <TextField fx:id="txtNumber" layoutX="397.0" layoutY="146.0" />
+                <TextField fx:id="txtStreet" layoutX="397.0" layoutY="109.0" />
+                <TextField fx:id="txtState" layoutX="395.0" layoutY="71.0" />
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="78.0" layoutY="150.0" text="Senha" />
+                <Label layoutX="335.0" layoutY="39.0" text="Cidade" />
+                <Label layoutX="336.0" layoutY="76.0" text="Estado" />
+                <Label layoutX="357.0" layoutY="114.0" text="Rua" />
+                <Label layoutX="331.0" layoutY="151.0" text="Numero" />
+            <TextField fx:id="txtPhone" layoutX="129.0" layoutY="188.0" />
+            <Text layoutX="310.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1-Cliente 2- Prestador" wrappingWidth="143.59521484375" />
+            <TextField fx:id="txtUserType" layoutX="129.0" layoutY="229.0" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="63.0" layoutY="193.0" text="Telefone" wrapText="true" />
+            </children>
+        </Pane>
+    </children>
+</VBox>
