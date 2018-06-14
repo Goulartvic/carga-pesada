@@ -68,15 +68,13 @@ public class UserDao{
 
             userList.add(user);
         }
-            connection.close();
+        connection.close();
 
         return userList;
     }
 
     public boolean returnAuthentication(String username, String password) throws SQLException {
-        if (authenticateUser(username, password).getUserId()!=0) {
-            return true;
-        } else {return false;}
+        return authenticateUser(username, password).getUserId() != 0;
     }
 
     public User authenticateUser(String username, String password) throws SQLException {
@@ -84,7 +82,7 @@ public class UserDao{
 
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT user_id, name, cpf, username, user_type, username, password, phone_number, rating FROM user WHERE username = ? AND password = ?";
+        String querySql = "SELECT * FROM user WHERE username = ? AND password = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
@@ -99,6 +97,7 @@ public class UserDao{
             else {
                 user = new Worker();
                 ((Worker) user).setRating(resultSet.getDouble("rating"));
+                ((Worker) user).setVehicles(VehicleDao.getInstance().listWorkerVehicles(resultSet.getInt("user_id")));
             }
             user.setUserId(resultSet.getInt("user_id"));
             user.setName(resultSet.getString("name"));
@@ -185,8 +184,7 @@ public class UserDao{
     public Worker findWorkerById(int id) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "SELECT user_id, name, cpf, user_type, username, password, rating, phone_number " +
-                "FROM user WHERE user_id=?";
+        String querySql = "SELECT * FROM user WHERE user_id=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 

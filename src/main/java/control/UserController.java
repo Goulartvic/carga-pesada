@@ -22,7 +22,7 @@ public class UserController {
     public void createAccount(String name, String cpf, String username, String password, String phone, String userType,
                               String city, String number, String state, String street){
         User user;
-        if (userType == "1") {
+        if (userType.equals("1")) {
             user = new Customer();
         }
         else {
@@ -64,9 +64,7 @@ public class UserController {
 
     public boolean userIsValid(String login, String password) {
         try {
-            if (UserDao.getInstance().returnAuthentication(login, password)) {
-                return true;
-            } else {return false;}
+            return UserDao.getInstance().returnAuthentication(login, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
