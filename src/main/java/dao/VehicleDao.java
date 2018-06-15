@@ -52,14 +52,10 @@ public class VehicleDao {
         connection.close();
     }
 
-    //TODO DEFINIR COMO SERÁ IMPLEMENTADO
-    @Deprecated
     public Vehicle findVehicleByPlate(String plate) throws SQLException {
-        //TODO FAZER REQUESTDAO PARA CONSEGUIR LISTA DE REQUEST DO VEÍCULO
         Connection connection = connectionFactory.connection();
 
         Vehicle vehicle = new Vehicle();
-        List<Request> requestList = new ArrayList<>();
 
         String querySql = "SELECT * FROM vehicle v JOIN request r ON v.plate=r.vehicle WHERE v.plate=?";
 
@@ -81,6 +77,21 @@ public class VehicleDao {
             firstRequest.setDeparture(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("departure")));
             firstRequest.setArrivalDestination(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("arrival")));
             firstRequest.setVehicle(vehicle);
+            firstRequest.setWorker(UserDao.getInstance().findWorkerById(resultSet.getInt("worker")));
+            firstRequest.setCustomer(UserDao.getInstance().findCustomerrById(resultSet.getInt("customer")));
+            firstRequest.setStatus(resultSet.getInt("status"));
+            vehicle.getRequests().add(firstRequest);
+        }
+
+        while (resultSet.next()) {
+            Request request = new Request();
+            request.setDeparture(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("departure")));
+            request.setArrivalDestination(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("arrival")));
+            request.setVehicle(vehicle);
+            request.setWorker(UserDao.getInstance().findWorkerById(resultSet.getInt("worker")));
+            request.setCustomer(UserDao.getInstance().findCustomerrById(resultSet.getInt("customer")));
+            request.setStatus(resultSet.getInt("status"));
+            vehicle.getRequests().add(request);
         }
         connection.close();
 
