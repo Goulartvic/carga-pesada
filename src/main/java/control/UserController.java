@@ -20,36 +20,38 @@ public class UserController {
     }
 
     public void createAccount(String name, String cpf, String username, String password, String phone, String userType,
-                              String city, String number, String state, String street){
-        User user;
-        if (userType.equals("1")) {
-            user = new Customer();
-        }
-        else {
-            user = new Worker();
-        }
+                              String city, String number, String state, String street) {
 
-        user.setName(name);
-        user.setCpf(cpf);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setPhoneNumber(phone);
-        if (user instanceof Customer) {
-            user.setUserType(UserType.CUSTOMER.getUserType());
-        } else {
-            user.setUserType(UserType.WORKER.getUserType());
+        if (userExist(username)) {
+            User user;
+            if (userType.equals("1")) {
+                user = new Customer();
+            } else {
+                user = new Worker();
+            }
+
+            user.setName(name);
+            user.setCpf(cpf);
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setPhoneNumber(phone);
+            if (user instanceof Customer) {
+                user.setUserType(UserType.CUSTOMER.getUserType());
+            } else {
+                user.setUserType(UserType.WORKER.getUserType());
+            }
+            user.getAddress().setCity(city);
+            user.getAddress().setNumber(Integer.parseInt(number));
+            user.getAddress().setState(state);
+            user.getAddress().setStreet(street);
+            try {
+                UserDao.getInstance().save(user);
+                user.setUserId(UserDao.getInstance().lastUserId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            AddressController.getAddressInstance().saveAddress(user);
         }
-        user.getAddress().setCity(city);
-        user.getAddress().setNumber(Integer.parseInt(number));
-        user.getAddress().setState(state);
-        user.getAddress().setStreet(street);
-        try {
-            UserDao.getInstance().save(user);
-            user.setUserId(UserDao.getInstance().lastUserId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        AddressController.getAddressInstance().saveAddress(user);
     }
 
     public void loginUser(String login, String password) {
@@ -81,7 +83,7 @@ public class UserController {
         AddressController.getAddressInstance().updateAddress(user);
     }
 
-    public void deleteUser(){
+    public void deleteUser() {
         AddressController.getAddressInstance().deleteAddress(sessionUser);
         try {
             UserDao.getInstance().delete(UserController.getSessionUser());
