@@ -73,14 +73,14 @@ public class UserController {
         return false;
     }
 
-    public void changeUser(User user) {
+    public void changeUser() {
 
         try {
-            UserDao.getInstance().update(user);
+            UserDao.getInstance().update(sessionUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        AddressController.getAddressInstance().updateAddress(user);
+        AddressController.getAddressInstance().updateAddress(sessionUser);
     }
 
     public void deleteUser() {
