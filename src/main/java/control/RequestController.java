@@ -17,11 +17,15 @@ public class RequestController {
         Address destination = new Address(destinationCity, destinationState, destinationStreet, Integer.parseInt(destinationNumber));
         Address departure = new Address(departureCity, departureState, departureStreet, Integer.parseInt(departureNumber));
 
-        Customer userCustomer = (Customer) UserController.getInstance().getSessionUser();
 
-        Request request = new Request(userCustomer, vehicle, workerSelected, destination, departure);
+        if (!AddressController.getAddressInstance().verifySameAddresses(destination, departure)) {
+            Customer userCustomer = (Customer) UserController.getInstance().getSessionUser();
 
-        VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
+            Request request = new Request(userCustomer, vehicle, workerSelected, destination, departure);
+
+            VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
+//        TODO - Fazer metodo pra adicionar request no customer
+        }
 
     }
 

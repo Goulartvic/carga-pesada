@@ -44,6 +44,15 @@ public class AddressController {
         return address;
     }
 
+    public boolean verifySameAddresses(Address destination, Address departure) {
+
+        if (destination.getStreet().equals(departure.getStreet()) && destination.getCity().equals(departure.getCity())) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static AddressController getAddressInstance() {
         return addressInstance;
     }

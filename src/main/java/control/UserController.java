@@ -133,9 +133,4 @@ public class UserController {
     public static UserController getInstance() {
         return instance;
     }
-
-    public static void setInstance(UserController instance) {
-        UserController.instance = instance;
-    }
-
 }
