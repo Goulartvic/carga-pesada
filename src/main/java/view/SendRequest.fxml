@@ -44,11 +44,11 @@
                 <Text layoutX="158.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local de partida" />
                 <Text layoutX="157.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local de destino" />
                 <Text layoutX="157.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veiculo selecionado" />
-                <Label fx:id="labelVehicle" layoutX="307.0" layoutY="228.0" prefHeight="16.0" prefWidth="160.0" text="Ford - F1000" />
-                <Label fx:id="labelWorker" layoutX="307.0" layoutY="195.0" text="Joaquim Jose" />
+                <Label fx:id="labelVehicle" layoutX="307.0" layoutY="228.0" prefHeight="16.0" prefWidth="160.0" />
+                <Label fx:id="labelWorker" layoutX="307.0" layoutY="195.0" />
                 <Text layoutX="157.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prestador selecionado" />
             <Text layoutX="158.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa do veiculo" />
-            <Label fx:id="labelPlate" layoutX="307.0" layoutY="255.0" text="MLD-4583" />
+            <Label fx:id="labelPlate" layoutX="307.0" layoutY="255.0" />
             </children>
         </Pane>
     </children>
