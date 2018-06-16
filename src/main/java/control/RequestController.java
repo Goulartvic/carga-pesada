@@ -23,8 +23,6 @@ public class RequestController {
 
         VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
 
-        System.out.println(request);
-        System.out.println(vehicle.getRequests());
     }
 
     public static RequestController getInstance() {
