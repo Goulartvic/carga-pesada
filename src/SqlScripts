@@ -1,0 +1,52 @@
+CREATE TABLE user (
+	user_id int,
+  	cpf varchar(40),
+  	name varchar(40),
+  	username varchar(40),
+  	password varchar(40),
+  	phone_number varchar(40),
+  	user_type int,
+  	rating double,
+  	PRIMARY KEY (user_id)
+);
+
+CREATE TABLE address (
+    address_id int,
+    state varchar(40),
+    city varchar(40),
+    street varchar(40),
+    number int,
+    user_id varchar(40)
+    PRIMARY KEY (address_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+CREATE TABLE vehicle (
+    brand varchar(40),
+    model varchar(40),
+    plate varchar(20),
+    available boolean,
+    vehicle_size int,
+    intercity boolean,
+    km_price double,
+    owner_id int,
+    PRIMARY KEY (plate),
+    FOREIGN KEY (owner_id) REFERENCES user(user_id)
+);
+
+CREATE TABLE request (
+    request_id int,
+    departure int,
+    arrival int,
+    vehicle varchar(20),
+    worker int,
+    customer int,
+    status int,
+    PRIMARY KEY (request_id),
+    FOREIGN KEY (departure) REFERENCES address(address_id),
+    FOREIGN KEY (arrival) REFERENCES address(address_id),
+    FOREIGN KEY (vehicle) REFERENCES vehicle(plate),
+    FOREIGN key (worker) REFERENCES user(user_id),
+    FOREIGN key (customer) REFERENCES user(user_id)
+);
+
