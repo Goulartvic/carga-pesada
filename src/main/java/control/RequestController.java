@@ -12,19 +12,16 @@ public class RequestController {
 
 
     public void createRequest(String departureStreet, String departureNumber, String departureCity, String departureState,
-                              String destinationStreet, String destinationNumber, String destinationCity, String destinationState, String vehiclePlate, int workerSelected) {
-
-        Vehicle vehicle = VehicleController.getInstance().findVehicleByPlate(vehiclePlate);
-        Worker worker = UserController.getInstance().findWorkerById(workerSelected);
+                              String destinationStreet, String destinationNumber, String destinationCity, String destinationState, Vehicle vehicle, Worker workerSelected) {
 
         Address destination = new Address(destinationCity, destinationState, destinationStreet, Integer.parseInt(destinationNumber));
         Address departure = new Address(departureCity, departureState, departureStreet, Integer.parseInt(departureNumber));
 
         Customer userCustomer = (Customer) UserController.getInstance().getSessionUser();
 
-        Request request = new Request(userCustomer, vehicle, worker, destination, departure);
+        Request request = new Request(userCustomer, vehicle, workerSelected, destination, departure);
 
-        VehicleController.getInstance().addRequestInVehicle(request, vehicle, worker);
+        VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
 
         System.out.println(request);
         System.out.println(vehicle.getRequests());

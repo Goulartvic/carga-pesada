@@ -79,7 +79,7 @@ public class DetailsRequestFXMLController implements Initializable {
     public void confirmAction() {
         Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
         SendRequest sendRequest = SendRequest.getInstance();
-        sendRequest.setVehicleSeleVehicle(vehicle);
+        sendRequest.setVehicleSelected(vehicle);
         sendRequest.setUserSelected(userWorker);
 
         try {

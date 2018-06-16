@@ -67,14 +67,14 @@ public class SendRequestFXMLController implements Initializable {
     public void sendRequestAction() {
         RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
                 arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
-                vehicleSelected.getPlate(), workerSelected.getUserId());
+                vehicleSelected, workerSelected);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.workerSelected = (Worker) SendRequest.getInstance().getUserSelected();
-        this.vehicleSelected = SendRequest.getInstance().getVehicleSeleVehicle();
+        this.workerSelected = SendRequest.getInstance().getUserSelected();
+        this.vehicleSelected = SendRequest.getInstance().getVehicleSelected();
         labelWorker.setText(workerSelected.getName());
         labelVehicle.setText(vehicleSelected.getModel());
         labelPlate.setText(vehicleSelected.getPlate());

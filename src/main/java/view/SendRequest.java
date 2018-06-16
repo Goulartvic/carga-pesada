@@ -5,14 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.User;
 import model.Vehicle;
+import model.Worker;
 
 public class SendRequest extends Application {
 
     private static Stage stage;
-    private User userSelected;
-    private Vehicle vehicleSeleVehicle;
+    private Worker workerSelected;
+    private Vehicle vehicleSelected;
 
     private static SendRequest instance = new SendRequest();
 
@@ -40,20 +40,20 @@ public class SendRequest extends Application {
         SendRequest.stage = stage;
     }
 
-    public User getUserSelected() {
-        return userSelected;
+    public Worker getUserSelected() {
+        return workerSelected;
     }
 
-    public void setUserSelected(User userSelected) {
-        this.userSelected = userSelected;
+    public void setUserSelected(Worker userSelected) {
+        this.workerSelected = userSelected;
     }
 
-    public Vehicle getVehicleSeleVehicle() {
-        return vehicleSeleVehicle;
+    public Vehicle getVehicleSelected() {
+        return vehicleSelected;
     }
 
-    public void setVehicleSeleVehicle(Vehicle vehicleSeleVehicle) {
-        this.vehicleSeleVehicle = vehicleSeleVehicle;
+    public void setVehicleSelected(Vehicle vehicleSelected) {
+        this.vehicleSelected = vehicleSelected;
     }
 
     public static void main(String[] args) {
