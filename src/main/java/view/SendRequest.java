@@ -14,7 +14,7 @@ public class SendRequest extends Application {
     private User userSelected;
     private Vehicle vehicleSeleVehicle;
 
-//    private static SendRequest instance = new SendRequest();
+    private static SendRequest instance = new SendRequest();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,9 +25,12 @@ public class SendRequest extends Application {
         setStage(stage);
     }
 
-//    public static SendRequest getInstance() {
-//        return instance;
-//    }
+    public static SendRequest getInstance() {
+        if (instance == null) {
+            instance = new SendRequest();
+        }
+        return instance;
+    }
 
     public static Stage getStage() {
         return stage;

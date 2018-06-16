@@ -89,4 +89,16 @@ public class Request {
                 break;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "arrivalDestination=" + arrivalDestination +
+                ", departure=" + departure +
+                ", customer=" + customer +
+                ", vehicle=" + vehicle +
+                ", worker=" + worker +
+                ", status=" + status +
+                '}';
+    }
 }

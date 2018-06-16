@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class  Worker extends User {
+public class Worker extends User {
 
     private double rating;
 
@@ -20,7 +20,8 @@ public class  Worker extends User {
         this.rating = worker.getRating();
     }
 
-    public Worker() {}
+    public Worker() {
+    }
 
     public double getRating() {
         return rating;
@@ -36,5 +37,14 @@ public class  Worker extends User {
 
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "rating=" + rating +
+                ", vehicles=" + vehicles +
+                '}';
     }
 }

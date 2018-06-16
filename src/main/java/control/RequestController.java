@@ -11,18 +11,23 @@ public class RequestController {
     }
 
 
-    public void createRequest(String arrivalDestination, String departure, Vehicle vehicle, Worker worker) {
-//        TODO - FindVehicleByPlate(String vehiclePlate) criar no controlador do veiculo
-//        TODO - FindUserByID(int user) criar no controlador do usuário
+    public void createRequest(String departureStreet, String departureNumber, String departureCity, String departureState,
+                              String destinationStreet, String destinationNumber, String destinationCity, String destinationState, String vehiclePlate, int workerSelected) {
 
-        Address destination = new Address("Floripa", "SC", "Rua da destino", 200);
-        Address depart = new Address("Floripa", "SC", "Rua da partida", 100);
+        Vehicle vehicle = VehicleController.getInstance().findVehicleByPlate(vehiclePlate);
+        Worker worker = UserController.getInstance().findWorkerById(workerSelected);
+
+        Address destination = new Address(destinationCity, destinationState, destinationStreet, Integer.parseInt(destinationNumber));
+        Address departure = new Address(departureCity, departureState, departureStreet, Integer.parseInt(departureNumber));
 
         Customer userCustomer = (Customer) UserController.getInstance().getSessionUser();
 
-        Request request = new Request(userCustomer, vehicle, worker, destination, depart);
+        Request request = new Request(userCustomer, vehicle, worker, destination, departure);
 
         VehicleController.getInstance().addRequestInVehicle(request, vehicle, worker);
+
+        System.out.println(request);
+        System.out.println(vehicle.getRequests());
     }
 
     public static RequestController getInstance() {

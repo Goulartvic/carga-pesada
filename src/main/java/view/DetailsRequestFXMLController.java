@@ -35,8 +35,8 @@ public class DetailsRequestFXMLController implements Initializable {
     @FXML
     private TableColumn<Vehicle, String> kmPriceCollumn;
 
-    Address address;
-    Worker userWorker;
+    private Address address;
+    private Worker userWorker;
 
     public ObservableList<Vehicle> loadTable() {
 
@@ -78,7 +78,7 @@ public class DetailsRequestFXMLController implements Initializable {
     @FXML
     public void confirmAction() {
         Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
-        SendRequest sendRequest = new SendRequest();
+        SendRequest sendRequest = SendRequest.getInstance();
         sendRequest.setVehicleSeleVehicle(vehicle);
         sendRequest.setUserSelected(userWorker);
 

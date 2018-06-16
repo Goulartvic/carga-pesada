@@ -47,6 +47,16 @@ public class VehicleController {
         update(worker, vehicle);
     }
 
+    public Vehicle findVehicleByPlate(String vehiclePlate) {
+        Vehicle vehicle = new Vehicle();
+        try {
+            vehicle = VehicleDao.getInstance().findVehicleByPlate(vehiclePlate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicle;
+    }
+
     public static VehicleController getInstance() {
         return instance;
     }
