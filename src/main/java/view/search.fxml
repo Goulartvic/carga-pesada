@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchFXMLController">
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchFXMLController">
    <children>
       <MenuBar>
         <menus>
@@ -31,11 +40,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="209.0">
                <children>
-                  <Text layoutX="66.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesquisar" />
-                  <TextField layoutX="14.0" layoutY="44.0" prefHeight="25.0" prefWidth="167.0" />
-                  <ComboBox layoutX="15.0" layoutY="106.0" prefHeight="25.0" prefWidth="167.0" />
-                  <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tamanho do veiculo" />
-                  <CheckBox layoutX="39.0" layoutY="151.0" mnemonicParsing="false" text="Intermunicipal" />
+                  <Text layoutX="36.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade(Obrigatório)" />
+                  <TextField fx:id="city" layoutX="14.0" layoutY="44.0" prefHeight="25.0" prefWidth="167.0" />
+                  <ComboBox fx:id="rating" layoutX="15.0" layoutY="106.0" prefHeight="25.0" prefWidth="167.0" />
+                  <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nota minima" />
+                   <Button text="Buscar" onAction="#loadTableAction" layoutX="65.0" layoutY="170.0"/>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="450.0">
@@ -44,10 +53,10 @@
                     <columns>
                       <TableColumn fx:id="customerCollumn" prefWidth="164.0" text="Prestador" />
                       <TableColumn fx:id="ratingCollumn" prefWidth="102.0" text="Nota" />
-                        <TableColumn fx:id="kmPriceCollumn" prefWidth="174.0" text="Preço por KM" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="174.0" text="Cidade" />
                     </columns>
                   </TableView>
-                  <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" text="Ver detalhes" />
+                  <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" text="Ver detalhes" onAction="#workerDetail"/>
                </children>
             </AnchorPane>
         </items>

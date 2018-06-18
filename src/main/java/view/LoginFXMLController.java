@@ -42,10 +42,10 @@ public class LoginFXMLController {
                 }
             }
             else {
-                ChangeUser changeUser = new ChangeUser();
+                Search search = new Search();
                 goQuitAction();
                 try {
-                    changeUser.start(new Stage());
+                    search.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

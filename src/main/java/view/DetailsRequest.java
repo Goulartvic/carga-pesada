@@ -5,9 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Worker;
 
 public class DetailsRequest extends Application {
     private static Stage stage;
+
+    private static DetailsRequest instance = new DetailsRequest();
+
+    private Worker selectedWorker;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -30,5 +35,17 @@ public class DetailsRequest extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static DetailsRequest getInstance() {
+        return instance;
+    }
+
+    public Worker getSelectedWorker() {
+        return selectedWorker;
+    }
+
+    public void setSelectedWorker(Worker selectedWorker) {
+        this.selectedWorker = selectedWorker;
     }
 }

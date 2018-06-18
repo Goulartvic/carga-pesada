@@ -16,7 +16,7 @@ CREATE TABLE address (
     city varchar(40),
     street varchar(40),
     number int,
-    user_id varchar(40)
+    user_id int),
     PRIMARY KEY (address_id),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );

@@ -39,6 +39,7 @@ public class RegisterVehicleFXMLController implements Initializable {
     }
 
     public void saveVehicle() {
-        VehicleController.getInstance().save(brand.getText(), model.getText(), plate.getText(), intercity.isSelected(), size.getSelectionModel().getSelectedItem(), kmPrice.getText());
+        VehicleController.getInstance().save(brand.getText(), model.getText(), plate.getText(), intercity.isSelected(),
+                size.getSelectionModel().getSelectedItem(), kmPrice.getText());
     }
 }
