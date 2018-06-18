@@ -12,7 +12,7 @@ public class RequestController {
 
 
     public void createRequest(String departureStreet, String departureNumber, String departureCity, String departureState,
-                              String destinationStreet, String destinationNumber, String destinationCity, String destinationState, Vehicle vehicle, Worker workerSelected) {
+                              String destinationStreet, String destinationNumber, String destinationCity, String destinationState, Vehicle vehicle, Worker workerSelected) throws Exception {
 
         Address destination = new Address(destinationCity, destinationState, destinationStreet, Integer.parseInt(destinationNumber));
         Address departure = new Address(departureCity, departureState, departureStreet, Integer.parseInt(departureNumber));
@@ -25,6 +25,8 @@ public class RequestController {
 
             VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
 //        TODO - Fazer metodo pra adicionar request no customer
+        } else {
+            throw new Exception("Taonha viado");
         }
 
     }

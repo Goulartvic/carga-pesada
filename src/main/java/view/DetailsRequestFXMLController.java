@@ -81,7 +81,7 @@ public class DetailsRequestFXMLController implements Initializable {
         SendRequest sendRequest = SendRequest.getInstance();
         sendRequest.setVehicleSelected(vehicle);
         sendRequest.setUserSelected(userWorker);
-
+//        TODO - verificar se o veiculo foi selecionado
         try {
             sendRequest.start(new Stage());
         } catch (Exception e) {

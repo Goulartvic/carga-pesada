@@ -24,6 +24,7 @@ public class VehicleController {
     }
 
     public void save(String brand, String model, String plate, boolean intercity, int size, String kmPrice) {
+//        TODO - esse veiculo ta sendo setado pra quem?
         Vehicle vehicle = new Vehicle();
         vehicle.setBrand(brand);
         vehicle.setModel(model);
