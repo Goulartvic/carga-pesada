@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
@@ -10,7 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -42,9 +40,9 @@
                <children>
                   <Text layoutX="36.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade(Obrigatório)" />
                   <TextField fx:id="city" layoutX="14.0" layoutY="44.0" prefHeight="25.0" prefWidth="167.0" />
-                  <ComboBox fx:id="rating" layoutX="15.0" layoutY="106.0" prefHeight="25.0" prefWidth="167.0" />
+                  <ComboBox fx:id="ratingComboBox" layoutX="15.0" layoutY="106.0" prefHeight="25.0" prefWidth="167.0" promptText="0" />
                   <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nota minima" />
-                   <Button text="Buscar" onAction="#loadTableAction" layoutX="65.0" layoutY="170.0"/>
+                   <Button layoutX="65.0" layoutY="170.0" onAction="#loadTableAction" text="Buscar" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="450.0">
@@ -56,7 +54,7 @@
                         <TableColumn fx:id="phoneNumber" prefWidth="174.0" text="Cidade" />
                     </columns>
                   </TableView>
-                  <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" text="Ver detalhes" onAction="#workerDetail"/>
+                  <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" onAction="#workerDetail" text="Ver detalhes" />
                </children>
             </AnchorPane>
         </items>

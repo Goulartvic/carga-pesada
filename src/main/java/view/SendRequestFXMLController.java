@@ -65,9 +65,13 @@ public class SendRequestFXMLController implements Initializable {
 
     @FXML
     public void sendRequestAction() {
-        RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
-                arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
-                vehicleSelected, workerSelected);
+        try {
+            RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
+                    arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
+                    vehicleSelected, workerSelected);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

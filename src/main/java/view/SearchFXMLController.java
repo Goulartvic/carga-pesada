@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.SearchMock;
 import model.Worker;
 
 import java.net.URL;
@@ -32,14 +31,23 @@ public class SearchFXMLController implements Initializable{
     private TableColumn<Worker, String> phoneNumber;
 
     @FXML
-    private ComboBox<Integer> rating;
+    private ComboBox<Integer> ratingComboBox;
 
     @FXML
     private TextField city;
 
     public ObservableList<Worker> loadTable() {
+        double rating;
+
+        if (ratingComboBox.getSelectionModel().getSelectedItem()==null) {
+            rating = 0;
+        }
+
+        else {
+            rating= ratingComboBox.getSelectionModel().getSelectedItem();
+        }
         ObservableList<Worker> workerObservableList = FXCollections.observableArrayList(
-                UserController.getInstance().searchWorkerList(city.getText(), rating.getSelectionModel().getSelectedItem())
+                UserController.getInstance().searchWorkerList(city.getText(), rating)
         );
 
         return workerObservableList;
@@ -49,7 +57,7 @@ public class SearchFXMLController implements Initializable{
         customerCollumn.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
         ratingCollumn.setCellValueFactory(
-                new PropertyValueFactory<>("rating"));
+                new PropertyValueFactory<>("ratingComboBox"));
         phoneNumber.setCellValueFactory(
                 new PropertyValueFactory<>("phoneNumber"));
 
@@ -72,6 +80,6 @@ public class SearchFXMLController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Integer> observableList = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
-        rating.setItems(observableList);
+        ratingComboBox.setItems(observableList);
     }
 }
