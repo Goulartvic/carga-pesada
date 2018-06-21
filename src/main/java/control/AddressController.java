@@ -18,6 +18,14 @@ public class AddressController {
         }
     }
 
+    public void saveAddress(Address address) {
+        try {
+            AddressDao.getInstance().save(address);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void deleteAddress(User user) {
         try {
             AddressDao.getInstance().delete(user);

@@ -44,11 +44,11 @@ public class VehicleDao {
     public void delete(Vehicle vehicle) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "DELETE FROM vehicle WHERE vehicle_id = ?";
+        String querySql = "DELETE FROM vehicle WHERE plate = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
-        preparedStatement.setInt(1, vehicle.getVehicleId());
+        preparedStatement.setString(1, vehicle.getPlate());
         connection.close();
     }
 
@@ -66,7 +66,6 @@ public class VehicleDao {
 
         if (resultSet.next()) {
             Request firstRequest = new Request();
-            vehicle.setVehicleId(resultSet.getInt("vehicle_id"));
             vehicle.setAvailable(resultSet.getBoolean("available"));
             vehicle.setVehicleSize(resultSet.getInt("vehicle_size"));
             vehicle.setBrand(resultSet.getString("brand"));
@@ -137,7 +136,6 @@ public class VehicleDao {
             vehicle.setBrand(resultSet.getString("brand"));
             vehicle.setVehicleSize(resultSet.getInt("vehicle_size"));
             vehicle.setAvailable(resultSet.getBoolean("available"));
-            vehicle.setVehicleId(resultSet.getInt("vehicle_id"));
 
             vehicles.add(vehicle);
         }

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Vehicle;
 import model.Worker;
 
@@ -69,6 +70,10 @@ public class SendRequestFXMLController implements Initializable {
             RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
                     arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
                     vehicleSelected, workerSelected);
+
+            Search search = new Search();
+            search.start(new Stage());
+            SendRequest.getStage().close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -57,7 +57,7 @@ public class SearchFXMLController implements Initializable{
         customerCollumn.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
         ratingCollumn.setCellValueFactory(
-                new PropertyValueFactory<>("ratingComboBox"));
+                new PropertyValueFactory<>("rating"));
         phoneNumber.setCellValueFactory(
                 new PropertyValueFactory<>("phoneNumber"));
 
@@ -72,6 +72,7 @@ public class SearchFXMLController implements Initializable{
 
         try {
             detailsRequest.start(new Stage());
+            Search.getStage().close();
         } catch (Exception e) {
             e.printStackTrace();
         }

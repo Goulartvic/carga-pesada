@@ -1,5 +1,6 @@
 package control;
 
+import dao.RequestDao;
 import model.*;
 
 public class RequestController {
@@ -21,10 +22,13 @@ public class RequestController {
         if (!AddressController.getAddressInstance().verifySameAddresses(destination, departure)) {
             Customer userCustomer = (Customer) UserController.getInstance().getSessionUser();
 
+            AddressController.getAddressInstance().saveAddress(departure);
+            AddressController.getAddressInstance().saveAddress(destination);
+
             Request request = new Request(userCustomer, vehicle, workerSelected, destination, departure);
 
-            VehicleController.getInstance().addRequestInVehicle(request, vehicle, workerSelected);
-//        TODO - Fazer metodo pra adicionar request no customer
+            userCustomer.getRequests().add(request);
+            RequestDao.getInstance().addRequest(request);
         } else {
             throw new Exception("Taonha viado");
         }

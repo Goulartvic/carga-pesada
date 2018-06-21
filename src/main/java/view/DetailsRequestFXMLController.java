@@ -1,5 +1,6 @@
 package view;
 
+import control.VehicleController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import model.*;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -35,20 +37,11 @@ public class DetailsRequestFXMLController implements Initializable {
     @FXML
     private TableColumn<Vehicle, String> kmPriceCollumn;
 
-    private Address address;
     private Worker userWorker;
 
     public ObservableList<Vehicle> loadTable() {
+        List<Vehicle> vehicles = VehicleController.getInstance().listWorkerVehicles(userWorker.getUserId());
 
-        address = new Address("Floripa", "SC", "Rua da rua", 110);
-        userWorker = new Worker(address, "100.100.100-10", "Jose", "123", "9999-9999", 1, "josegameplays");
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
-        Vehicle vehicle1 = new Vehicle("Mercedes", "Atego 1728", "AAA8888", VehicleSize.MEDIUM, true, 1000);
-        Vehicle vehicle2 = new Vehicle("Volvo", "Globetrotter", "ABC8974", VehicleSize.BIG, true, 1500);
-        Vehicle vehicle3 = new Vehicle("Scania", "Streamline ", "CCC5656", VehicleSize.MEDIUM, false, 800);
-        vehicles.add(vehicle1);
-        vehicles.add(vehicle2);
-        vehicles.add(vehicle3);
         userWorker.setVehicles(vehicles);
 
         ObservableList<Vehicle> vehiclesObs = FXCollections.observableArrayList(vehicles);
@@ -72,6 +65,8 @@ public class DetailsRequestFXMLController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.userWorker = DetailsRequest.getInstance().getSelectedWorker();
+        SendRequest.getInstance().setUserSelected(userWorker);
         loadTableAction();
     }
 
@@ -81,9 +76,9 @@ public class DetailsRequestFXMLController implements Initializable {
         SendRequest sendRequest = SendRequest.getInstance();
         sendRequest.setVehicleSelected(vehicle);
         sendRequest.setUserSelected(userWorker);
-//        TODO - verificar se o veiculo foi selecionado
         try {
             sendRequest.start(new Stage());
+            Search.getStage().close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -35,7 +35,7 @@ CREATE TABLE vehicle (
 );
 
 CREATE TABLE request (
-    request_id int,
+    request_id int AUTO_INCREMENT,
     departure int,
     arrival int,
     vehicle varchar(20),

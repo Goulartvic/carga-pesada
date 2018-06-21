@@ -6,6 +6,8 @@ import model.Vehicle;
 import model.Worker;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleController {
 
@@ -24,7 +26,6 @@ public class VehicleController {
     }
 
     public void save(String brand, String model, String plate, boolean intercity, int size, String kmPrice) {
-//        TODO - esse veiculo ta sendo setado pra quem?
         Vehicle vehicle = new Vehicle();
         vehicle.setBrand(brand);
         vehicle.setModel(model);
@@ -56,6 +57,17 @@ public class VehicleController {
             e.printStackTrace();
         }
         return vehicle;
+    }
+
+    public List<Vehicle> listWorkerVehicles(int id) {
+        List<Vehicle> vehicleList = new ArrayList<>();
+
+        try {
+            vehicleList = VehicleDao.getInstance().listWorkerVehicles(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicleList;
     }
 
     public static VehicleController getInstance() {

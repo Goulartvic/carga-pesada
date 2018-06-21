@@ -17,7 +17,9 @@ public class Customer extends User {
         requests = customer.getRequests();
     }
 
-    public Customer() {}
+    public Customer() {
+        this.requests = new ArrayList<>();
+    }
 
     public List<Request> getRequests() {
         return requests;

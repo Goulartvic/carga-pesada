@@ -36,6 +36,22 @@ public class AddressDao {
             connection.close();
     }
 
+    public void save(Address address) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql =  "INSERT INTO address (city, state, street, number) " + "VALUES (?, ?, ?, ?)";
+
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setString(1, address.getCity());
+        preparedStatement.setString(2, address.getState());
+        preparedStatement.setString(3, address.getStreet());
+        preparedStatement.setInt(4, address.getNumber());
+        preparedStatement.execute();
+        connection.close();
+    }
+
     public Address findAddressByAddressId(int id) throws SQLException {
         Address address = new Address();
 
@@ -115,6 +131,26 @@ public class AddressDao {
             preparedStatement.execute();
 
             connection.close();
+    }
+
+    public int getAddressId(Address address) throws SQLException {
+        Connection connection = connectionFactory.connection();
+        int id = -1;
+
+        String querySql = "SELECT address_id FROM address WHERE state=? AND city=? AND street=? AND number=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setString(1,address.getState());
+        preparedStatement.setString(2,address.getCity());
+        preparedStatement.setString(3,address.getStreet());
+        preparedStatement.setInt(4,address.getNumber());
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            id = resultSet.getInt("address_id");
+        }
+
+        return id;
     }
 
     public static AddressDao getInstance() {

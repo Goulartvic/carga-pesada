@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Vehicle {
 
-    private int vehicleId;
-
     private String brand;
 
     private String model;
@@ -105,10 +103,6 @@ public class Vehicle {
         this.kmPrice = kmPrice;
     }
 
-    public int getVehicleId() { return vehicleId; }
-
-    public void setVehicleId(int vehicleId) { this.vehicleId = vehicleId; }
-
     public void setVehicleSize(VehicleSize vehicleSize) {
         this.vehicleSize = vehicleSize;
     }
@@ -124,7 +118,6 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "vehicleId=" + vehicleId +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", plate='" + plate + '\'' +
