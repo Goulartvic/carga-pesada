@@ -3,10 +3,14 @@ package dao;
 import connection.ConnectionFactory;
 import model.Request;
 import model.Status;
+import model.Vehicle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestDao {
 
@@ -38,5 +42,28 @@ public class RequestDao {
         preparedStatement.execute();
 
         connection.close();
+    }
+
+    public List<Request> listRequests(Vehicle vehicle) throws SQLException {
+        Connection connection = connectionFactory.connection();
+        List<Request> requestList = new ArrayList<>();
+
+        String querySql = "SELECT * FROM request WHERE vehicle=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setString(1, vehicle.getPlate());
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Request request = new Request();
+            request.setDeparture(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("departure")));
+            request.setArrivalDestination(AddressDao.getInstance().findAddressByAddressId(resultSet.getInt("arrival")));
+            request.setVehicle(vehicle);
+            request.setWorker(UserDao.getInstance().findWorkerById(resultSet.getInt("worker")));
+            request.setCustomer(UserDao.getInstance().findCustomerrById(resultSet.getInt("customer")));
+            request.setStatus(resultSet.getInt("status"));
+            requestList.add(request);
+        }
+        return requestList;
     }
 }

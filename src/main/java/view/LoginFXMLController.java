@@ -32,11 +32,11 @@ public class LoginFXMLController {
             UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
 
             if (UserController.getSessionUser() instanceof Worker) {
-                RegisterVehicle registerVehicle = new RegisterVehicle();
+                RequestsWorker requestsWorker = new RequestsWorker();
                 goQuitAction();
 
                 try {
-                    registerVehicle.start(new Stage());
+                    requestsWorker.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
