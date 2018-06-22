@@ -30,7 +30,7 @@ public class RequestController {
             userCustomer.getRequests().add(request);
             RequestDao.getInstance().addRequest(request);
         } else {
-            throw new Exception("Taonha viado");
+            throw new Exception();
         }
 
     }
