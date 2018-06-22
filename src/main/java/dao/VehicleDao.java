@@ -100,8 +100,8 @@ public class VehicleDao {
     public void update(Vehicle vehicle) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql = "UPDATE vehicle SET brand=?, model=?, plate=?, vehicle_size=?, intercity=?, km_price=?" +
-                "WHERE vehicle_id=?";
+        String querySql = "UPDATE vehicle SET brand=?, model=?, plate=?, vehicle_size=?, intercity=?, km_price=?, available=?" +
+                " WHERE plate=?";
 
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
@@ -112,6 +112,8 @@ public class VehicleDao {
         preparedStatement.setInt(4, vehicle.getVehicleSize().getVehicleSize());
         preparedStatement.setBoolean(5, vehicle.isIntercity());
         preparedStatement.setDouble(6, vehicle.getKmPrice());
+        preparedStatement.setBoolean(7,vehicle.isAvailable());
+        preparedStatement.setString(8,vehicle.getPlate());
         preparedStatement.execute();
         connection.close();
     }
@@ -136,6 +138,7 @@ public class VehicleDao {
             vehicle.setBrand(resultSet.getString("brand"));
             vehicle.setVehicleSize(resultSet.getInt("vehicle_size"));
             vehicle.setAvailable(resultSet.getBoolean("available"));
+            vehicle.setRequests(RequestDao.getInstance().listRequests(vehicle));
 
             vehicles.add(vehicle);
         }

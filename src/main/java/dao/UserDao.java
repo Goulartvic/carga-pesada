@@ -93,6 +93,7 @@ public class UserDao{
         if(resultSet.next()) {
             if (resultSet.getInt("user_type") == 1) {
                 user = new Customer();
+                ((Customer) user).setRequests(RequestDao.getInstance().listRequests(resultSet.getInt("user_id")));
             }
             else {
                 user = new Worker();

@@ -34,7 +34,6 @@ public class LoginFXMLController {
             if (UserController.getSessionUser() instanceof Worker) {
                 RequestsWorker requestsWorker = new RequestsWorker();
                 goQuitAction();
-
                 try {
                     requestsWorker.start(new Stage());
                 } catch (Exception e) {
@@ -42,10 +41,10 @@ public class LoginFXMLController {
                 }
             }
             else {
-                Search search = new Search();
+                RequestsClient requestsClient = new RequestsClient();
                 goQuitAction();
                 try {
-                    search.start(new Stage());
+                    requestsClient.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

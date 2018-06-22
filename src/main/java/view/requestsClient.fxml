@@ -28,7 +28,7 @@
       </MenuBar>
       <Pane prefHeight="370.0" prefWidth="600.0">
          <children>
-            <TableView fx:id="requestsTable" layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="645.0">
+            <TableView fx:id="requestTable" layoutX="25.0" layoutY="85.0" prefHeight="203.0" prefWidth="645.0">
               <columns>
                 <TableColumn fx:id="requestsTableValue" prefWidth="83.0" text="Valor" />
                 <TableColumn fx:id="requestsTableWorker" prefWidth="115.0" text="Prestador" />

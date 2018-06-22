@@ -12,7 +12,7 @@ public class RequestsClient extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("servicesClient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("requestsClient.fxml"));
         Parent requestsClient;
         requestsClient = loader.load();
         Scene scene = new Scene(requestsClient);

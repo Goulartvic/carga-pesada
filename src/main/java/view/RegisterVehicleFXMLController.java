@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,5 +42,12 @@ public class RegisterVehicleFXMLController implements Initializable {
     public void saveVehicle() {
         VehicleController.getInstance().save(brand.getText(), model.getText(), plate.getText(), intercity.isSelected(),
                 size.getSelectionModel().getSelectedItem(), kmPrice.getText());
+
+        RequestsWorker requestsWorker = new RequestsWorker();
+        try {
+            requestsWorker.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

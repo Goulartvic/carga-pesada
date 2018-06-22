@@ -3,6 +3,8 @@ package control;
 import dao.RequestDao;
 import model.*;
 
+import java.sql.SQLException;
+
 public class RequestController {
 
     private static RequestController instance = new RequestController();
@@ -33,6 +35,14 @@ public class RequestController {
             throw new Exception();
         }
 
+    }
+
+    public void update(Request request) {
+        try {
+            RequestDao.getInstance().update(request);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static RequestController getInstance() {

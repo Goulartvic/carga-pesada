@@ -13,13 +13,13 @@ public class VehicleController {
 
     private static VehicleController instance = new VehicleController();
 
-    public void update(Worker worker, Vehicle vehicle) {
+    public void update(Vehicle vehicle) {
 
-        int vehicleIndex = worker.getVehicles().indexOf(vehicle);
-        Vehicle vehicleToSave = worker.getVehicles().get(vehicleIndex);
+//        int vehicleIndex = worker.getVehicles().indexOf(vehicle);
+//        Vehicle vehicleToSave = worker.getVehicles().get(vehicleIndex);
 
         try {
-            VehicleDao.getInstance().update(vehicleToSave);
+            VehicleDao.getInstance().update(vehicle);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -40,13 +40,6 @@ public class VehicleController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void addRequestInVehicle(Request request, Vehicle vehicle, Worker worker) {
-//        TODO - fazer tratamento de exceções
-//        TODO - persistir vehicle
-        vehicle.getRequests().add(request);
-        update(worker, vehicle);
     }
 
     public Vehicle findVehicleByPlate(String vehiclePlate) {
