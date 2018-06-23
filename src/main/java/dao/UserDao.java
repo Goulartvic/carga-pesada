@@ -116,8 +116,8 @@ public class UserDao{
     public void save(User user) throws SQLException {
         Connection connection = connectionFactory.connection();
 
-        String querySql1 = "INSERT INTO user (name, cpf, username, password, phone_number, user_type)" +
-                " VALUES (?, ?, ?, ?, ?, ?)";
+        String querySql1 = "INSERT INTO user (name, cpf, username, password, phone_number, user_type, rating)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql1);
 
@@ -127,6 +127,7 @@ public class UserDao{
         preparedStatement.setString(4, user.getPassword());
         preparedStatement.setString(5, user.getPhoneNumber());
         preparedStatement.setInt(6, user.getUserType().getUserType());
+        preparedStatement.setDouble(7, 0);
 
         preparedStatement.execute();
         connection.close();

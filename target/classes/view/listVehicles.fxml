@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ListVehiclesFXMLController">
    <children>
       <MenuBar>
         <menus>
@@ -29,15 +29,15 @@
       </MenuBar>
       <Pane prefHeight="384.0" prefWidth="645.0">
          <children>
-            <TableView layoutX="10.0" layoutY="38.0" prefHeight="260.0" prefWidth="663.0">
+            <TableView fx:id="tableView" layoutX="10.0" layoutY="38.0" prefHeight="260.0" prefWidth="663.0">
               <columns>
-                <TableColumn prefWidth="70.0" text="Marca" />
-                <TableColumn prefWidth="98.0" text="Modelo" />
-                  <TableColumn prefWidth="74.0" text="Placa" />
-                  <TableColumn prefWidth="101.0" text="Disponivel" />
-                  <TableColumn prefWidth="82.0" text="Tamanho" />
-                  <TableColumn prefWidth="115.0" text="Preço por KM" />
-                  <TableColumn prefWidth="122.0" text="Intermunicipal" />
+                <TableColumn fx:id="brandCollumn" prefWidth="70.0" text="Marca" />
+                <TableColumn fx:id="modelCollumn" prefWidth="98.0" text="Modelo" />
+                  <TableColumn fx:id="plateCollumn" prefWidth="74.0" text="Placa" />
+                  <TableColumn fx:id="availableCollumn" prefWidth="101.0" text="Disponivel" />
+                  <TableColumn fx:id="vehicleSizeCollumn" prefWidth="82.0" text="Tamanho" />
+                  <TableColumn fx:id="kmPriceCollumn" prefWidth="115.0" text="Preço por KM" />
+                  <TableColumn fx:id="intercityCollumn" prefWidth="122.0" text="Intermunicipal" />
               </columns>
             </TableView>
             <Text layoutX="273.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veiculos" />

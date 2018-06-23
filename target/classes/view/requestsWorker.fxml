@@ -44,7 +44,7 @@
               </columns>
             </TableView>
             <Text layoutX="270.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
-            <Button fx:id="" layoutX="25.0" layoutY="311.0" mnemonicParsing="false" text="Recusar" />
+            <Button fx:id="" layoutX="25.0" layoutY="311.0" mnemonicParsing="false" text="Recusar" onAction="#declineRequest" />
             <Button layoutX="625.0" layoutY="311.0" mnemonicParsing="false" text="Aceitar" onAction="#acceptRequest"/>
          </children>
       </Pane>

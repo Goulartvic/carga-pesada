@@ -1,5 +1,5 @@
 CREATE TABLE user (
-	user_id int,
+	user_id int auto_increment,
   	cpf varchar(40),
   	name varchar(40),
   	username varchar(40),
@@ -11,12 +11,12 @@ CREATE TABLE user (
 );
 
 CREATE TABLE address (
-    address_id int,
+    address_id int auto_increment,
     state varchar(40),
     city varchar(40),
     street varchar(40),
     number int,
-    user_id int),
+    user_id int,
     PRIMARY KEY (address_id),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
@@ -49,4 +49,3 @@ CREATE TABLE request (
     FOREIGN key (worker) REFERENCES user(user_id),
     FOREIGN key (customer) REFERENCES user(user_id)
 );
-

@@ -99,6 +99,7 @@ public class RequestsWorkerFXMLController implements Initializable {
 
             RequestsWorker requestsWorker = new RequestsWorker();
             try {
+                RequestsWorker.getStage().close();
                 requestsWorker.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
@@ -116,6 +117,26 @@ public class RequestsWorkerFXMLController implements Initializable {
     }
 
     public void declineRequest() {
+        Request request = requestTable.getSelectionModel().getSelectedItem();
 
+        if (request.getStatus().getStatus()==2) {
+            request.setStatus(3);
+            RequestController.getInstance().update(request);
+
+            RequestsWorker requestsWorker = new RequestsWorker();
+            try {
+                RequestsWorker.getStage().close();
+                requestsWorker.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("ERRO");
+            alert.setContentText("SÓ É POSSIVEL RECUSAR SOLICITAÇÕES ON HOLD");
+            alert.show();
+        }
     }
 }
