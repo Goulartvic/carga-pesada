@@ -1,5 +1,6 @@
 package view;
 
+import control.UserController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Vehicle;
-import model.VehicleSize;
+import model.Worker;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,9 +44,7 @@ public class ListVehiclesFXMLController implements Initializable {
 
     public ObservableList<Vehicle> loadTable() {
         ObservableList<Vehicle> vehicles = FXCollections.observableArrayList(
-                new Vehicle("Mercedes", "Atego 1728", "AAA8888", VehicleSize.MEDIUM, true, 1000),
-                new Vehicle("Volvo", "Globetrotter", "ABC8974", VehicleSize.BIG, true, 1500),
-                new Vehicle("Scania", "Streamline ", "CCC5656", VehicleSize.MEDIUM, false, 800)
+                ((Worker) UserController.getSessionUser()).getVehicles()
         );
         return vehicles;
     }
