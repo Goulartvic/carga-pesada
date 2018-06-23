@@ -138,49 +138,66 @@ public class RequestsWorkerFXMLController implements Initializable {
     public void acceptRequest() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getVehicle().isAvailable() && request.getStatus().getStatus() == 2) {
-            request.setStatus(1);
-            RequestController.getInstance().update(request);
-            request.getVehicle().setAvailable(false);
-            VehicleController.getInstance().update(request.getVehicle());
+        if (request != null) {
 
-            RequestsWorker requestsWorker = new RequestsWorker();
-            try {
-                RequestsWorker.getStage().close();
-                requestsWorker.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+
+            if (request.getVehicle().isAvailable() && request.getStatus().getStatus() == 2) {
+                request.setStatus(1);
+                RequestController.getInstance().update(request);
+                request.getVehicle().setAvailable(false);
+                VehicleController.getInstance().update(request.getVehicle());
+
+                RequestsWorker requestsWorker = new RequestsWorker();
+                try {
+                    RequestsWorker.getStage().close();
+                    requestsWorker.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Veiculo não esta disponivel");
+                alert.setContentText("VEICULO NÃO ESTÁ DISPONIVEL");
+                alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("Veiculo não esta disponivel");
-            alert.setContentText("VEICULO NÃO ESTÁ DISPONIVEL");
+            alert.setHeaderText("Nenhuma solicitação selecionada");
+            alert.setContentText("Você deve selecionar uma solicitação");
             alert.show();
         }
-
-
     }
 
     public void declineRequest() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getStatus().getStatus() == 2) {
-            request.setStatus(3);
-            RequestController.getInstance().update(request);
+        if (request != null) {
 
-            RequestsWorker requestsWorker = new RequestsWorker();
-            try {
-                RequestsWorker.getStage().close();
-                requestsWorker.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (request.getStatus().getStatus() == 2) {
+                request.setStatus(3);
+                RequestController.getInstance().update(request);
+
+                RequestsWorker requestsWorker = new RequestsWorker();
+                try {
+                    RequestsWorker.getStage().close();
+                    requestsWorker.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("ERRO");
+                alert.setContentText("SÓ É POSSIVEL RECUSAR SOLICITAÇÕES ON HOLD");
+                alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("ERRO");
-            alert.setContentText("SÓ É POSSIVEL RECUSAR SOLICITAÇÕES ON HOLD");
+            alert.setHeaderText("Nenhuma solicitação selecionada");
+            alert.setContentText("Você deve selecionar uma solicitação");
             alert.show();
         }
     }

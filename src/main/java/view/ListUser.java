@@ -16,6 +16,7 @@ public class ListUser extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("listUsers.fxml"));
         Parent listUser = loader.load();
         Scene scene = new Scene(listUser);
+        stage.setTitle("Lista de usuários");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

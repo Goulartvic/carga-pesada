@@ -28,31 +28,40 @@ public class LoginFXMLController {
 
     @FXML
     public void loginAction() {
-        if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
-            UserController.getInstance().loginUser(txtLogin.getText(), txtPassword.getText());
+        if (!txtLogin.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
 
-            if (UserController.getSessionUser() instanceof Worker) {
-                RequestsWorker requestsWorker = new RequestsWorker();
-                goQuitAction();
-                try {
-                    requestsWorker.start(new Stage());
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
+                UserController.getInstance().loginUser(txtLogin.getText(), txtPassword.getText());
+
+                if (UserController.getSessionUser() instanceof Worker) {
+                    RequestsWorker requestsWorker = new RequestsWorker();
+                    goQuitAction();
+                    try {
+                        requestsWorker.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Search search = new Search();
+                    goQuitAction();
+                    try {
+                        search.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             } else {
-                Search search = new Search();
-                goQuitAction();
-                try {
-                    search.start(new Stage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Login Inválido");
+                alert.setContentText("Verifique os dados digitados");
+                alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("Login Inválido");
-            alert.setContentText("Verifique os dados digitados");
+            alert.setHeaderText("Campos em branco");
+            alert.setContentText("Você deve preencher o campos para prosseguir");
             alert.show();
         }
     }

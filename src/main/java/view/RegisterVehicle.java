@@ -15,6 +15,7 @@ public class RegisterVehicle extends Application{
         Parent registerVehicle;
         registerVehicle = loader.load();
         Scene scene = new Scene(registerVehicle);
+        stage.setTitle("Cadastrar veículo");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

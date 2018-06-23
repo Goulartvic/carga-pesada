@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -89,11 +90,21 @@ public class DetailsRequestFXMLController implements Initializable {
         SendRequest sendRequest = SendRequest.getInstance();
         sendRequest.setVehicleSelected(vehicle);
         sendRequest.setUserSelected(userWorker);
-        try {
-            sendRequest.start(new Stage());
-            Search.getStage().close();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (vehicle != null) {
+
+            try {
+                sendRequest.start(new Stage());
+                Search.getStage().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum veículo selecionada");
+            alert.setContentText("Você deve selecionar um veículo");
+            alert.show();
         }
     }
 

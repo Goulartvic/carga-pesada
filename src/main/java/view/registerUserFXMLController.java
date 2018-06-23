@@ -56,26 +56,37 @@ public class registerUserFXMLController {
     @FXML
     public void saveUserAction() {
 
-        if (UserController.getInstance().userExist(txtLogin.getText())) {
-
-            UserController.getInstance().createAccount(txtName.getText(), txtCPF.getText(),txtLogin.getText(),
-                    txtPassword.getText(), txtPhone.getText(), txtUserType.getText(), txtCity.getText(), txtNumber.getText(),
-                    txtState.getText(), txtStreet.getText());
+        if (!txtName.getText().isEmpty() && !txtCPF.getText().isEmpty() && !txtLogin.getText().isEmpty() &&
+                !txtPassword.getText().isEmpty() && !txtPhone.getText().isEmpty() && !txtUserType.getText().isEmpty() && !txtCity.getText().isEmpty() && !txtNumber.getText().isEmpty() &&
+                !txtState.getText().isEmpty() && !txtStreet.getText().isEmpty()) {
 
 
-            Login login = new Login();
-            goQuitAction();
-            try {
-                login.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (UserController.getInstance().userExist(txtLogin.getText())) {
+
+                UserController.getInstance().createAccount(txtName.getText(), txtCPF.getText(), txtLogin.getText(),
+                        txtPassword.getText(), txtPhone.getText(), txtUserType.getText(), txtCity.getText(), txtNumber.getText(),
+                        txtState.getText(), txtStreet.getText());
+
+
+                Login login = new Login();
+                goQuitAction();
+                try {
+                    login.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Já existe um usuário cadastrado com esse nome");
+                alert.setContentText("Verifique os dados digitados");
+                alert.show();
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("Já existe um usuário cadastrado com esse nome");
-            alert.setContentText("Verifique os dados digitados");
+            alert.setHeaderText("Campos não preenchidos");
+            alert.setContentText("Você deve preencher todos os campos");
             alert.show();
         }
     }

@@ -16,6 +16,7 @@ public class RequestsClient extends Application{
         Parent requestsClient;
         requestsClient = loader.load();
         Scene scene = new Scene(requestsClient);
+        stage.setTitle("Solicitações");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

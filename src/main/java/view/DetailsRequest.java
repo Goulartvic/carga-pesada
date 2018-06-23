@@ -20,6 +20,7 @@ public class DetailsRequest extends Application {
         Parent detailsRequest;
         detailsRequest = loader.load();
         Scene scene = new Scene(detailsRequest);
+        stage.setTitle("Detalhes da solicitação");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class RequestsWorker extends Application{
+public class RequestsWorker extends Application {
 
     private static Stage stage;
 
@@ -16,6 +16,7 @@ public class RequestsWorker extends Application{
         Parent requestsWorker;
         requestsWorker = loader.load();
         Scene scene = new Scene(requestsWorker);
+        stage.setTitle("Solicitações");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

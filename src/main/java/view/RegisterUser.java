@@ -14,6 +14,7 @@ public class RegisterUser extends Application {
         Parent registerUser;
         registerUser = FXMLLoader.load(getClass().getResource("registerUser.fxml"));
         Scene scene = new Scene(registerUser);
+        stage.setTitle("Registrar usuário");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

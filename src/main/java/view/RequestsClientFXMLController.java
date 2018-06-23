@@ -119,24 +119,32 @@ public class RequestsClientFXMLController implements Initializable {
     public void confirm() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getStatus().getStatus() == 1) {
-            request.setStatus(4);
-            RequestController.getInstance().update(request);
-            request.getVehicle().setAvailable(true);
-            VehicleController.getInstance().update(request.getVehicle());
+        if (request != null) {
+            if (request.getStatus().getStatus() == 1) {
+                request.setStatus(4);
+                RequestController.getInstance().update(request);
+                request.getVehicle().setAvailable(true);
+                VehicleController.getInstance().update(request.getVehicle());
 
-            RequestsWorker requestsWorker = new RequestsWorker();
-            try {
-                RequestsWorker.getStage().close();
-                requestsWorker.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+                RequestsWorker requestsWorker = new RequestsWorker();
+                try {
+                    RequestsWorker.getStage().close();
+                    requestsWorker.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Veiculo não esta disponivel");
+                alert.setContentText("VEICULO NÃO ESTÁ DISPONIVEL");
+                alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("Veiculo não esta disponivel");
-            alert.setContentText("VEICULO NÃO ESTÁ DISPONIVEL");
+            alert.setHeaderText("Nenhuma solicitação selecionada");
+            alert.setContentText("Você deve selecionar uma solicitação");
             alert.show();
         }
 
@@ -146,22 +154,30 @@ public class RequestsClientFXMLController implements Initializable {
     public void declineRequest() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getStatus().getStatus() == 2) {
-            request.setStatus(3);
-            RequestController.getInstance().update(request);
+        if (request != null) {
+            if (request.getStatus().getStatus() == 2) {
+                request.setStatus(3);
+                RequestController.getInstance().update(request);
 
-            RequestsClient requestsClient = new RequestsClient();
-            try {
-                RequestsClient.getStage().close();
-                requestsClient.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
+                RequestsClient requestsClient = new RequestsClient();
+                try {
+                    RequestsClient.getStage().close();
+                    requestsClient.start(new Stage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro!");
+                alert.setHeaderText("ERRO");
+                alert.setContentText("SÓ É POSSIVEL RECUSAR SOLICITAÇÕES ON HOLD!");
+                alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText("ERRO");
-            alert.setContentText("SÓ É POSSIVEL RECUSAR SOLICITAÇÕES ON HOLD!");
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhuma solicitação selecionada");
+            alert.setContentText("Você deve selecionar uma solicitação");
             alert.show();
         }
     }

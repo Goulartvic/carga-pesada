@@ -15,6 +15,7 @@ public class Confirmation extends Application {
         Parent confirmation;
         confirmation = loader.load();
         Scene scene = new Scene(confirmation);
+        stage.setTitle("Confirmar entrega");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

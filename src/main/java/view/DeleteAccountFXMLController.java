@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.User;
+import model.Worker;
 
 public class DeleteAccountFXMLController {
 
@@ -24,7 +26,29 @@ public class DeleteAccountFXMLController {
     }
 
     @FXML
+    public void goQuitAction() {
+        DeleteAccount.getStage().close();
+    }
+
+    @FXML
     public void cancelAction() {
-//TODO fazer verificação pra saber se é prestador ou contratante, se for prestador voltar pra tela de requests, se for contratante voltar pra tela de busca
+        if (UserController.getSessionUser() instanceof Worker) {
+            RequestsWorker requestsWorker = new RequestsWorker();
+            goQuitAction();
+            try {
+                requestsWorker.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Search search = new Search();
+            goQuitAction();
+            try {
+                search.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

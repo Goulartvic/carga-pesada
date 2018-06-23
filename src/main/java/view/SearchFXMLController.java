@@ -73,6 +73,7 @@ public class SearchFXMLController implements Initializable {
         return workerObservableList;
     }
 
+//    TODO trazer todos os workers quando abrir a tela
     public void loadTableAction() {
         customerCollumn.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
@@ -90,12 +91,21 @@ public class SearchFXMLController implements Initializable {
         DetailsRequest detailsRequest = DetailsRequest.getInstance();
         detailsRequest.setSelectedWorker(worker);
 
-        try {
-            detailsRequest.start(new Stage());
-            Search.getStage().close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (worker != null) {
+            try {
+                detailsRequest.start(new Stage());
+                Search.getStage().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhuma trabalhador selecionado");
+            alert.setContentText("Você deve selecionar um trabalhador");
+            alert.show();
         }
+
     }
 
     @FXML

@@ -3,6 +3,7 @@ package view;
 import control.RequestController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -61,21 +62,31 @@ public class SendRequestFXMLController implements Initializable {
 
     @FXML
     public void goQuitAction() {
-
+        SendRequest.getStage().close();
     }
 
     @FXML
     public void sendRequestAction() {
-        try {
-            RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
-                    arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
-                    vehicleSelected, workerSelected);
+        if (departureStreet.getText().isEmpty() && departureNumber.getText().isEmpty() && departureCity.getText().isEmpty() && departureState.getText().isEmpty() &&
+                arrivalDestinationStreet.getText().isEmpty() && arrivalDestinationNumber.getText().isEmpty() && arrivalDestinationCity.getText().isEmpty() && arrivalDestinationState.getText().isEmpty()) {
+            try {
+                RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
+                        arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
+                        vehicleSelected, workerSelected);
 
-            Search search = new Search();
-            search.start(new Stage());
-            SendRequest.getStage().close();
-        } catch (Exception e) {
-            e.printStackTrace();
+                Search search = new Search();
+                goQuitAction();
+                search.start(new Stage());
+                SendRequest.getStage().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Campos não preenchidos");
+            alert.setContentText("Você deve preencher todos os campos");
+            alert.show();
         }
     }
 

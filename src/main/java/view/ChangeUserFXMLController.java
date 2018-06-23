@@ -6,6 +6,7 @@ import dao.UserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 import model.Customer;
 import model.User;
 import javafx.scene.control.TextField;
@@ -33,6 +34,11 @@ public class ChangeUserFXMLController {
 
     @FXML
     private TextField phoneTxt;
+
+    @FXML
+    public void goQuitAction() {
+        ChangeUser.getStage().close();
+    }
 
     @FXML
     public void changeUserAction() {
@@ -85,6 +91,23 @@ public class ChangeUserFXMLController {
 
     @FXML
     public void cancelAction() {
-//TODO fazer verificação pra saber se é prestador ou contratante, se for prestador voltar pra tela de requests, se for contratante voltar pra tela de busca
+        if (UserController.getSessionUser() instanceof Worker) {
+            RequestsWorker requestsWorker = new RequestsWorker();
+            goQuitAction();
+            try {
+                requestsWorker.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Search search = new Search();
+            goQuitAction();
+            try {
+                search.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

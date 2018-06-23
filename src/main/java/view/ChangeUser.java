@@ -16,6 +16,7 @@ public class ChangeUser extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("changeUser.fxml"));
         Parent changeUser = loader.load();
         Scene scene = new Scene(changeUser);
+        stage.setTitle("Alterar conta");
         stage.setScene(scene);
         stage.show();
         setStage(stage);
