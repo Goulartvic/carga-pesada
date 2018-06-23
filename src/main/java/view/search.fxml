@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
@@ -13,12 +17,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchFXMLController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SearchFXMLController">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Navegaçao">
             <items>
+                <MenuItem fx:id="navRequestsClient" mnemonicParsing="false" onAction="#goRequestsClientAction" text="Solicitacoes" />
+                <MenuItem mnemonicParsing="false" onAction="#changeAccount" text="Alterar conta" />
+                <MenuItem mnemonicParsing="false" onAction="#deleteAccount" text="Excluir Conta" />
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
@@ -51,7 +58,7 @@
                     <columns>
                       <TableColumn fx:id="customerCollumn" prefWidth="164.0" text="Prestador" />
                       <TableColumn fx:id="ratingCollumn" prefWidth="102.0" text="Nota" />
-                        <TableColumn fx:id="phoneNumber" prefWidth="174.0" text="Cidade" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="174.0" text="Telefone" />
                     </columns>
                   </TableView>
                   <Button layoutX="182.0" layoutY="320.0" mnemonicParsing="false" onAction="#workerDetail" text="Ver detalhes" />

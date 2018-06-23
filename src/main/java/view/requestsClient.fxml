@@ -11,7 +11,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="Navegaçao">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#goSearchServices" text="Buscar Fretes" />
+                  <MenuItem mnemonicParsing="false" onAction="#changeAccount" text="Alterar conta" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteAccount" text="Excluir Conta" />
+              <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">
@@ -39,8 +42,8 @@
               </columns>
             </TableView>
             <Text layoutX="264.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
-            <Button fx:id="btnCancel" layoutX="34.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnCancelAction" text="Cancelar requisiçao" />
-            <Button fx:id="btnConfirm" layoutX="532.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnConfirmAction" text="Confirmar e avaliar" />
+            <Button fx:id="btnCancel" layoutX="34.0" layoutY="307.0" mnemonicParsing="false" onAction="#declineRequest" text="Cancelar requisiçao" />
+            <Button fx:id="btnConfirm" layoutX="532.0" layoutY="307.0" mnemonicParsing="false" onAction="#confirm" text="Confirmar e avaliar" />
          </children>
       </Pane>
    </children>

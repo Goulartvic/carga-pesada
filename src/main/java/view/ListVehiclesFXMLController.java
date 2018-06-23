@@ -13,7 +13,9 @@ import model.VehicleSize;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ListVehiclesFXMLController implements Initializable{
+public class ListVehiclesFXMLController implements Initializable {
+
+//    TODO - listar veiculos do worker(sessionUser)
 
     @FXML
     private TableView<Vehicle> tableView;
@@ -41,8 +43,8 @@ public class ListVehiclesFXMLController implements Initializable{
 
     public ObservableList<Vehicle> loadTable() {
         ObservableList<Vehicle> vehicles = FXCollections.observableArrayList(
-                new Vehicle("Mercedes", "Atego 1728", "AAA8888", VehicleSize.MEDIUM, true,1000),
-                new Vehicle("Volvo", "Globetrotter", "ABC8974", VehicleSize.BIG, true,1500),
+                new Vehicle("Mercedes", "Atego 1728", "AAA8888", VehicleSize.MEDIUM, true, 1000),
+                new Vehicle("Volvo", "Globetrotter", "ABC8974", VehicleSize.BIG, true, 1500),
                 new Vehicle("Scania", "Streamline ", "CCC5656", VehicleSize.MEDIUM, false, 800)
         );
         return vehicles;

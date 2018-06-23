@@ -48,6 +48,53 @@ public class RequestsWorkerFXMLController implements Initializable {
     private TableColumn<Request, String> requestsTableValue;
 
     @FXML
+    public void registerVehicleAction() {
+        RegisterVehicle registerVehicle = new RegisterVehicle();
+        goQuitAction();
+        try {
+            registerVehicle.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void changeAccountAction() {
+        ChangeUser changeUser = new ChangeUser();
+        goQuitAction();
+        try {
+            changeUser.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void deleteAccountAction() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        goQuitAction();
+        try {
+            deleteAccount.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void listVehiclesAction() {
+        ListVehicles listVehicles = new ListVehicles();
+        goQuitAction();
+        try {
+            listVehicles.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goQuitAction() {
+        RequestsWorker.getStage().close();
+    }
 
 
     @Override
@@ -91,7 +138,7 @@ public class RequestsWorkerFXMLController implements Initializable {
     public void acceptRequest() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getVehicle().isAvailable() && request.getStatus().getStatus()==2) {
+        if (request.getVehicle().isAvailable() && request.getStatus().getStatus() == 2) {
             request.setStatus(1);
             RequestController.getInstance().update(request);
             request.getVehicle().setAvailable(false);
@@ -104,8 +151,7 @@ public class RequestsWorkerFXMLController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Veiculo não esta disponivel");
@@ -119,7 +165,7 @@ public class RequestsWorkerFXMLController implements Initializable {
     public void declineRequest() {
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
-        if (request.getStatus().getStatus()==2) {
+        if (request.getStatus().getStatus() == 2) {
             request.setStatus(3);
             RequestController.getInstance().update(request);
 
@@ -130,8 +176,7 @@ public class RequestsWorkerFXMLController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("ERRO");

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -37,6 +38,15 @@ public class DetailsRequestFXMLController implements Initializable {
     @FXML
     private TableColumn<Vehicle, String> kmPriceCollumn;
 
+    @FXML
+    private Label txtName;
+
+    @FXML
+    private Label txtTelefone;
+
+    @FXML
+    private Label txtNota;
+
     private Worker userWorker;
 
     public ObservableList<Vehicle> loadTable() {
@@ -67,6 +77,9 @@ public class DetailsRequestFXMLController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.userWorker = DetailsRequest.getInstance().getSelectedWorker();
         SendRequest.getInstance().setUserSelected(userWorker);
+        txtName.setText(userWorker.getName());
+        txtTelefone.setText(userWorker.getPassword());
+        txtNota.setText(String.valueOf(userWorker.getRating()));
         loadTableAction();
     }
 
@@ -85,7 +98,18 @@ public class DetailsRequestFXMLController implements Initializable {
     }
 
     @FXML
-    public void cancelAction() {
+    public void goQuitAction() {
+        DetailsRequest.getStage().close();
+    }
 
+    @FXML
+    public void cancelAction() {
+        Search search = new Search();
+        goQuitAction();
+        try {
+            search.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Worker;
@@ -16,7 +13,7 @@ import model.Worker;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SearchFXMLController implements Initializable{
+public class SearchFXMLController implements Initializable {
 
     @FXML
     private TableView<Worker> tableView;
@@ -34,17 +31,40 @@ public class SearchFXMLController implements Initializable{
     private ComboBox<Integer> ratingComboBox;
 
     @FXML
+    private MenuItem navRequestsClient;
+
+    @FXML
     private TextField city;
+
+    @FXML
+    public void changeAccount() {
+        ChangeUser changeUser = new ChangeUser();
+        goQuitAction();
+        try {
+            changeUser.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void deleteAccount() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        goQuitAction();
+        try {
+            deleteAccount.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public ObservableList<Worker> loadTable() {
         double rating;
 
-        if (ratingComboBox.getSelectionModel().getSelectedItem()==null) {
+        if (ratingComboBox.getSelectionModel().getSelectedItem() == null) {
             rating = 0;
-        }
-
-        else {
-            rating= ratingComboBox.getSelectionModel().getSelectedItem();
+        } else {
+            rating = ratingComboBox.getSelectionModel().getSelectedItem();
         }
         ObservableList<Worker> workerObservableList = FXCollections.observableArrayList(
                 UserController.getInstance().searchWorkerList(city.getText(), rating)
@@ -78,9 +98,25 @@ public class SearchFXMLController implements Initializable{
         }
     }
 
+    @FXML
+    public void goQuitAction() {
+        Search.getStage().close();
+    }
+
+    @FXML
+    public void goRequestsClientAction() {
+        RequestsClient requestsClient = new RequestsClient();
+        goQuitAction();
+        try {
+            requestsClient.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Integer> observableList = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
+        ObservableList<Integer> observableList = FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         ratingComboBox.setItems(observableList);
     }
 }

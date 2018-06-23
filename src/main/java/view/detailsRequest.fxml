@@ -28,8 +28,8 @@
       </MenuBar>
       <Pane prefHeight="373.0" prefWidth="600.0">
          <children>
-            <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do prestador" />
-            <Label layoutX="158.0" layoutY="21.0" />
+            <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+            <Label fx:id="txtName" layoutX="78.0" layoutY="21.0" />
             <TableView fx:id="tableView" layoutX="62.0" layoutY="109.0" prefHeight="200.0" prefWidth="477.0">
               <columns>
                 <TableColumn fx:id="brandCollumn" prefWidth="75.0" text="Marca" />
@@ -43,9 +43,9 @@
             <Button fx:id="btnConfirm" layoutX="456.0" layoutY="333.0" mnemonicParsing="false" onAction="#confirmAction" text="Confirmar" />
             <Button fx:id="btnCancel" layoutX="62.0" layoutY="333.0" mnemonicParsing="false" onAction="#cancelAction" text="Cancelar" />
             <Text layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
-            <Label layoutX="158.0" layoutY="48.0" />
+            <Label fx:id="txtTelefone" layoutX="78.0" layoutY="48.0" />
             <Text layoutX="456.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nota" />
-            <Label layoutX="503.0" layoutY="21.0" />
+            <Label fx:id="txtNota" layoutX="503.0" layoutY="21.0" />
          </children>
       </Pane>
    </children>

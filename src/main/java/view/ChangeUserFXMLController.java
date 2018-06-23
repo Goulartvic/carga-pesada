@@ -43,21 +43,35 @@ public class ChangeUserFXMLController {
         } else {
             paramUser = new Worker((Worker) UserController.getSessionUser());
         }
-        if (nameTxt.getText().equals("")==false){UserController.getSessionUser().setName(nameTxt.getText());}
+        if (nameTxt.getText().equals("") == false) {
+            UserController.getSessionUser().setName(nameTxt.getText());
+        }
 
-        if (passwordTxt.getText().equals("")==false) {UserController.getSessionUser().setPassword(passwordTxt.getText());}
+        if (passwordTxt.getText().equals("") == false) {
+            UserController.getSessionUser().setPassword(passwordTxt.getText());
+        }
 
-        if (stateTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setState(stateTxt.getText());}
+        if (stateTxt.getText().equals("") == false) {
+            UserController.getSessionUser().getAddress().setState(stateTxt.getText());
+        }
 
-        if (cityTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setCity(cityTxt.getText());}
+        if (cityTxt.getText().equals("") == false) {
+            UserController.getSessionUser().getAddress().setCity(cityTxt.getText());
+        }
 
-        if (streetTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setStreet(streetTxt.getText());}
+        if (streetTxt.getText().equals("") == false) {
+            UserController.getSessionUser().getAddress().setStreet(streetTxt.getText());
+        }
 
-        if (numberTxt.getText().equals("")==false) {UserController.getSessionUser().getAddress().setNumber(Integer.parseInt(numberTxt.getText()));}
+        if (numberTxt.getText().equals("") == false) {
+            UserController.getSessionUser().getAddress().setNumber(Integer.parseInt(numberTxt.getText()));
+        }
 
-        if (phoneTxt.getText().equals("")==false) {UserController.getSessionUser().setPhoneNumber(phoneTxt.getText());}
+        if (phoneTxt.getText().equals("") == false) {
+            UserController.getSessionUser().setPhoneNumber(phoneTxt.getText());
+        }
 
-        if (UserController.getSessionUser()==paramUser) {
+        if (UserController.getSessionUser() == paramUser) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Hey Look!");
             alert.setHeaderText("Erro ao atualizar");
@@ -67,5 +81,10 @@ public class ChangeUserFXMLController {
         } else {
 //            UserController.getInstance().changeUser(UserController.getSessionUser());
         }
+    }
+
+    @FXML
+    public void cancelAction() {
+//TODO fazer verificação pra saber se é prestador ou contratante, se for prestador voltar pra tela de requests, se for contratante voltar pra tela de busca
     }
 }

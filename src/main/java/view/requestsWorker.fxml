@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,13 +14,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RequestsWorkerFXMLController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RequestsWorkerFXMLController">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Navegaçao">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#registerVehicleAction" text="Cadastrar veículo" />
+                  <MenuItem mnemonicParsing="false" onAction="#changeAccountAction" text="Alterar Conta" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteAccountAction" text="Excluir Conta" />
+                  <MenuItem mnemonicParsing="false" onAction="#listVehiclesAction" text="Listar Veículos" />
+              <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">
@@ -44,8 +52,8 @@
               </columns>
             </TableView>
             <Text layoutX="270.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisiçoes de orçamento" />
-            <Button fx:id="" layoutX="25.0" layoutY="311.0" mnemonicParsing="false" text="Recusar" onAction="#declineRequest" />
-            <Button layoutX="625.0" layoutY="311.0" mnemonicParsing="false" text="Aceitar" onAction="#acceptRequest"/>
+            <Button fx:id="" layoutX="25.0" layoutY="311.0" mnemonicParsing="false" onAction="#declineRequest" text="Recusar" />
+            <Button layoutX="625.0" layoutY="311.0" mnemonicParsing="false" onAction="#acceptRequest" text="Aceitar" />
          </children>
       </Pane>
    </children>

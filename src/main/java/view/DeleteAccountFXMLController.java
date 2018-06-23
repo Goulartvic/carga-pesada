@@ -22,4 +22,9 @@ public class DeleteAccountFXMLController {
         UserController.getSessionUser().setUsername(txtNome.getText());
         UserController.getInstance().deleteUser();
     }
+
+    @FXML
+    public void cancelAction() {
+//TODO fazer verificação pra saber se é prestador ou contratante, se for prestador voltar pra tela de requests, se for contratante voltar pra tela de busca
+    }
 }

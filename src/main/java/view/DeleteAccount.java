@@ -17,6 +17,7 @@ public class DeleteAccount extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAccount.fxml"));
         Parent deleteAccount = loader.load();
         Scene scene = new Scene(deleteAccount);
+        stage.setTitle("Excluir conta");
         stage.setScene(scene);
         stage.show();
         setStage(stage);

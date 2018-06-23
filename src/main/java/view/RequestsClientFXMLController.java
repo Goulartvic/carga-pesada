@@ -47,13 +47,41 @@ public class RequestsClientFXMLController implements Initializable {
     private Button btnConfirm;
 
     @FXML
-    void btnCancelAction() {
-
+    public void goSearchServices() {
+        Search search = new Search();
+        goQuitAction();
+        try {
+            search.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void btnConfirmAction() {
+    public void changeAccount() {
+        ChangeUser changeUser = new ChangeUser();
+        goQuitAction();
+        try {
+            changeUser.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FXML
+    public void deleteAccount() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        goQuitAction();
+        try {
+            deleteAccount.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goQuitAction() {
+        RequestsClient.getStage().close();
     }
 
     public ObservableList<Request> loadTable() {

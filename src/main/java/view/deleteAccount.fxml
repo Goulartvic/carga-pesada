@@ -30,7 +30,7 @@
             <children>
                 <Text layoutX="134.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha" />
                 <Button fx:id="btnDelete" layoutX="350.0" layoutY="182.0" mnemonicParsing="false" onAction="#deleteAction" text="Excluir" />
-                <Button layoutX="116.0" layoutY="182.0" mnemonicParsing="false" text="Cancelar" />
+                <Button layoutX="116.0" layoutY="182.0" mnemonicParsing="false" onAction="#cancelAction" text="Cancelar" />
                 <TextField fx:id="txtNome" layoutX="206.0" layoutY="98.0" />
             </children>
         </Pane>

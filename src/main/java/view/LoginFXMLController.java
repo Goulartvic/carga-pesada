@@ -29,7 +29,7 @@ public class LoginFXMLController {
     @FXML
     public void loginAction() {
         if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {
-            UserController.getInstance().loginUser(txtLogin.getText(), txtPassword. getText());
+            UserController.getInstance().loginUser(txtLogin.getText(), txtPassword.getText());
 
             if (UserController.getSessionUser() instanceof Worker) {
                 RequestsWorker requestsWorker = new RequestsWorker();
@@ -39,12 +39,11 @@ public class LoginFXMLController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-            else {
-                RequestsClient requestsClient = new RequestsClient();
+            } else {
+                Search search = new Search();
                 goQuitAction();
                 try {
-                    requestsClient.start(new Stage());
+                    search.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
