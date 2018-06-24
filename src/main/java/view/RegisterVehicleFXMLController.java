@@ -60,4 +60,53 @@ public class RegisterVehicleFXMLController implements Initializable {
             alert.show();
         }
     }
+
+    @FXML
+    public void goQuitAction() {
+        RegisterVehicle.getStage().close();
+    }
+
+    @FXML
+    public void changeAccountAction() {
+        ChangeUser changeUser = new ChangeUser();
+        goQuitAction();
+        try {
+            changeUser.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void deleteAccountAction() {
+        DeleteAccount deleteAccount = new DeleteAccount();
+        goQuitAction();
+        try {
+            deleteAccount.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void listVehiclesAction() {
+        ListVehicles listVehicles = new ListVehicles();
+        goQuitAction();
+        try {
+            listVehicles.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goRequests() {
+        RequestsWorker requestsWorker = new RequestsWorker();
+        goQuitAction();
+        try {
+            requestsWorker.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

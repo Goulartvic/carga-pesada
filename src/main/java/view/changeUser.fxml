@@ -17,7 +17,7 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="Inicio">
+          <Menu mnemonicParsing="false" text="Navegação">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close" />
             </items>

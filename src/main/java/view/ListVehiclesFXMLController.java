@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Vehicle;
 import model.Worker;
 
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 public class ListVehiclesFXMLController implements Initializable {
 
 //    TODO - listar veiculos do worker(sessionUser)
+//    TODO - Implementar botoes de alterar excluir
 
     @FXML
     private TableView<Vehicle> tableView;
@@ -68,6 +70,32 @@ public class ListVehiclesFXMLController implements Initializable {
         tableView.setItems(loadTable());
     }
 
+    @FXML
+    public void goRequests(){
+        RequestsWorker requestsWorker = new RequestsWorker();
+        goQuitAction();
+        try {
+            requestsWorker.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goQuitAction() {
+        ListVehicles.getStage().close();
+    }
+
+    @FXML
+    public void registerVehicle(){
+        RegisterVehicle registerVehicle = new RegisterVehicle();
+        goQuitAction();
+        try {
+            registerVehicle.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

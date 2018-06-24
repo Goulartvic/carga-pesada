@@ -8,14 +8,13 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="Inicio">
+          <Menu mnemonicParsing="false" text="Nevegação">
             <items>
+                <MenuItem mnemonicParsing="false" onAction="#goRequests" text="Solicitações" />
+                <MenuItem mnemonicParsing="false" onAction="#changeAccountAction" text="Alterar Conta" />
+                <MenuItem mnemonicParsing="false" onAction="#deleteAccountAction" text="Excluir Conta" />
+                <MenuItem mnemonicParsing="false" onAction="#listVehiclesAction" text="Listar Veículos" />
               <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ajuda">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
