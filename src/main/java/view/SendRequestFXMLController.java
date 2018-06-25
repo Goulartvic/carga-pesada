@@ -69,13 +69,13 @@ public class SendRequestFXMLController implements Initializable {
     public void sendRequestAction() {
         if (!departureStreet.getText().isEmpty() && !departureNumber.getText().isEmpty() && !departureCity.getText().isEmpty() && !departureState.getText().isEmpty() &&
                 !arrivalDestinationStreet.getText().isEmpty() && !arrivalDestinationNumber.getText().isEmpty() && !arrivalDestinationCity.getText().isEmpty() && !arrivalDestinationState.getText().isEmpty()) {
+            Search search = new Search();
+            goQuitAction();
             try {
                 RequestController.getInstance().createRequest(departureStreet.getText(), departureNumber.getText(), departureCity.getText(), departureState.getText(),
                         arrivalDestinationStreet.getText(), arrivalDestinationNumber.getText(), arrivalDestinationCity.getText(), arrivalDestinationState.getText(),
                         vehicleSelected, workerSelected);
 
-                Search search = new Search();
-                goQuitAction();
                 search.start(new Stage());
                 SendRequest.getStage().close();
             } catch (Exception e) {
