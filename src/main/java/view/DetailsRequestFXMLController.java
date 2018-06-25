@@ -73,7 +73,7 @@ public class DetailsRequestFXMLController implements Initializable {
         tableView.setItems(loadTable());
     }
 
-
+//TODO - exibir apenas os veiculos que estão disponiveis nesse worker selecionado
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.userWorker = DetailsRequest.getInstance().getSelectedWorker();
@@ -95,10 +95,10 @@ public class DetailsRequestFXMLController implements Initializable {
 
             try {
                 sendRequest.start(new Stage());
-                Search.getStage().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            goQuitAction();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");

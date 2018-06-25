@@ -136,6 +136,8 @@ public class RequestsWorkerFXMLController implements Initializable {
     }
 
     public void acceptRequest() {
+//        TODO - quando vou aceitar da esse erro (model.Customer cannot be cast to model.Worker)
+
         Request request = requestTable.getSelectionModel().getSelectedItem();
 
         if (request != null) {

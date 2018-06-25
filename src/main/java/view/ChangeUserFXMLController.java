@@ -85,6 +85,7 @@ public class ChangeUserFXMLController {
 
             alert.showAndWait();
         } else {
+//            TODO - Alterar usuário
 //            UserController.getInstance().changeUser(UserController.getSessionUser());
         }
     }

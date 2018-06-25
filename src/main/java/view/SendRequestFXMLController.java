@@ -77,10 +77,11 @@ public class SendRequestFXMLController implements Initializable {
                         vehicleSelected, workerSelected);
 
                 search.start(new Stage());
-                SendRequest.getStage().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            goQuitAction();
+            SendRequest.getInstance().getStage().close();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
