@@ -73,6 +73,14 @@ public class UserController {
         return false;
     }
 
+    public void updateRating(Worker worker) {
+        try {
+            UserDao.getInstance().updateRating(worker);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void changeUser() {
 
         try {

@@ -5,9 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Request;
 
 public class Confirmation extends Application {
     private static Stage stage;
+
+    private Request selectedRequest;
+
+    private static Confirmation instance = new Confirmation();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -31,5 +36,17 @@ public class Confirmation extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Request getSelectedRequest() {
+        return selectedRequest;
+    }
+
+    public void setSelectedRequest(Request selectedRequest) {
+        this.selectedRequest = selectedRequest;
+    }
+
+    public static Confirmation getInstance() {
+        return instance;
     }
 }

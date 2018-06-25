@@ -28,7 +28,6 @@ public class LoginFXMLController {
 
     @FXML
     public void loginAction() {
-//        TODO - ocorrendo null pointer caso login esteja errado
         if (!txtLogin.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
 
             if (UserController.getInstance().userIsValid(txtLogin.getText(), txtPassword.getText())) {

@@ -147,6 +147,35 @@ public class VehicleDao {
         return vehicles;
     }
 
+    public List<Vehicle> listWorkerAvailableVehicles(int id) throws SQLException {
+        List<Vehicle> vehicles = new ArrayList<>();
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "SELECT * FROM vehicle WHERE owner_id=? AND available=1";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Vehicle vehicle = new Vehicle();
+            vehicle.setKmPrice(resultSet.getDouble("km_price"));
+            vehicle.setIntercity(resultSet.getBoolean("intercity"));
+            vehicle.setPlate(resultSet.getString("plate"));
+            vehicle.setModel(resultSet.getString("model"));
+            vehicle.setBrand(resultSet.getString("brand"));
+            vehicle.setVehicleSize(resultSet.getInt("vehicle_size"));
+            vehicle.setAvailable(resultSet.getBoolean("available"));
+            vehicle.setRequests(RequestDao.getInstance().listRequests(vehicle));
+
+            vehicles.add(vehicle);
+        }
+        connection.close();
+
+        return vehicles;
+    }
+
     public static VehicleDao getInstance() {
         return instance;
     }

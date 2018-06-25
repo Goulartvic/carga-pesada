@@ -66,7 +66,7 @@ public class VehicleController {
         List<Vehicle> vehicleList = new ArrayList<>();
 
         try {
-            vehicleList = VehicleDao.getInstance().listWorkerVehicles(id);
+            vehicleList = VehicleDao.getInstance().listWorkerAvailableVehicles(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

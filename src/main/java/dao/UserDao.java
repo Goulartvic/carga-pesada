@@ -74,7 +74,7 @@ public class UserDao{
     }
 
     public boolean returnAuthentication(String username, String password) throws SQLException {
-        if (authenticateUser(username, password).getUserId() > 0) {
+        if (authenticateUser(username, password) != null) {
             return true;
         } else {
             return false;
@@ -153,6 +153,19 @@ public class UserDao{
 
         connection.close();
 
+    }
+
+    public void updateRating(Worker worker) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "UPDATE user SET rating=? WHERE user_id=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setDouble(1, worker.getRating());
+        preparedStatement.setInt(2, worker.getUserId());
+        preparedStatement.execute();
+
+        connection.close();
     }
 
     public void delete(User user) throws SQLException {

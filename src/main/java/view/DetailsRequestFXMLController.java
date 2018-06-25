@@ -73,7 +73,6 @@ public class DetailsRequestFXMLController implements Initializable {
         tableView.setItems(loadTable());
     }
 
-//TODO - exibir apenas os veiculos que estão disponiveis nesse worker selecionado
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.userWorker = DetailsRequest.getInstance().getSelectedWorker();

@@ -121,34 +121,31 @@ public class RequestsClientFXMLController implements Initializable {
 
         if (request != null) {
             if (request.getStatus().getStatus() == 1) {
-                request.setStatus(4);
-                RequestController.getInstance().update(request);
-                request.getVehicle().setAvailable(true);
-                VehicleController.getInstance().update(request.getVehicle());
+                Confirmation confirmation = new Confirmation();
+                Confirmation.getInstance().setSelectedRequest(request);
 
-                RequestsWorker requestsWorker = new RequestsWorker();
-                goQuitAction();
                 try {
-                    requestsWorker.start(new Stage());
+                    confirmation.start(new Stage());
+                    goQuitAction();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
+            }
+            else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
                 alert.setHeaderText("Operação negada");
                 alert.setContentText("Você só pode confirmar solicitações que estejam em andamento");
                 alert.show();
             }
-        } else {
+        }
+        else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Nenhuma solicitação selecionada");
             alert.setContentText("Você deve selecionar uma solicitação");
             alert.show();
         }
-
-
     }
 
     public void declineRequest() {
