@@ -33,6 +33,9 @@ public class ChangeVehicle extends Application {
     }
 
     public static ChangeVehicle getInstance() {
+        if (instance == null){
+            instance = new ChangeVehicle();
+        }
         return instance;
     }
 

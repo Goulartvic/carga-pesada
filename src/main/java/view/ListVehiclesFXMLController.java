@@ -101,15 +101,13 @@ public class ListVehiclesFXMLController implements Initializable {
 
     @FXML
     public void changeVehicle() {
-//        TODO - Implementar alterar veiculo
-        ChangeVehicle changeVehicle = new ChangeVehicle();
-        goQuitAction();
         Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
+        goQuitAction();
+        ChangeVehicle.getInstance().setVehicleSelected(vehicle);
         if (vehicle != null) {
-            changeVehicle.setVehicleSelected(vehicle);
-            System.out.println("veiculo selecionado na lista"+vehicle);
+            System.out.println("veiculo selecionado na lista" + vehicle);
             try {
-                changeVehicle.start(new Stage());
+                ChangeVehicle.getInstance().start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }

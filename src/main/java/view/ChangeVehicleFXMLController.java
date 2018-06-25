@@ -68,11 +68,13 @@ public class ChangeVehicleFXMLController implements Initializable {
 
     @FXML
     public void changeVehicle() {
-        this.vehicle.setKmPrice(Double.parseDouble(kmPrice.getText()));
-        this.vehicle.setVehicleSize(size.getSelectionModel().getSelectedItem());
-        this.vehicle.setIntercity(intercity.isSelected());
-        if (intercity.isSelected() && !kmPrice.getText().isEmpty()) {
+        if (!kmPrice.getText().isEmpty() && size.getSelectionModel().getSelectedItem() != null) {
+            this.vehicle.setKmPrice(Double.parseDouble(kmPrice.getText()));
+            this.vehicle.setVehicleSize(size.getSelectionModel().getSelectedItem());
+            this.vehicle.setIntercity(intercity.isSelected());
             VehicleController.getInstance().update(vehicle);
+            goQuitAction();
+            goListVehicle();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -97,9 +99,8 @@ public class ChangeVehicleFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.vehicle = ChangeVehicle.getInstance().getVehicleSelected();
-        System.out.println(vehicle);
-//        kmPrice.setText(String.valueOf(vehicle.getKmPrice()));
-//        intercity.setSelected(vehicle.isIntercity());
+        kmPrice.setText(String.valueOf(vehicle.getKmPrice()));
+        intercity.setSelected(vehicle.isIntercity());
         ObservableList<Integer> comboBox = FXCollections.observableArrayList(1, 2, 3);
         size.setItems(comboBox);
     }
