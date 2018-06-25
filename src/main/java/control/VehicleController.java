@@ -42,6 +42,16 @@ public class VehicleController {
         }
     }
 
+    public void deleteVehicle(Vehicle vehicle) {
+//        TODO - Não funciona
+        try {
+            System.out.println(vehicle);
+            VehicleDao.getInstance().delete(vehicle);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Vehicle findVehicleByPlate(String vehiclePlate) {
         Vehicle vehicle = new Vehicle();
         try {
@@ -64,6 +74,9 @@ public class VehicleController {
     }
 
     public static VehicleController getInstance() {
+        if (instance == null) {
+            instance = new VehicleController();
+        }
         return instance;
     }
 }

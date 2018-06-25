@@ -1,10 +1,12 @@
 package view;
 
 import control.UserController;
+import control.VehicleController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,9 +18,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListVehiclesFXMLController implements Initializable {
-
-//    TODO - listar veiculos do worker(sessionUser)
-//    TODO - Implementar botoes de alterar excluir
 
     @FXML
     private TableView<Vehicle> tableView;
@@ -71,7 +70,7 @@ public class ListVehiclesFXMLController implements Initializable {
     }
 
     @FXML
-    public void goRequests(){
+    public void goRequests() {
         RequestsWorker requestsWorker = new RequestsWorker();
         goQuitAction();
         try {
@@ -87,7 +86,44 @@ public class ListVehiclesFXMLController implements Initializable {
     }
 
     @FXML
-    public void registerVehicle(){
+    public void deleteVehicle() {
+        Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
+        if (vehicle != null) {
+            VehicleController.getInstance().deleteVehicle(vehicle);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum veículo selecionado");
+            alert.setContentText("Você deve selecionar um veículo");
+            alert.show();
+        }
+    }
+
+    @FXML
+    public void changeVehicle() {
+//        TODO - Implementar alterar veiculo
+        ChangeVehicle changeVehicle = new ChangeVehicle();
+        goQuitAction();
+        Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
+        if (vehicle != null) {
+            changeVehicle.setVehicleSelected(vehicle);
+            System.out.println("veiculo selecionado na lista"+vehicle);
+            try {
+                changeVehicle.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Nenhum veículo selecionado");
+            alert.setContentText("Você deve selecionar um veículo");
+            alert.show();
+        }
+    }
+
+    @FXML
+    public void registerVehicle() {
         RegisterVehicle registerVehicle = new RegisterVehicle();
         goQuitAction();
         try {

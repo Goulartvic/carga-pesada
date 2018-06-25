@@ -41,12 +41,13 @@ public class RegisterVehicleFXMLController implements Initializable {
     }
 
     public void saveVehicle() {
-        if (!brand.getText().isEmpty() && !model.getText().isEmpty() && !plate.getText().isEmpty() && intercity.isSelected() && !kmPrice.getText().isEmpty()) {
+        if (!brand.getText().isEmpty() && !model.getText().isEmpty() && !plate.getText().isEmpty() && !kmPrice.getText().isEmpty()) {
 
             VehicleController.getInstance().save(brand.getText(), model.getText(), plate.getText(), intercity.isSelected(),
                     size.getSelectionModel().getSelectedItem(), kmPrice.getText());
 
             RequestsWorker requestsWorker = new RequestsWorker();
+            goQuitAction();
             try {
                 requestsWorker.start(new Stage());
             } catch (Exception e) {

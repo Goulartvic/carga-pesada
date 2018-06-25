@@ -13,41 +13,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChangeUserFXMLController">
-   <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="Navegação">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ajuda">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Pane prefHeight="411.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="84.0" layoutY="39.0" text="Nome" />
-            <TextField fx:id="nameTxt" layoutX="129.0" layoutY="33.0" />
-            <TextField fx:id="stateTxt" layoutX="129.0" layoutY="147.0" />
-            <TextField fx:id="cityTxt" layoutX="395.0" layoutY="33.0" />
-            <Button layoutX="119.0" layoutY="310.0" mnemonicParsing="false" onAction="#cancelAction" text="Cancelar" />
-            <Button layoutX="504.0" layoutY="310.0" mnemonicParsing="false" onAction="#changeUserAction" text="Alterar" />
-            <TextField fx:id="numberTxt" layoutX="395.0" layoutY="109.0" />
-            <TextField fx:id="streetTxt" layoutX="395.0" layoutY="72.0" />
-            <PasswordField fx:id="passwordTxt" layoutX="129.0" layoutY="71.0" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="77.0" layoutY="76.0" text="Senha" />
-            <Label layoutX="75.0" layoutY="152.0" text="Estado" />
-            <Label layoutX="336.0" layoutY="39.0" text="Cidade" />
-            <Label layoutX="355.0" layoutY="77.0" text="Rua" />
-            <Label layoutX="329.0" layoutY="114.0" text="Numero" />
-            <TextField fx:id="phoneTxt" layoutX="129.0" layoutY="109.0" />
-            <Label layoutX="62.0" layoutY="114.0" prefHeight="16.0" prefWidth="62.0" text="Telefone" />
-         </children>
-      </Pane>
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.ChangeUserFXMLController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Navegação">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#goQuitAction" text="Close"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane prefHeight="411.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="84.0" layoutY="39.0" text="Nome"/>
+                <TextField fx:id="nameTxt" layoutX="129.0" layoutY="33.0"/>
+                <TextField fx:id="stateTxt" layoutX="129.0" layoutY="147.0"/>
+                <TextField fx:id="cityTxt" layoutX="395.0" layoutY="33.0"/>
+                <Button layoutX="119.0" layoutY="310.0" mnemonicParsing="false" onAction="#cancelAction"
+                        text="Cancelar"/>
+                <Button layoutX="504.0" layoutY="310.0" mnemonicParsing="false" onAction="#changeUserAction"
+                        text="Alterar"/>
+                <TextField fx:id="numberTxt" layoutX="395.0" layoutY="109.0"/>
+                <TextField fx:id="streetTxt" layoutX="395.0" layoutY="72.0"/>
+                <PasswordField fx:id="passwordTxt" layoutX="129.0" layoutY="71.0"/>
+                <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="77.0" layoutY="76.0" text="Senha"/>
+                <Label layoutX="75.0" layoutY="152.0" text="Estado"/>
+                <Label layoutX="336.0" layoutY="39.0" text="Cidade"/>
+                <Label layoutX="355.0" layoutY="77.0" text="Rua"/>
+                <Label layoutX="329.0" layoutY="114.0" text="Numero"/>
+                <TextField fx:id="phoneTxt" layoutX="129.0" layoutY="109.0"/>
+                <Label layoutX="62.0" layoutY="114.0" prefHeight="16.0" prefWidth="62.0" text="Telefone"/>
+            </children>
+        </Pane>
+    </children>
 </VBox>

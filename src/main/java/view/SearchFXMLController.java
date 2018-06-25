@@ -92,6 +92,7 @@ public class SearchFXMLController implements Initializable {
         detailsRequest.setSelectedWorker(worker);
 
         if (worker != null) {
+            goQuitAction();
             try {
                 detailsRequest.start(new Stage());
                 Search.getStage().close();

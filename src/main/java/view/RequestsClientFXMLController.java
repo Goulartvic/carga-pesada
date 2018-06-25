@@ -127,8 +127,8 @@ public class RequestsClientFXMLController implements Initializable {
                 VehicleController.getInstance().update(request.getVehicle());
 
                 RequestsWorker requestsWorker = new RequestsWorker();
+                goQuitAction();
                 try {
-                    RequestsWorker.getStage().close();
                     requestsWorker.start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -136,8 +136,8 @@ public class RequestsClientFXMLController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
-                alert.setHeaderText("Veiculo não esta disponivel");
-                alert.setContentText("VEICULO NÃO ESTÁ DISPONIVEL");
+                alert.setHeaderText("Operação negada");
+                alert.setContentText("Você só pode confirmar solicitações que estejam em andamento");
                 alert.show();
             }
         } else {

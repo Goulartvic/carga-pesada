@@ -21,8 +21,14 @@ public class DeleteAccountFXMLController {
 
     @FXML
     public void deleteAction() {
-        UserController.getSessionUser().setUsername(txtNome.getText());
         UserController.getInstance().deleteUser();
+        Login login = new Login();
+        goQuitAction();
+        try {
+            login.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
