@@ -74,7 +74,11 @@ public class UserDao{
     }
 
     public boolean returnAuthentication(String username, String password) throws SQLException {
-        return authenticateUser(username, password).getUserId() != 0;
+        if (authenticateUser(username, password).getUserId() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public User authenticateUser(String username, String password) throws SQLException {

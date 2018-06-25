@@ -13,7 +13,7 @@ public class ConnectionFactory {
     public Connection connection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/cargapesada", "rodolfo", "Xerecuda5867");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/cargapesada", "root", "root");
 
             return connection;
         } catch (ClassNotFoundException|SQLException e) {
