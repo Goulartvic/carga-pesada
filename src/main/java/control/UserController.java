@@ -121,6 +121,17 @@ public class UserController {
         return workerList;
     }
 
+    public List<Worker> searchWorkerList(double rating) {
+        List<Worker> workerList = new ArrayList<>();
+        try {
+            workerList = UserDao.getInstance().searchWorkers(rating);
+            return workerList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return workerList;
+    }
+
     public boolean userExist(String login) {
         try {
             return UserDao.getInstance().userExist(login);

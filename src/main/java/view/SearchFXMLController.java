@@ -61,19 +61,25 @@ public class SearchFXMLController implements Initializable {
     public ObservableList<Worker> loadTable() {
         double rating;
 
+        ObservableList<Worker> workerObservableList;
+
         if (ratingComboBox.getSelectionModel().getSelectedItem() == null) {
             rating = 0;
         } else {
             rating = ratingComboBox.getSelectionModel().getSelectedItem();
         }
-        ObservableList<Worker> workerObservableList = FXCollections.observableArrayList(
-                UserController.getInstance().searchWorkerList(city.getText(), rating)
-        );
-
+        if (city.getText().isEmpty()) {
+            workerObservableList = FXCollections.observableArrayList(
+                    UserController.getInstance().searchWorkerList(rating)
+            );
+        } else {
+            workerObservableList = FXCollections.observableArrayList(
+                    UserController.getInstance().searchWorkerList(city.getText(), rating)
+            );
+        }
         return workerObservableList;
     }
 
-//    TODO trazer todos os workers quando abrir a tela
     public void loadTableAction() {
         customerCollumn.setCellValueFactory(
                 new PropertyValueFactory<>("name"));

@@ -262,6 +262,40 @@ public class UserDao{
         return workerList;
     }
 
+    public List<Worker> searchWorkers(double rating) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        List<Worker> workerList = new ArrayList<>();
+
+        String querySql = "SELECT * FROM user u JOIN address a ON u.user_id=a.user_id " +
+                "WHERE u.rating>=? AND u.user_type=2";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setDouble(1, rating);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Worker worker = new Worker();
+            worker.setRating(resultSet.getDouble("rating"));
+            worker.setName(resultSet.getString("name"));
+            worker.setPhoneNumber(resultSet.getString("phone_number"));
+            worker.setPassword(resultSet.getString("password"));
+            worker.setUsername(resultSet.getString("username"));
+            worker.setUserType(resultSet.getInt("user_type"));
+            worker.setCpf(resultSet.getString("cpf"));
+            worker.setUserId(resultSet.getInt("user_id"));
+            worker.getAddress().setState(resultSet.getString("state"));
+            worker.getAddress().setCity(resultSet.getString("city"));
+            worker.getAddress().setStreet(resultSet.getString("street"));
+            worker.getAddress().setNumber(resultSet.getInt("number"));
+
+            workerList.add(worker);
+        }
+
+        return workerList;
+    }
+
     public Customer findCustomerrById(int id) throws SQLException {
         Connection connection = connectionFactory.connection();
 
