@@ -43,9 +43,10 @@ public class VehicleController {
     }
 
     public void deleteVehicle(Vehicle vehicle) {
-//        TODO - Não funciona
+        Worker worker = (Worker) UserController.getSessionUser();
+        worker.getVehicles().remove(vehicle);
+        UserController.setSessionUser(worker);
         try {
-            System.out.println(vehicle);
             VehicleDao.getInstance().delete(vehicle);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -42,13 +42,7 @@ public class ChangeUserFXMLController {
 
     @FXML
     public void changeUserAction() {
-        User paramUser;
 
-        if (UserController.getSessionUser() instanceof Customer) {
-            paramUser = new Customer((Customer) UserController.getSessionUser());
-        } else {
-            paramUser = new Worker((Worker) UserController.getSessionUser());
-        }
         if (nameTxt.getText().equals("") == false) {
             UserController.getSessionUser().setName(nameTxt.getText());
         }
@@ -77,7 +71,9 @@ public class ChangeUserFXMLController {
             UserController.getSessionUser().setPhoneNumber(phoneTxt.getText());
         }
 
-        if (UserController.getSessionUser() == paramUser) {
+        if (nameTxt.getText().isEmpty() && passwordTxt.getText().isEmpty() && stateTxt.getText().isEmpty() && cityTxt.getText().isEmpty()
+            && streetTxt.getText().isEmpty() && numberTxt.getText().isEmpty() && phoneTxt.getText().isEmpty()
+        ) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Hey Look!");
             alert.setHeaderText("Erro ao atualizar");

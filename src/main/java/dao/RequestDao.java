@@ -1,7 +1,6 @@
 package dao;
 
 import connection.ConnectionFactory;
-import model.Customer;
 import model.Request;
 import model.Status;
 import model.Vehicle;
@@ -25,6 +24,18 @@ public class RequestDao {
 
     public static RequestDao getInstance() {
         return instance;
+    }
+
+    public void delete(Request request) throws SQLException {
+        Connection connection = connectionFactory.connection();
+
+        String querySql = "DELETE FROM request WHERE vehicle=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(querySql);
+        preparedStatement.setString(1, request.getVehicle().getPlate());
+        preparedStatement.execute();
+
+        connection.close();
     }
 
     public void update(Request request) throws SQLException {

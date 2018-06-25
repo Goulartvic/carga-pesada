@@ -44,11 +44,20 @@ public class VehicleDao {
     public void delete(Vehicle vehicle) throws SQLException {
         Connection connection = connectionFactory.connection();
 
+        vehicle.getRequests().forEach(request -> {
+            try {
+                RequestDao.getInstance().delete(request);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
         String querySql = "DELETE FROM vehicle WHERE plate = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySql);
 
         preparedStatement.setString(1, vehicle.getPlate());
+        preparedStatement.execute();
         connection.close();
     }
 

@@ -90,6 +90,15 @@ public class ListVehiclesFXMLController implements Initializable {
         Vehicle vehicle = tableView.getSelectionModel().getSelectedItem();
         if (vehicle != null) {
             VehicleController.getInstance().deleteVehicle(vehicle);
+
+            ListVehicles listVehicles = new ListVehicles();
+
+            ListVehicles.getStage().close();
+            try {
+                listVehicles.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
