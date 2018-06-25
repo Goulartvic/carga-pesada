@@ -34,13 +34,23 @@ public class LoginFXMLController {
                 UserController.getInstance().loginUser(txtLogin.getText(), txtPassword.getText());
 
                 if (UserController.getSessionUser() instanceof Worker) {
-                    RequestsWorker requestsWorker = new RequestsWorker();
-                    goQuitAction();
-                    try {
-                        requestsWorker.start(new Stage());
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (!((Worker) UserController.getSessionUser()).getVehicles().isEmpty()) {
+
+                        RequestsWorker requestsWorker = new RequestsWorker();
+                        try {
+                            requestsWorker.start(new Stage());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        RegisterVehicle registerVehicle = new RegisterVehicle();
+                        try {
+                            registerVehicle.start(new Stage());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+                    goQuitAction();
                 } else {
                     Search search = new Search();
                     goQuitAction();
