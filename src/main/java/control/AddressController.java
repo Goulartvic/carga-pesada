@@ -10,7 +10,9 @@ public class AddressController {
 
     private static AddressController addressInstance = new AddressController();
 
-    public void saveAddress(User user) {
+    public void
+
+    saveAddress(User user) {
         try {
             AddressDao.getInstance().save(user);
         } catch (SQLException e) {
